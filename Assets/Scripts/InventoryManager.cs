@@ -20,5 +20,6 @@ namespace GameControll
     {
         public List<Action> action;
         public List<Action> two_handed_Actions;
+        public GameObject weaponModel;
     }
 }

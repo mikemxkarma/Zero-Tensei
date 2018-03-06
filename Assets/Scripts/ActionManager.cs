@@ -9,6 +9,8 @@ using UnityEngine;
     public class ActionManager : MonoBehaviour
     {
         public List<Action> actionSlot = new List<Action>();
+        public ItemAction consumableItem;
+
         StateManager states;
        
 
@@ -101,5 +103,12 @@ using UnityEngine;
     {
         public ActionInput input;
         public string targetAnimation;
+    }
+
+    [System.Serializable]
+    public class ItemAction
+    {
+        public string targetAnimation;
+        public string item_id;
     }
 }

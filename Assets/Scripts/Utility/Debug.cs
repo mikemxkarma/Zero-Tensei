@@ -54,27 +54,27 @@ public class Debug : MonoBehaviour {
 
             if (playAnimation)
         {
-            string targetAnim;
+            string targetAnimation;
 
             if (!twoHanded)
             {
                 int r = Random.Range(0, oh_attacks.Length);
-                targetAnim = oh_attacks[r];
+                targetAnimation = oh_attacks[r];
 
                 if (vertical > 0.5f)
-                    targetAnim = "oh_attack_3";
+                    targetAnimation = "oh_attack_3";
                  
             }
             else
             {
                 int r = Random.Range(0, th_attacks.Length);
-                targetAnim = th_attacks[r];
+                targetAnimation = th_attacks[r];
 
                 if (vertical > 0.5f)
-                    targetAnim = "oh_attack_3";
+                    targetAnimation = "oh_attack_3";
             }
             vertical = 0;     
-            anim.CrossFade(targetAnim, 0.2f);
+            anim.CrossFade(targetAnimation, 0.2f);
            // anim.SetBool("canMove",false);
            // enableRootMotion = true;
             playAnimation = false;

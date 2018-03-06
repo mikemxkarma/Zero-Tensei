@@ -452,6 +452,8 @@ MonoBehaviour:
   lb: 1
   isTwoHanded: 0
   rollInput: 0
+  itemInput: 0
+  usingItem: 0
   moveSpeed: 4
   runSpeed: 8
   rotateSpeed: 9
@@ -576,6 +578,9 @@ MonoBehaviour:
     targetAnimation: 
   - input: 3
     targetAnimation: 
+  consumableItem:
+    targetAnimation: bestus
+    item_id: 
 --- !u!114 &797503651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,6 +609,7 @@ MonoBehaviour:
       targetAnimation: 
     - input: 3
       targetAnimation: parry
+    weaponModel: {fileID: 0}
 --- !u!4 &1013385425 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400116, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}

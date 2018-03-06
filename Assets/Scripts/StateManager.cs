@@ -27,6 +27,8 @@ namespace GameControll
         public bool rt, rb, lt, lb;
         public bool isTwoHanded;
         public bool rollInput;
+        public bool itemInput;
+        public bool usingItem;
 
         [Header("Stats")]
         public float moveSpeed = 2;
@@ -113,8 +115,12 @@ namespace GameControll
         public void FixedTick(float d)
         {
             delta = d;
-                
+
+            usingItem = anim.GetBool("interacting");
+
+            DetectItemAction(); 
             DetectAction();
+         //   inventoryManager.currentWeapon.weaponModel.SetActive(!usingItem);
 
             if (inAction)
             {
@@ -146,6 +152,13 @@ namespace GameControll
             rigidBody.drag = (moveAmount > 0|| onGround==false) ? 0 : 4;          
 
             float targetSpeed = moveSpeed;
+
+            if (usingItem)
+            {
+                run = false;
+                moveAmount = Mathf.Clamp(moveAmount, 0, 0.5f);
+            }
+
             if (run)
                 targetSpeed = runSpeed;
 
@@ -177,28 +190,49 @@ namespace GameControll
                 HandleLockOnAnimations(moveDirection);        
         }
 
+        public void DetectItemAction()
+        {
+            if (canMove == false || usingItem)
+                return;
+
+            if (itemInput == false)
+                return;
+
+            ItemAction slot = actionManager.consumableItem;
+            string targetAnimation = slot.targetAnimation;
+
+            if (string.IsNullOrEmpty(targetAnimation))
+                return;
+
+           // inventoryManager.currentWeapon.weaponModel.SetActive(false);
+            usingItem = true;
+            // anim.CrossFade(targetAnimation, 0.2f);
+            anim.Play(targetAnimation);
+
+        }
+
         public void DetectAction()
         {
-            if (canMove == false)
+            if (canMove == false || usingItem)
                 return;
 
             if (rb == false && rt == false && lt == false && lb == false)
                 return;
 
-            string targetAnim= null;
+            string targetAnimation = null;
 
             Action slot = actionManager.GetActionSlot(this);
             if (slot == null)
                 return;
-            targetAnim = slot.targetAnimation;
+            targetAnimation = slot.targetAnimation;
 
 
-            if (string.IsNullOrEmpty(targetAnim))
+            if (string.IsNullOrEmpty(targetAnimation))
                 return;
 
             canMove = false;
             inAction = true;
-            anim.CrossFade(targetAnim,0.2f);
+            anim.CrossFade(targetAnimation, 0.2f);
         }
 
         public void Tick(float d)
@@ -210,7 +244,7 @@ namespace GameControll
 
         void HandleRolls()
         {
-            if (!rollInput)
+            if (!rollInput || usingItem)
                 return;
 
             float v = vertical;
