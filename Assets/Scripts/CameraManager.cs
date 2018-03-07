@@ -22,6 +22,7 @@ namespace GameControll
         public float controllerSpeed = 20;       
         public Transform target;
         public EnemyTarget lockonTarget;
+        public Transform lockEffectTarget;
         public Transform lockonTransform;
         [HideInInspector]
         public Transform pivot;
@@ -66,6 +67,7 @@ namespace GameControll
                 if (lockonTransform == null)
                 {
                     lockonTransform = lockonTarget.GetTarget();
+                    lockEffectTarget = lockonTransform;
                     states.lockOnTransform = lockonTransform;
                 }
 
@@ -74,6 +76,7 @@ namespace GameControll
                     if (!usedRightAxis)
                     {
                         lockonTransform = lockonTarget.GetTarget((c_h > 0));
+                        lockEffectTarget = lockonTransform;
                         states.lockOnTransform = lockonTransform;
                         usedRightAxis = true;
                     }
@@ -127,7 +130,7 @@ namespace GameControll
 
             if (lockOnMode && lockonTarget != null)
             {
-                Vector3 targetDir = lockonTransform.position - transform.position;
+                Vector3 targetDir = lockonTransform.position - transform.position - new Vector3(0, lockonTransform.position.y);
                 targetDir.Normalize();
                 // targetDir.y = 0;
             
