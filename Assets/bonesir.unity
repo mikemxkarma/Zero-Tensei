@@ -2463,7 +2463,6 @@ MonoBehaviour:
   controllerSpeed: 3
   target: {fileID: 0}
   lockonTarget: {fileID: 0}
-  lockEffectTarget: {fileID: 0}
   lockonTransform: {fileID: 0}
   pivot: {fileID: 0}
   camTransform: {fileID: 0}
