@@ -18,7 +18,7 @@ public class targetLockUI : MonoBehaviour {
     void Update()
     {
         if (camera.lockOnMode){
-            transform.position = Camera.main.WorldToScreenPoint(camera.lockEffectTarget.position);
+            transform.position = Camera.main.WorldToScreenPoint(camera.lockonTransform.position);
             trans.SetAlpha(1);
         }
         else
