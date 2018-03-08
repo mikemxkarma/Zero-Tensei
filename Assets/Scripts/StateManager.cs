@@ -78,7 +78,7 @@ namespace GameControll
             rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
             inventoryManager = GetComponent<InventoryManager>();
-            inventoryManager.Init();
+            inventoryManager.Init(this);
 
             actionManager = GetComponent<ActionManager>();
             actionManager.Init(this);
@@ -224,17 +224,19 @@ namespace GameControll
 
             string targetAnimation = null;
 
+
             Action slot = actionManager.GetActionSlot(this);
             if (slot == null)
                 return;
-            targetAnimation = slot.targetAnimation;
 
+            targetAnimation = slot.targetAnimation;
 
             if (string.IsNullOrEmpty(targetAnimation))
                 return;
 
             canMove = false;
             inAction = true;
+            anim.SetBool("mirror", slot.mirror);
             anim.CrossFade(targetAnimation, 0.2f);
         }
 

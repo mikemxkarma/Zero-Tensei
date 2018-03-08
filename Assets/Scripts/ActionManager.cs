@@ -47,10 +47,17 @@ using UnityEngine;
             Action rt = GetAction(ActionInput.rt);
             rb.targetAnimation = r_weapon.GetAction(r_weapon.action, ActionInput.rb).targetAnimation;
             rt.targetAnimation = r_weapon.GetAction(r_weapon.action, ActionInput.rt).targetAnimation;
+
             Action lb = GetAction(ActionInput.lb);
-            Action lt = GetAction(ActionInput.rt);
+            Action lt = GetAction(ActionInput.lt);
             lb.targetAnimation = l_weapon.GetAction(l_weapon.action, ActionInput.rb).targetAnimation;
             lt.targetAnimation = l_weapon.GetAction(l_weapon.action, ActionInput.rt).targetAnimation;
+
+            if (l_weapon.leftHandMirror)
+            {
+                lb.mirror = true;
+                lt.mirror = true;
+            }
         }
 
         public void UpdateActionsTwoHanded()
@@ -70,6 +77,7 @@ using UnityEngine;
             {
                 Action a = GetAction((ActionInput)i);
                 a.targetAnimation = null;
+                a.mirror = false;
             }
         }
 
@@ -125,6 +133,7 @@ using UnityEngine;
     {
         public ActionInput input;
         public string targetAnimation;
+        public bool mirror = false;
     }
 
     [System.Serializable]

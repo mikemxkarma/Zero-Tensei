@@ -114,7 +114,7 @@ namespace GameControll
         {
             if (states == null)
                 return;
-            states.inventoryManager.CloseAllDamageColliders();
+            states.inventoryManager.OpenAllDamageColliders();
         }
 
         public void CloseDamageColliders()

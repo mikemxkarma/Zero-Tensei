@@ -8,14 +8,36 @@ namespace GameControll
     public class InventoryManager : MonoBehaviour
     {
         public Weapon rightHandWeapon;
-        public Weapon leftHandWeapon;
         public bool hasLeftHandWeapon = true;
+        public Weapon leftHandWeapon;
 
-        public void Init()
+        StateManager states;
+
+        public void Init(StateManager st)
         {
+            states = st;
+            EquipWeapon(rightHandWeapon, false);
+            EquipWeapon(leftHandWeapon, true);
             CloseAllDamageColliders();
+        }
+
+        public void EquipWeapon(Weapon w, bool isLeft=false)
+        {
+            string targetIdle = w.oh_idle;
+            targetIdle += (isLeft) ? "_l" : "_r";
+            states.anim.SetBool("mirror", isLeft);
+            states.anim.Play("changeWeapon");
+            states.anim.Play(targetIdle);
+        }
 
 
+        public void OpenAllDamageColliders()
+        {
+            if (rightHandWeapon.w_hook != null)
+                rightHandWeapon.w_hook.OpenDamageColliders();
+
+            if (leftHandWeapon.w_hook != null)
+                leftHandWeapon.w_hook.OpenDamageColliders();
         }
 
         public void CloseAllDamageColliders()
@@ -31,6 +53,9 @@ namespace GameControll
     [System.Serializable]
     public class Weapon
     {
+        public string oh_idle;
+        public string th_idle;
+
         public List<Action> action;
         public List<Action> two_handed_Actions;
         public bool leftHandMirror;
