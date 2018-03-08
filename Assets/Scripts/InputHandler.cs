@@ -135,6 +135,18 @@ namespace GameControll
                 states.HandlerTwoHanded();
             }
 
+
+            if (states.lockOnTarget != null)
+            { 
+            if (states.lockOnTarget.enemyStates.isDead)
+            {
+                states.lockOn = false;
+                states.lockOnTarget = null;
+                states.lockOnTransform = null;
+                    cameraManager.lockOnMode = false;
+                    cameraManager.lockonTarget = null;
+            }
+            }
             if (rightAxis_down)
             {
                 

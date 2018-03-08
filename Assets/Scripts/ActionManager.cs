@@ -23,7 +23,7 @@ using UnityEngine;
         public void UpdateActionsOneHanded()
         {
             EmptyAllSlots();
-            Weapon w = states.inventoryManager.currentWeapon;
+            Weapon w = states.inventoryManager.rightHandWeapon;
             for (int i = 0; i < w.action.Count; i++)
             {
                 Action a = GetAction(w.action[i].input);
@@ -34,7 +34,7 @@ using UnityEngine;
         public void UpdateActionsTwoHanded()
         {
             EmptyAllSlots();
-            Weapon w = states.inventoryManager.currentWeapon;
+            Weapon w = states.inventoryManager.rightHandWeapon;
             for (int i = 0; i < w.two_handed_Actions.Count; i++)
             {
                 Action a = GetAction(w.two_handed_Actions[i].input);

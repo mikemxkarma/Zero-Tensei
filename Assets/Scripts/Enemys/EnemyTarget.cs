@@ -10,11 +10,15 @@ namespace GameControll
         public int index;
         public List<Transform> targets = new List<Transform>();
         public List<HumanBodyBones> humanoidBones = new List<HumanBodyBones>();
+
+        public EnemyStates enemyStates;
+
         Animator anim;
 
-        void Start()
+        public void Init(EnemyStates st)
         {
-            anim = GetComponent<Animator>();
+            enemyStates = st;
+            anim = enemyStates.anim;
             if (anim.isHuman == false)
                 return;
             for (int i = 0; i < humanoidBones.Count; i++)
@@ -23,8 +27,7 @@ namespace GameControll
             }
 
         }
-        //ok
-
+       
         public Transform GetTarget(bool negative = false)
         {
             if (targets.Count == 0)
