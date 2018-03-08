@@ -9,7 +9,7 @@ namespace GameControll
     {
         public Weapon rightHandWeapon;
         public Weapon leftHandWeapon;
-
+        public bool hasLeftHandWeapon = true;
 
         public void Init()
         {
@@ -36,5 +36,18 @@ namespace GameControll
         public bool leftHandMirror;
         public GameObject weaponModel;
         public WeaponHook w_hook;
+
+        public Action GetAction(List<Action> l, ActionInput inp)
+        {
+            for (int i = 0; i < l.Count; i++)
+            {
+                if (l[i].input == inp)
+                {
+                    return l[i];
+                }
+            }
+            return null;
+        }
+
     }
 }

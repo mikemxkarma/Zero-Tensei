@@ -23,12 +23,34 @@ using UnityEngine;
         public void UpdateActionsOneHanded()
         {
             EmptyAllSlots();
+
+            if (states.inventoryManager.hasLeftHandWeapon)
+            {
+                UpdateActionsWithLeftHand();
+                return;
+            }
+
             Weapon w = states.inventoryManager.rightHandWeapon;
             for (int i = 0; i < w.action.Count; i++)
             {
                 Action a = GetAction(w.action[i].input);
                 a.targetAnimation = w.action[i].targetAnimation;
             }
+        }
+
+        public void UpdateActionsWithLeftHand()
+        {
+            Weapon r_weapon = states.inventoryManager.rightHandWeapon;
+            Weapon l_weapon = states.inventoryManager.leftHandWeapon;
+
+            Action rb = GetAction(ActionInput.rb);
+            Action rt = GetAction(ActionInput.rt);
+            rb.targetAnimation = r_weapon.GetAction(r_weapon.action, ActionInput.rb).targetAnimation;
+            rt.targetAnimation = r_weapon.GetAction(r_weapon.action, ActionInput.rt).targetAnimation;
+            Action lb = GetAction(ActionInput.lb);
+            Action lt = GetAction(ActionInput.rt);
+            lb.targetAnimation = l_weapon.GetAction(l_weapon.action, ActionInput.rb).targetAnimation;
+            lt.targetAnimation = l_weapon.GetAction(l_weapon.action, ActionInput.rt).targetAnimation;
         }
 
         public void UpdateActionsTwoHanded()
