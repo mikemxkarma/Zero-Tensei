@@ -45,13 +45,27 @@ using UnityEngine;
 
             Action rb = GetAction(ActionInput.rb);
             Action rt = GetAction(ActionInput.rt);
-            rb.targetAnimation = r_weapon.GetAction(r_weapon.action, ActionInput.rb).targetAnimation;
-            rt.targetAnimation = r_weapon.GetAction(r_weapon.action, ActionInput.rt).targetAnimation;
+
+            Action w_rb = r_weapon.GetAction(r_weapon.action, ActionInput.rb);
+
+            rb.targetAnimation = w_rb.targetAnimation;
+            rb.type = w_rb.type;
+
+            Action w_rt = r_weapon.GetAction(r_weapon.action, ActionInput.rt);
+            rt.targetAnimation = w_rt.targetAnimation;
+            rt.type = w_rt.type;
+            
 
             Action lb = GetAction(ActionInput.lb);
             Action lt = GetAction(ActionInput.lt);
-            lb.targetAnimation = l_weapon.GetAction(l_weapon.action, ActionInput.rb).targetAnimation;
-            lt.targetAnimation = l_weapon.GetAction(l_weapon.action, ActionInput.rt).targetAnimation;
+
+            Action w_lb = l_weapon.GetAction(l_weapon.action, ActionInput.rb);
+            lb.targetAnimation = w_lb.targetAnimation;
+            lb.type = w_lb.type;
+
+            Action w_lt = l_weapon.GetAction(l_weapon.action, ActionInput.rt);
+            lt.targetAnimation = w_lt.targetAnimation;
+            lt.type = w_lt.type;
 
             if (l_weapon.leftHandMirror)
             {
@@ -68,6 +82,7 @@ using UnityEngine;
             {
                 Action a = GetAction(w.two_handed_Actions[i].input);
                 a.targetAnimation = w.two_handed_Actions[i].targetAnimation;
+                a.type = w.two_handed_Actions[i].type;
             }
         }
 
@@ -78,6 +93,7 @@ using UnityEngine;
                 Action a = GetAction((ActionInput)i);
                 a.targetAnimation = null;
                 a.mirror = false;
+                a.type = ActionType.attack;
             }
         }
 
@@ -128,12 +144,20 @@ using UnityEngine;
         rb,lb,rt,lt
     }
 
+    public enum ActionType
+    {
+        attack,block,spells,parry
+    }
+
     [System.Serializable]
     public class Action
     {
+        
         public ActionInput input;
+        public ActionType type;
         public string targetAnimation;
         public bool mirror = false;
+        
     }
 
     [System.Serializable]

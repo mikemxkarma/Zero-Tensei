@@ -25,10 +25,10 @@ namespace GameControll
         public float horizontal;
         public float vertical;
         public bool rt, rb, lt, lb;
-        public bool isTwoHanded;
+   
         public bool rollInput;
         public bool itemInput;
-        public bool usingItem;
+   
 
         [Header("Stats")]
         public float moveSpeed = 2;
@@ -47,7 +47,10 @@ namespace GameControll
         public bool lockOn;
         public bool inAction;
         public bool canMove;
-
+        public bool usingItem;
+        public bool isTwoHanded;
+        public bool isBlocking;
+        public bool isLeftHand;
 
 
         [HideInInspector]
@@ -119,11 +122,14 @@ namespace GameControll
         {
             delta = d;
 
+            isBlocking = false;
             usingItem = anim.GetBool("interacting");
-
-            DetectItemAction(); 
             DetectAction();
+            DetectItemAction();           
             inventoryManager.rightHandWeapon.weaponModel.SetActive(!usingItem);
+
+            anim.SetBool("blocking", isBlocking);
+            anim.SetBool("isLeft", isLeftHand);
 
             if (inAction)
             {
@@ -195,7 +201,7 @@ namespace GameControll
 
         public void DetectItemAction()
         {
-            if (canMove == false || usingItem)
+            if (canMove == false || usingItem || isBlocking)
                 return;
 
             if (itemInput == false)
@@ -222,13 +228,52 @@ namespace GameControll
             if (rb == false && rt == false && lt == false && lb == false)
                 return;
 
-            string targetAnimation = null;
-
-
             Action slot = actionManager.GetActionSlot(this);
             if (slot == null)
+               return;
+
+            switch (slot.type)
+            {
+                case ActionType.attack:
+                    AttackAction(slot);
+                    break;
+                case ActionType.block:
+                    BlockAction(slot);
+                    break;
+                case ActionType.spells:
+                    break;
+                case ActionType.parry:
+                    ParryAction(slot);
+                    break;
+                default:
+                    break;
+            }
+         
+        }
+
+        void AttackAction(Action slot)
+        {
+            string targetAnimation = null;
+            targetAnimation = slot.targetAnimation;
+
+            if (string.IsNullOrEmpty(targetAnimation))
                 return;
 
+            canMove = false;
+            inAction = true;
+            anim.SetBool("mirror", slot.mirror);
+            anim.CrossFade(targetAnimation, 0.2f);
+        }
+
+        void BlockAction(Action slot)
+        {
+            isBlocking = true;
+            isLeftHand = slot.mirror;//if its mirror , block with left hand
+        }
+
+        void ParryAction(Action slot)
+        {
+            string targetAnimation = null;
             targetAnimation = slot.targetAnimation;
 
             if (string.IsNullOrEmpty(targetAnimation))
