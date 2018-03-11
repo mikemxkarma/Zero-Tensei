@@ -78,7 +78,7 @@ namespace GameControll
             rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
             inventoryManager = GetComponent<InventoryManager>();
-            inventoryManager.Init();
+            inventoryManager.Init(this);
 
             actionManager = GetComponent<ActionManager>();
             actionManager.Init(this);

@@ -46,6 +46,9 @@ namespace GameControll
         #region Constructors
         void Start()
         {
+
+            UI.QuickSlot.singleton.Init();
+
             states = GetComponent<StateManager>();
             states.Init();
             cameraManager = CameraManager.singleton;
