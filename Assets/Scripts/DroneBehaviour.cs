@@ -17,8 +17,13 @@ namespace GameControll
 
         Vector3 nextPosition;
         Vector3 yPlaneView;
-        
 
+        Vector3 storeTarget;
+        Vector3 newTargetPos;
+        bool savePos;
+        bool overrideTarget;
+        Transform obstacle;
+        public List<Vector3> EscapeDirections = new List<Vector3>();
 
         private void Start()
         {
@@ -28,9 +33,16 @@ namespace GameControll
 
         void Update()
         {
-
-            
-            if (gotTooFarAway || playerState.run)
+            if (playerState.run)
+            {
+                speed = playerState.runSpeed ;
+            }
+            else
+            {
+                speed = playerState.moveSpeed ;
+            }
+                
+          /*  if (gotTooFarAway || playerState.run)
             {
                 speed = playerState.runSpeed;
 
@@ -48,15 +60,15 @@ namespace GameControll
 
             else
             {
-                speed = movementSpeed;
+                speed = playerState.moveSpeed;
             }
 
+            */
             
-            
-            if (Mathf.Abs(transform.position.x - player.position.x) > 3 || Mathf.Abs(transform.position.z - player.position.z) > 3)
+            if (Mathf.Abs(transform.position.x - player.position.x) > 0.5f || Mathf.Abs(transform.position.z - player.position.z) > 0.5f)
             {
-                Quaternion lookAt = Quaternion.LookRotation(player.position - transform.position);
-                Quaternion rotation = Quaternion.Lerp(transform.rotation, lookAt, Time.smoothDeltaTime * turnSpeed);
+                Quaternion lookAt = Quaternion.LookRotation(player.position + yPlaneView - transform.position);
+                Quaternion rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.smoothDeltaTime * turnSpeed);
                 transform.rotation = rotation;
 
                 nextPosition = transform.position;
@@ -74,10 +86,8 @@ namespace GameControll
                 transform.rotation = rotation;
             }
             
-            
-            
-            
         }
+        
     }
 }
 
