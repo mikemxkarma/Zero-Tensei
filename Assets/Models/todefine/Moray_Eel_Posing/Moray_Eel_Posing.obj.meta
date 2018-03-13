@@ -1,0 +1,191 @@
+fileFormatVersion: 2
+guid: e89389fdb0340094cbfcac0a27c692c5
+timeCreated: 1520745577
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: grp_Robot_Moray_Eel_Body_01
+    100002: grp_Robot_Moray_Eel_Body_02
+    100004: grp_Robot_Moray_Eel_Body_03
+    100006: grp_Robot_Moray_Eel_Body_04
+    100008: grp_Robot_Moray_Eel_Body_05
+    100010: grp_Robot_Moray_Eel_Body_06
+    100012: grp_Robot_Moray_Eel_Body_07
+    100014: grp_Robot_Moray_Eel_Body_08
+    100016: grp_Robot_Moray_Eel_Body_09
+    100018: grp_Robot_Moray_Eel_Body_10
+    100020: grp_Robot_Moray_Eel_Body_Base
+    100022: grp_Robot_Moray_Eel_Crystal
+    100024: grp_Robot_Moray_Eel_Jaw
+    100026: grp_Robot_Moray_Eel_polySurface9_Body_End
+    100028: grp_Robot_Moray_Eel_Rubber
+    100030: Head_grp_Robot_Moray_Eel_Glass
+    100032: Head_Head_grp_Robot_Moray_Eel
+    100034: //RootNode
+    400000: grp_Robot_Moray_Eel_Body_01
+    400002: grp_Robot_Moray_Eel_Body_02
+    400004: grp_Robot_Moray_Eel_Body_03
+    400006: grp_Robot_Moray_Eel_Body_04
+    400008: grp_Robot_Moray_Eel_Body_05
+    400010: grp_Robot_Moray_Eel_Body_06
+    400012: grp_Robot_Moray_Eel_Body_07
+    400014: grp_Robot_Moray_Eel_Body_08
+    400016: grp_Robot_Moray_Eel_Body_09
+    400018: grp_Robot_Moray_Eel_Body_10
+    400020: grp_Robot_Moray_Eel_Body_Base
+    400022: grp_Robot_Moray_Eel_Crystal
+    400024: grp_Robot_Moray_Eel_Jaw
+    400026: grp_Robot_Moray_Eel_polySurface9_Body_End
+    400028: grp_Robot_Moray_Eel_Rubber
+    400030: Head_grp_Robot_Moray_Eel_Glass
+    400032: Head_Head_grp_Robot_Moray_Eel
+    400034: //RootNode
+    2100000: grp_Robot_Moray_Eel_Body_01Mat
+    2100002: grp_Robot_Moray_Eel_Body_02Mat
+    2100004: grp_Robot_Moray_Eel_Body_03Mat
+    2100006: grp_Robot_Moray_Eel_Body_04Mat
+    2100008: grp_Robot_Moray_Eel_Body_05Mat
+    2100010: grp_Robot_Moray_Eel_Body_06Mat
+    2100012: grp_Robot_Moray_Eel_Body_07Mat
+    2100014: grp_Robot_Moray_Eel_Body_08Mat
+    2100016: grp_Robot_Moray_Eel_Body_09Mat
+    2100018: grp_Robot_Moray_Eel_Body_10Mat
+    2100020: grp_Robot_Moray_Eel_Body_BaseMat
+    2100022: grp_Robot_Moray_Eel_CrystalMat
+    2100024: grp_Robot_Moray_Eel_JawMat
+    2100026: grp_Robot_Moray_Eel_polySurface9_Body_EndMat
+    2100028: grp_Robot_Moray_Eel_RubberMat
+    2100030: Head_grp_Robot_Moray_Eel_GlassMat
+    2100032: Head_Head_grp_Robot_Moray_EelMat
+    2300000: grp_Robot_Moray_Eel_Body_01
+    2300002: grp_Robot_Moray_Eel_Body_02
+    2300004: grp_Robot_Moray_Eel_Body_03
+    2300006: grp_Robot_Moray_Eel_Body_04
+    2300008: grp_Robot_Moray_Eel_Body_05
+    2300010: grp_Robot_Moray_Eel_Body_06
+    2300012: grp_Robot_Moray_Eel_Body_07
+    2300014: grp_Robot_Moray_Eel_Body_08
+    2300016: grp_Robot_Moray_Eel_Body_09
+    2300018: grp_Robot_Moray_Eel_Body_10
+    2300020: grp_Robot_Moray_Eel_Body_Base
+    2300022: grp_Robot_Moray_Eel_Crystal
+    2300024: grp_Robot_Moray_Eel_Jaw
+    2300026: grp_Robot_Moray_Eel_polySurface9_Body_End
+    2300028: grp_Robot_Moray_Eel_Rubber
+    2300030: Head_grp_Robot_Moray_Eel_Glass
+    2300032: Head_Head_grp_Robot_Moray_Eel
+    3300000: grp_Robot_Moray_Eel_Body_01
+    3300002: grp_Robot_Moray_Eel_Body_02
+    3300004: grp_Robot_Moray_Eel_Body_03
+    3300006: grp_Robot_Moray_Eel_Body_04
+    3300008: grp_Robot_Moray_Eel_Body_05
+    3300010: grp_Robot_Moray_Eel_Body_06
+    3300012: grp_Robot_Moray_Eel_Body_07
+    3300014: grp_Robot_Moray_Eel_Body_08
+    3300016: grp_Robot_Moray_Eel_Body_09
+    3300018: grp_Robot_Moray_Eel_Body_10
+    3300020: grp_Robot_Moray_Eel_Body_Base
+    3300022: grp_Robot_Moray_Eel_Crystal
+    3300024: grp_Robot_Moray_Eel_Jaw
+    3300026: grp_Robot_Moray_Eel_polySurface9_Body_End
+    3300028: grp_Robot_Moray_Eel_Rubber
+    3300030: Head_grp_Robot_Moray_Eel_Glass
+    3300032: Head_Head_grp_Robot_Moray_Eel
+    4300000: grp_Robot_Moray_Eel_Body_01
+    4300002: grp_Robot_Moray_Eel_Body_02
+    4300004: grp_Robot_Moray_Eel_Body_03
+    4300006: grp_Robot_Moray_Eel_Body_04
+    4300008: grp_Robot_Moray_Eel_Body_05
+    4300010: grp_Robot_Moray_Eel_Body_06
+    4300012: grp_Robot_Moray_Eel_Body_07
+    4300014: grp_Robot_Moray_Eel_Body_08
+    4300016: grp_Robot_Moray_Eel_Body_09
+    4300018: grp_Robot_Moray_Eel_Body_10
+    4300020: grp_Robot_Moray_Eel_Body_Base
+    4300022: grp_Robot_Moray_Eel_Crystal
+    4300024: grp_Robot_Moray_Eel_Jaw
+    4300026: grp_Robot_Moray_Eel_polySurface9_Body_End
+    4300028: grp_Robot_Moray_Eel_Rubber
+    4300030: Head_grp_Robot_Moray_Eel_Glass
+    4300032: Head_Head_grp_Robot_Moray_Eel
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

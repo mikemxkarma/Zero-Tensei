@@ -13,7 +13,7 @@ namespace GameControll
             if (eStates == null)
                 return;
 
-            eStates.DoDamage(30);
+            eStates.DoDamage(35);
 
         }
     }

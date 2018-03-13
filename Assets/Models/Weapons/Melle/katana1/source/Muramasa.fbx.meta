@@ -1,0 +1,248 @@
+fileFormatVersion: 2
+guid: c5d037ed6471ca24eb1dc1c7ad4acb3b
+timeCreated: 1520654423
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Blade_Tsuba_Piece_01
+    100002: Hilt_01
+    100004: Hilt_Cap_01
+    100006: Hilt_Cap_01 1
+    100008: Hilt_Handle_01
+    100010: Katana_Blade_01
+    100012: //RootNode
+    100014: Scabbard_01
+    100016: Scabbard_01 1
+    100018: Scabbard_Lock_01
+    100020: Shadow_01
+    100022: Shadow_02
+    100024: Tsuba_01
+    100026: Tsuba_01 1
+    100028: Wrap_01
+    100030: Wrap_01 1
+    100032: Wrap_010
+    100034: Wrap_011
+    100036: Wrap_012
+    100038: Wrap_013
+    100040: Wrap_014
+    100042: Wrap_015
+    100044: Wrap_016
+    100046: Wrap_017
+    100048: Wrap_018
+    100050: Wrap_02
+    100052: Wrap_03
+    100054: Wrap_04
+    100056: Wrap_05
+    100058: Wrap_06
+    100060: Wrap_07
+    100062: Wrap_08
+    100064: Wrap_09
+    100066: Wrap_Cap_Holder_01
+    400000: Blade_Tsuba_Piece_01
+    400002: Hilt_01
+    400004: Hilt_Cap_01
+    400006: Hilt_Cap_01 1
+    400008: Hilt_Handle_01
+    400010: Katana_Blade_01
+    400012: //RootNode
+    400014: Scabbard_01
+    400016: Scabbard_01 1
+    400018: Scabbard_Lock_01
+    400020: Shadow_01
+    400022: Shadow_02
+    400024: Tsuba_01
+    400026: Tsuba_01 1
+    400028: Wrap_01
+    400030: Wrap_01 1
+    400032: Wrap_010
+    400034: Wrap_011
+    400036: Wrap_012
+    400038: Wrap_013
+    400040: Wrap_014
+    400042: Wrap_015
+    400044: Wrap_016
+    400046: Wrap_017
+    400048: Wrap_018
+    400050: Wrap_02
+    400052: Wrap_03
+    400054: Wrap_04
+    400056: Wrap_05
+    400058: Wrap_06
+    400060: Wrap_07
+    400062: Wrap_08
+    400064: Wrap_09
+    400066: Wrap_Cap_Holder_01
+    2100000: Sword_Metal
+    2100002: surfaceShader2
+    2100004: blinn3
+    2100006: blinn5
+    2100008: blinn6
+    2100010: Gold
+    2100012: Black
+    2100014: Cloth
+    2100016: blinn8
+    2300000: Blade_Tsuba_Piece_01
+    2300002: Hilt_Cap_01 1
+    2300004: Hilt_Handle_01
+    2300006: Katana_Blade_01
+    2300008: Scabbard_01 1
+    2300010: Scabbard_Lock_01
+    2300012: Shadow_01
+    2300014: Shadow_02
+    2300016: Tsuba_01 1
+    2300018: Wrap_01 1
+    2300020: Wrap_010
+    2300022: Wrap_011
+    2300024: Wrap_012
+    2300026: Wrap_013
+    2300028: Wrap_014
+    2300030: Wrap_015
+    2300032: Wrap_016
+    2300034: Wrap_017
+    2300036: Wrap_018
+    2300038: Wrap_02
+    2300040: Wrap_03
+    2300042: Wrap_04
+    2300044: Wrap_05
+    2300046: Wrap_06
+    2300048: Wrap_07
+    2300050: Wrap_08
+    2300052: Wrap_09
+    2300054: Wrap_Cap_Holder_01
+    3300000: Blade_Tsuba_Piece_01
+    3300002: Hilt_Cap_01 1
+    3300004: Hilt_Handle_01
+    3300006: Katana_Blade_01
+    3300008: Scabbard_01 1
+    3300010: Scabbard_Lock_01
+    3300012: Shadow_01
+    3300014: Shadow_02
+    3300016: Tsuba_01 1
+    3300018: Wrap_01 1
+    3300020: Wrap_010
+    3300022: Wrap_011
+    3300024: Wrap_012
+    3300026: Wrap_013
+    3300028: Wrap_014
+    3300030: Wrap_015
+    3300032: Wrap_016
+    3300034: Wrap_017
+    3300036: Wrap_018
+    3300038: Wrap_02
+    3300040: Wrap_03
+    3300042: Wrap_04
+    3300044: Wrap_05
+    3300046: Wrap_06
+    3300048: Wrap_07
+    3300050: Wrap_08
+    3300052: Wrap_09
+    3300054: Wrap_Cap_Holder_01
+    4300000: Katana_Blade_01
+    4300002: Blade_Tsuba_Piece_01
+    4300004: Tsuba_01
+    4300006: Hilt_Handle_01
+    4300008: Hilt_Cap_01
+    4300010: Wrap_Cap_Holder_01
+    4300012: Shadow_01
+    4300014: Shadow_02
+    4300016: Wrap_01
+    4300018: Wrap_02
+    4300020: Wrap_03
+    4300022: Wrap_04
+    4300024: Wrap_05
+    4300026: Wrap_06
+    4300028: Wrap_07
+    4300030: Wrap_08
+    4300032: Wrap_09
+    4300034: Wrap_010
+    4300036: Wrap_011
+    4300038: Wrap_012
+    4300040: Wrap_013
+    4300042: Wrap_014
+    4300044: Wrap_015
+    4300046: Wrap_016
+    4300048: Wrap_017
+    4300050: Wrap_018
+    4300052: Scabbard_01
+    4300054: Scabbard_Lock_01
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

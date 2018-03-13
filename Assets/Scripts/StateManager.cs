@@ -36,10 +36,14 @@ namespace GameControll
         public float rotateSpeed = 5;
         public float toGround = 0.5f;
         public float rollSpeed = 1;
+        public float parryOffset = 1.4f;
+
         [Header("Other")]
         public EnemyTarget lockOnTarget;
         public Transform lockOnTransform;
         public AnimationCurve roll_curve;
+        public EnemyStates parryTarget;
+
 
         [Header("States")]
         public bool run;
@@ -48,6 +52,8 @@ namespace GameControll
         public bool inAction;
         public bool canMove;
         public bool usingItem;
+        public bool canBeParried;
+        public bool parryIsOn;
         public bool isTwoHanded;
         public bool isBlocking;
         public bool isLeftHand;
@@ -115,6 +121,7 @@ namespace GameControll
             }
             if (anim == null)
                 anim = activeModel.GetComponent<Animator>();
+
             anim.applyRootMotion = false;
         }
 
@@ -253,6 +260,9 @@ namespace GameControll
 
         void AttackAction(Action slot)
         {
+            if (CheckForParry(slot))
+                return;
+
             string targetAnimation = null;
             targetAnimation = slot.targetAnimation;
 
@@ -261,9 +271,62 @@ namespace GameControll
 
             canMove = false;
             inAction = true;
+
+            float targetSpeed = 1;
+            if (slot.changeSpeed)
+            {
+                targetSpeed = slot.animSpeed;
+                if (targetSpeed == 0)
+                    targetSpeed = 1;
+            }
+
+            canBeParried = slot.canBeParried;
+            anim.SetFloat("animSpeed", targetSpeed);
             anim.SetBool("mirror", slot.mirror);
             anim.CrossFade(targetAnimation, 0.2f);
         }
+
+        bool CheckForParry(Action slot)
+        {
+            if (parryTarget == null)
+                return false;
+
+            float dis = Vector3.Distance(parryTarget.transform.position, transform.position);
+
+            if (dis > 3)
+                return false;
+
+            Vector3 dir = parryTarget.transform.position - transform.position;
+            dir.Normalize();
+            dir.y = 0;
+            float angle = Vector3.Angle(transform.forward, dir);
+
+            if (angle < 60)
+            {
+                Vector3 targetPosition = -dir * parryOffset;
+                targetPosition += parryTarget.transform.position;
+                transform.position = targetPosition;
+
+                if (dir == Vector3.zero)
+                    dir = -parryTarget.transform.forward;
+
+                Quaternion eRotation = Quaternion.LookRotation(-dir);
+                Quaternion ourRot = Quaternion.LookRotation(dir);
+
+                parryTarget.transform.rotation = eRotation;
+                transform.rotation = ourRot;
+                parryTarget.IsGettingParried();
+                canMove = false;
+                inAction = true;
+                anim.SetBool("mirror", slot.mirror);
+                anim.CrossFade("parry_attack", 0.2f);
+
+                return true;
+            }
+
+            return false;
+        }
+
 
         void BlockAction(Action slot)
         {
@@ -279,6 +342,17 @@ namespace GameControll
             if (string.IsNullOrEmpty(targetAnimation))
                 return;
 
+            float targetSpeed = 1;
+            if (slot.changeSpeed)
+            {
+                targetSpeed = slot.animSpeed;
+                if (targetSpeed == 0)
+                    targetSpeed = 1;
+            }
+
+            anim.SetFloat("animSpeed", targetSpeed);
+            canBeParried = slot.canBeParried;
+            canBeParried = slot.canBeParried;
             canMove = false;
             inAction = true;
             anim.SetBool("mirror", slot.mirror);
@@ -324,21 +398,21 @@ namespace GameControll
                     moveDirection = transform.forward;
                 Quaternion targetRot = Quaternion.LookRotation(moveDirection);
                 transform.rotation = targetRot;
-                a_hook.InitForRoll();
-                a_hook.rootMotionMultiplier = rollSpeed;
+                a_hook.InitForRoll();                
+                a_hook.rm_multi = rollSpeed;
             }
             else
             {
-                a_hook.rootMotionMultiplier = -5f;
+                a_hook.rm_multi = -5f;
             }
            
 
             anim.SetFloat("vertical", v);
             anim.SetFloat("horizontal", h);
+
             canMove = false;
             inAction = true;
             anim.CrossFade("Rolls", 0.2f);
-            a_hook.InitForRoll();
         }
 
         void HandleMovementAnimations()
@@ -383,6 +457,12 @@ namespace GameControll
             else
                 actionManager.UpdateActionsOneHanded();
         }
+
+        public void IsGettingParried()
+        {
+
+        }
+
         #endregion
-    }   
+    }
 }

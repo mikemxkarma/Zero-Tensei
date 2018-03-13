@@ -6,13 +6,20 @@ namespace GameControll
 {
     public class EnemyStates : MonoBehaviour
     {
+
         public float health;
+        public bool canBeParried = true;
+        public bool parryIsOn = true;
+        //    public bool doParry = false;
         public bool isInvicible;
+        public bool dontDoAnything;
         public bool canMove;
         public bool isDead;
 
-       public Animator anim;
-        EnemyTarget enemyTarget;
+        StateManager parriedBy;
+
+        public Animator anim;
+        EnemyTarget enTarget;
         AnimatorHook a_hook;
         public Rigidbody rigid;
         public float delta;
@@ -20,23 +27,24 @@ namespace GameControll
         List<Rigidbody> ragdollRigids = new List<Rigidbody>();
         List<Collider> ragdollColliders = new List<Collider>();
 
+        float timer;
+
         void Start()
         {
-            health = 50;
+            health = 100;
             anim = GetComponentInChildren<Animator>();
-            enemyTarget = GetComponent<EnemyTarget>();
-            enemyTarget.Init(this);
+            enTarget = GetComponent<EnemyTarget>();
+            enTarget.Init(this);
 
             rigid = GetComponent<Rigidbody>();
-
 
             a_hook = anim.GetComponent<AnimatorHook>();
             if (a_hook == null)
                 a_hook = anim.gameObject.AddComponent<AnimatorHook>();
-
             a_hook.Init(null, this);
 
             InitRagdoll();
+            parryIsOn = false;
         }
 
         void InitRagdoll()
@@ -50,25 +58,27 @@ namespace GameControll
                 ragdollRigids.Add(rigs[i]);
                 rigs[i].isKinematic = true;
 
-                Collider collider = rigs[i].gameObject.GetComponent<Collider>();
-                collider.isTrigger = true;
-                ragdollColliders.Add(collider);
+                Collider col = rigs[i].gameObject.GetComponent<Collider>();
+                col.isTrigger = true;
+                ragdollColliders.Add(col);
             }
         }
 
         public void EnableRagdoll()
         {
-            
 
             for (int i = 0; i < ragdollRigids.Count; i++)
             {
                 ragdollRigids[i].isKinematic = false;
                 ragdollColliders[i].isTrigger = false;
             }
+
             Collider controllerCollider = rigid.gameObject.GetComponent<Collider>();
             controllerCollider.enabled = false;
             rigid.isKinematic = true;
+
             StartCoroutine("CloseAnimator");
+
         }
 
         IEnumerator CloseAnimator()
@@ -78,10 +88,17 @@ namespace GameControll
             this.enabled = false;
         }
 
-         void Update()
+        void Update()
         {
             delta = Time.deltaTime;
             canMove = anim.GetBool("canMove");
+
+            if (dontDoAnything)
+            {
+                dontDoAnything = !canMove;
+
+                return;
+            }
 
             if (health <= 0)
             {
@@ -94,13 +111,35 @@ namespace GameControll
 
             if (isInvicible)
             {
-                isInvicible = !canMove;              
+                isInvicible = !canMove;
+            }
+
+            if (parriedBy != null && parryIsOn == false)
+            {
+                parriedBy.parryTarget = null;
+                parriedBy = null;
             }
 
             if (canMove)
             {
+                parryIsOn = false;
                 anim.applyRootMotion = false;
+
+                //Debug
+                timer += Time.deltaTime;
+                if (timer > 3)
+                {
+                    DoAction();
+                    timer = 0;
+                }
             }
+        }
+
+        void DoAction()
+        {
+            anim.Play("oh_attack_1");
+            anim.applyRootMotion = true;
+            anim.SetBool("canMove", false);
         }
 
         public void DoDamage(float v)
@@ -110,9 +149,37 @@ namespace GameControll
 
             health -= v;
             isInvicible = true;
-            anim.Play("damage_1");
+            anim.Play("damage_2");
             anim.applyRootMotion = true;
             anim.SetBool("canMove", false);
+        }
+
+        public void CheckForParry(Transform target, StateManager states)
+        {
+            if (canBeParried == false || parryIsOn == false || isInvicible)
+                return;
+
+            Vector3 dir = transform.position - target.position;
+            dir.Normalize();
+            float dot = Vector3.Dot(target.forward, dir);
+            if (dot < 0)
+                return;
+
+            isInvicible = true;
+            anim.Play("attack_interrupt");
+            anim.applyRootMotion = true;
+            anim.SetBool("canMove", false);
+            states.parryTarget = this;
+            parriedBy = states;
+            return;
+        }
+
+        public void IsGettingParried()
+        {
+            health -= 500;
+            dontDoAnything = true;
+            anim.SetBool("canMove", false);
+            anim.Play("parry_recieved");
         }
     }
 }

@@ -11,6 +11,8 @@ namespace GameControll
         public bool hasLeftHandWeapon = true;
         public Weapon leftHandWeapon;
 
+        public GameObject parryCollider;
+
         StateManager states;
 
         public void Init(StateManager st)
@@ -19,6 +21,10 @@ namespace GameControll
             EquipWeapon(rightHandWeapon, false);
             EquipWeapon(leftHandWeapon, true);
             CloseAllDamageColliders();
+
+            ParryCollider pr = parryCollider.GetComponent<ParryCollider>();
+            pr.InitPlayer(st);
+            CloseParryCollider();
         }
 
         public void EquipWeapon(Weapon w, bool isLeft=false)
@@ -48,6 +54,16 @@ namespace GameControll
             if (leftHandWeapon.w_hook != null)
                 leftHandWeapon.w_hook.CloseDamageColliders();
         }
+
+        public void CloseParryCollider()
+        {
+            parryCollider.SetActive(false);
+        }
+        public void OpenParryCollider()
+        {
+            parryCollider.SetActive(true);
+        }
+
     }
 
     [System.Serializable]

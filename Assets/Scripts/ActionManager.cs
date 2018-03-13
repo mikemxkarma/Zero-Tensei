@@ -40,38 +40,51 @@ using UnityEngine;
 
         public void UpdateActionsWithLeftHand()
         {
-            Weapon r_weapon = states.inventoryManager.rightHandWeapon;
-            Weapon l_weapon = states.inventoryManager.leftHandWeapon;
+
+            Weapon r_w = states.inventoryManager.rightHandWeapon;
+            Weapon l_w = states.inventoryManager.leftHandWeapon;
 
             Action rb = GetAction(ActionInput.rb);
             Action rt = GetAction(ActionInput.rt);
 
-            Action w_rb = r_weapon.GetAction(r_weapon.action, ActionInput.rb);
+            Action w_rb = r_w.GetAction(r_w.action, ActionInput.rb);
 
             rb.targetAnimation = w_rb.targetAnimation;
             rb.type = w_rb.type;
+            rb.canBeParried = w_rb.canBeParried;
+            rb.changeSpeed = w_rb.changeSpeed;
+            rb.animSpeed = w_rb.animSpeed;
 
-            Action w_rt = r_weapon.GetAction(r_weapon.action, ActionInput.rt);
+            Action w_rt = r_w.GetAction(r_w.action, ActionInput.rt);
             rt.targetAnimation = w_rt.targetAnimation;
             rt.type = w_rt.type;
-            
+            rt.canBeParried = w_rt.canBeParried;
+            rt.changeSpeed = w_rt.changeSpeed;
+            rt.animSpeed = w_rt.animSpeed;
 
             Action lb = GetAction(ActionInput.lb);
             Action lt = GetAction(ActionInput.lt);
 
-            Action w_lb = l_weapon.GetAction(l_weapon.action, ActionInput.rb);
+            Action w_lb = l_w.GetAction(l_w.action, ActionInput.rb);
             lb.targetAnimation = w_lb.targetAnimation;
             lb.type = w_lb.type;
+            lb.canBeParried = w_lb.canBeParried;
+            lb.changeSpeed = w_lb.changeSpeed;
+            lb.animSpeed = w_lb.animSpeed;
 
-            Action w_lt = l_weapon.GetAction(l_weapon.action, ActionInput.rt);
+            Action w_lt = l_w.GetAction(l_w.action, ActionInput.rt);
             lt.targetAnimation = w_lt.targetAnimation;
             lt.type = w_lt.type;
+            lt.canBeParried = w_lt.canBeParried;
+            lt.changeSpeed = w_lt.changeSpeed;
+            lt.animSpeed = w_lt.animSpeed;
 
-            if (l_weapon.leftHandMirror)
+            if (l_w.leftHandMirror)
             {
                 lb.mirror = true;
                 lt.mirror = true;
             }
+
         }
 
         public void UpdateActionsTwoHanded()
@@ -157,7 +170,10 @@ using UnityEngine;
         public ActionType type;
         public string targetAnimation;
         public bool mirror = false;
-        
+        public bool canBeParried = true;
+        public bool changeSpeed = false;
+        public float animSpeed = 1;
+
     }
 
     [System.Serializable]
