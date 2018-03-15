@@ -15,24 +15,19 @@ namespace GameControll
 {
     public class InputHandler : MonoBehaviour
     {
-        #region Fields
         float vertical;
         float horizontal;
-        float delta;
-        StateManager states;
-        CameraManager cameraManager;
-
         bool b_input;
         bool a_input;
         bool x_input;
         bool y_input;
 
         bool rb_input;
-        bool lb_input;
-        bool rt_input;
-        bool lt_input;
         float rt_axis;
+        bool rt_input;
+        bool lb_input;
         float lt_axis;
+        bool lt_input;
 
         bool leftAxis_down;
         bool rightAxis_down;
@@ -41,36 +36,38 @@ namespace GameControll
         float rt_timer;
         float lt_timer;
 
-        #endregion
+        StateManager states;
+        CameraManager camManager;
 
-        #region Constructors
+        float delta;
+
         void Start()
         {
+            UI.QuickSlot.singleton.Init();
+
             states = GetComponent<StateManager>();
             states.Init();
-            cameraManager = CameraManager.singleton;
-            cameraManager.Init(states);
-        } 
-        
+
+            camManager = CameraManager.singleton;
+            camManager.Init(states);
+        }
+
         void FixedUpdate()
-       {
+        {
             delta = Time.fixedDeltaTime;
             GetInput();
             UpdateStates();
             states.FixedTick(delta);
-            cameraManager.Tick(delta);
-
+            camManager.Tick(delta);
         }
-       
+
         void Update()
         {
             delta = Time.deltaTime;
             states.Tick(delta);
             ResetInputNStates();
         }
-        #endregion
 
-        #region Methods
         void GetInput()
         {
             vertical = Input.GetAxis("Vertical");
@@ -81,36 +78,32 @@ namespace GameControll
             x_input = Input.GetButton("X");
             rt_input = Input.GetButton("RT");
             rt_axis = Input.GetAxis("RT");
-
             if (rt_axis != 0)
                 rt_input = true;
 
             lt_input = Input.GetButton("LT");
             lt_axis = Input.GetAxis("LT");
-
             if (lt_axis != 0)
                 lt_input = true;
-
-            rb_input= Input.GetButton("RB");
+            rb_input = Input.GetButton("RB");
             lb_input = Input.GetButton("LB");
 
             rightAxis_down = Input.GetButtonUp("L");
 
             if (b_input)
                 b_timer += delta;
-
         }
 
         void UpdateStates()
         {
             states.horizontal = horizontal;
             states.vertical = vertical;
-            //move on base camara angle
-            Vector3 v = vertical * cameraManager.transform.forward;//orientation of were camara is looking
-            Vector3 h = horizontal * cameraManager.transform.right;//were we want the camara to be
-            states.moveDirection = (v + h).normalized;
+
+            Vector3 v = vertical * camManager.transform.forward;
+            Vector3 h = horizontal * camManager.transform.right;
+            states.moveDir = (v + h).normalized;
             float m = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
-            states.moveAmount = Mathf.Clamp01(m);//tel if it as movement
+            states.moveAmount = Mathf.Clamp01(m);
 
             if (x_input)
                 b_input = false;
@@ -119,9 +112,9 @@ namespace GameControll
             {
                 states.run = (states.moveAmount > 0);
             }
+
             if (b_input == false && b_timer > 0 && b_timer < 0.5f)
                 states.rollInput = true;
-
 
             states.itemInput = x_input;
             states.rt = rt_input;
@@ -132,32 +125,32 @@ namespace GameControll
             if (y_input)
             {
                 states.isTwoHanded = !states.isTwoHanded;
-                states.HandlerTwoHanded();
+                states.HandleTwoHanded();
             }
-
 
             if (states.lockOnTarget != null)
-            { 
-            if (states.lockOnTarget.enemyStates.isDead)
             {
-                states.lockOn = false;
-                states.lockOnTarget = null;
-                states.lockOnTransform = null;
-                    cameraManager.lockOnMode = false;
-                    cameraManager.lockonTarget = null;
+                if (states.lockOnTarget.eStates.isDead)
+                {
+                    states.lockOn = false;
+                    states.lockOnTarget = null;
+                    states.lockOnTransform = null;
+                    camManager.lockon = false;
+                    camManager.lockonTarget = null;
+                }
             }
-            }
+
+
             if (rightAxis_down)
             {
-                
                 states.lockOn = !states.lockOn;
 
-                if (states.lockOnTarget==null)
+                if (states.lockOnTarget == null)
                     states.lockOn = false;
 
-                cameraManager.lockonTarget = states.lockOnTarget;
-                states.lockOnTransform = cameraManager.lockonTransform;
-                cameraManager.lockOnMode = states.lockOn;         
+                camManager.lockonTarget = states.lockOnTarget;
+                states.lockOnTransform = camManager.lockonTransform;
+                camManager.lockon = states.lockOn;
             }
         }
 
@@ -165,13 +158,10 @@ namespace GameControll
         {
             if (b_input == false)
                 b_timer = 0;
-
             if (states.rollInput)
                 states.rollInput = false;
             if (states.run)
                 states.run = false;
         }
-
-        #endregion
     }
 }

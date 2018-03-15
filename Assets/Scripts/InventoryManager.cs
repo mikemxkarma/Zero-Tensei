@@ -7,6 +7,7 @@ namespace GameControll
 
     public class InventoryManager : MonoBehaviour
     {
+
         public Weapon rightHandWeapon;
         public bool hasLeftHandWeapon = true;
         public Weapon leftHandWeapon;
@@ -27,15 +28,19 @@ namespace GameControll
             CloseParryCollider();
         }
 
-        public void EquipWeapon(Weapon w, bool isLeft=false)
+        public void EquipWeapon(Weapon w, bool isLeft = false)
         {
             string targetIdle = w.oh_idle;
             targetIdle += (isLeft) ? "_l" : "_r";
             states.anim.SetBool("mirror", isLeft);
             states.anim.Play("changeWeapon");
             states.anim.Play(targetIdle);
-        }
 
+            UI.QuickSlot uiSlot = UI.QuickSlot.singleton;
+            uiSlot.UpdateSlot(
+                (isLeft) ?
+                UI.QSlotType.lh : UI.QSlotType.rh, w.icon);
+        }
 
         public void OpenAllDamageColliders()
         {
@@ -59,22 +64,25 @@ namespace GameControll
         {
             parryCollider.SetActive(false);
         }
+
         public void OpenParryCollider()
         {
             parryCollider.SetActive(true);
         }
-
     }
 
     [System.Serializable]
     public class Weapon
     {
+        public string weaponId;
+        public Sprite icon;
         public string oh_idle;
         public string th_idle;
 
-        public List<Action> action;
-        public List<Action> two_handed_Actions;
-        public bool leftHandMirror;
+        public List<Action> actions;
+        public List<Action> two_handedActions;
+        public bool LeftHandMirror;
+
         public GameObject weaponModel;
         public WeaponHook w_hook;
 
@@ -87,8 +95,8 @@ namespace GameControll
                     return l[i];
                 }
             }
+
             return null;
         }
-
     }
 }

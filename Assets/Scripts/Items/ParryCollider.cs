@@ -5,6 +5,7 @@ namespace GameControll
 {
     public class ParryCollider : MonoBehaviour
     {
+
         StateManager states;
         EnemyStates eStates;
 

@@ -403,9 +403,9 @@ namespace GameControll
             }
             else
             {
-                a_hook.rm_multi = -5f;
+                a_hook.rm_multi = 1.3f;
             }
-           
+
 
             anim.SetFloat("vertical", v);
             anim.SetFloat("horizontal", h);
