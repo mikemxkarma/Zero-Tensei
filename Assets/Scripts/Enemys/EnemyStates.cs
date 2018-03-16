@@ -16,7 +16,7 @@ namespace GameControll
         public bool canMove;
         public bool isDead;
 
-        StateManager parriedBy;
+        public StateManager parriedBy;
 
         public Animator anim;
         EnemyTarget enTarget;
@@ -116,7 +116,7 @@ namespace GameControll
 
             if (parriedBy != null && parryIsOn == false)
             {
-                parriedBy.parryTarget = null;
+               // parriedBy.parryTarget = null;
                 parriedBy = null;
             }
 
@@ -169,7 +169,7 @@ namespace GameControll
             anim.Play("attack_interrupt");
             anim.applyRootMotion = true;
             anim.SetBool("canMove", false);
-            states.parryTarget = this;
+            //states.parryTarget = this;
             parriedBy = states;
             return;
         }
@@ -180,6 +180,14 @@ namespace GameControll
             dontDoAnything = true;
             anim.SetBool("canMove", false);
             anim.Play("parry_recieved");
+        }
+
+        public void IsGettingBackstabbed()
+        {
+            health -= 500;
+            dontDoAnything = true;
+            anim.SetBool("canMove", false);
+            anim.Play("backstabed");
         }
     }
 }

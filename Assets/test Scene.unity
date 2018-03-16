@@ -9700,11 +9700,25 @@ MonoBehaviour:
     oh_idle: oh_idle
     th_idle: th_idle
     actions: []
-    two_handedActions: []
+    two_handedActions:
+    - input: 0
+      type: 1
+      targetAnimation: 
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 0
+    - input: 2
+      type: 3
+      targetAnimation: 
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 0
     LeftHandMirror: 0
     weaponModel: {fileID: 1596726106}
     w_hook: {fileID: 1596726110}
-  hasLeftHandWeapon: 1
+  hasLeftHandWeapon: 0
   leftHandWeapon:
     weaponId: shield
     icon: {fileID: 21300000, guid: 8070ce1aa0bca154d86d5dd9f52094df, type: 3}
