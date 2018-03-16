@@ -10,13 +10,21 @@ namespace GameControll.UI
         public List<QSlots> slots = new List<QSlots>();
         public void Init()
         {
-
+            ClearIcons();
+        }
+        public void ClearIcons()
+        {
+            for (int i = 0; i < slots.Count; i++)
+            {
+                slots[i].icon.gameObject.SetActive(false);
+            }
         }
         public void UpdateSlot(QSlotType stype,Sprite i)
         {
             //  QSlots 
             QSlots q = Getslot(stype);
             q.icon.sprite = i;
+            q.icon.gameObject.SetActive(true);
         }
         public QSlots Getslot(QSlotType t)
         {

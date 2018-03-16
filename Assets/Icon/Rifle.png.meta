@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 3196ee561a82aa94d80b633d132714bd
-timeCreated: 1520557979
+guid: fe2254c7535fb084f99bc00b6d0cb9f7
+timeCreated: 1521159808
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    8900000: generatedCubemap
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
