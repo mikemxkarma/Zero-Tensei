@@ -101,7 +101,7 @@ namespace GameControll
 
             Vector3 v = vertical * camManager.transform.forward;
             Vector3 h = horizontal * camManager.transform.right;
-            states.moveDir = (v + h).normalized;
+            states.moveDirection = (v + h).normalized;
             float m = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
             states.moveAmount = Mathf.Clamp01(m);
 
@@ -125,17 +125,17 @@ namespace GameControll
             if (y_input)
             {
                 states.isTwoHanded = !states.isTwoHanded;
-                states.HandleTwoHanded();
+                states.HandlerTwoHanded();
             }
 
             if (states.lockOnTarget != null)
             {
-                if (states.lockOnTarget.eStates.isDead)
+                if (states.lockOnTarget.enemyStates.isDead)
                 {
                     states.lockOn = false;
                     states.lockOnTarget = null;
                     states.lockOnTransform = null;
-                    camManager.lockon = false;
+                    camManager.lockOnMode = false;
                     camManager.lockonTarget = null;
                 }
             }
@@ -150,7 +150,7 @@ namespace GameControll
 
                 camManager.lockonTarget = states.lockOnTarget;
                 states.lockOnTransform = camManager.lockonTransform;
-                camManager.lockon = states.lockOn;
+                camManager.lockOnMode = states.lockOn;
             }
         }
 

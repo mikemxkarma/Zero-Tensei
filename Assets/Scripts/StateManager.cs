@@ -327,7 +327,6 @@ namespace GameControll
             return false;
         }
 
-
         void BlockAction(Action slot)
         {
             isBlocking = true;

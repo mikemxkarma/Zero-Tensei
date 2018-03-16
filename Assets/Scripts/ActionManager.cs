@@ -31,10 +31,10 @@ using UnityEngine;
             }
 
             Weapon w = states.inventoryManager.rightHandWeapon;
-            for (int i = 0; i < w.action.Count; i++)
+            for (int i = 0; i < w.actions.Count; i++)
             {
-                Action a = GetAction(w.action[i].input);
-                a.targetAnimation = w.action[i].targetAnimation;
+                Action a = GetAction(w.actions[i].input);
+                a.targetAnimation = w.actions[i].targetAnimation;
             }
         }
 
@@ -47,7 +47,7 @@ using UnityEngine;
             Action rb = GetAction(ActionInput.rb);
             Action rt = GetAction(ActionInput.rt);
 
-            Action w_rb = r_w.GetAction(r_w.action, ActionInput.rb);
+            Action w_rb = r_w.GetAction(r_w.actions, ActionInput.rb);
 
             rb.targetAnimation = w_rb.targetAnimation;
             rb.type = w_rb.type;
@@ -55,7 +55,7 @@ using UnityEngine;
             rb.changeSpeed = w_rb.changeSpeed;
             rb.animSpeed = w_rb.animSpeed;
 
-            Action w_rt = r_w.GetAction(r_w.action, ActionInput.rt);
+            Action w_rt = r_w.GetAction(r_w.actions, ActionInput.rt);
             rt.targetAnimation = w_rt.targetAnimation;
             rt.type = w_rt.type;
             rt.canBeParried = w_rt.canBeParried;
@@ -65,21 +65,21 @@ using UnityEngine;
             Action lb = GetAction(ActionInput.lb);
             Action lt = GetAction(ActionInput.lt);
 
-            Action w_lb = l_w.GetAction(l_w.action, ActionInput.rb);
+            Action w_lb = l_w.GetAction(l_w.actions, ActionInput.rb);
             lb.targetAnimation = w_lb.targetAnimation;
             lb.type = w_lb.type;
             lb.canBeParried = w_lb.canBeParried;
             lb.changeSpeed = w_lb.changeSpeed;
             lb.animSpeed = w_lb.animSpeed;
 
-            Action w_lt = l_w.GetAction(l_w.action, ActionInput.rt);
+            Action w_lt = l_w.GetAction(l_w.actions, ActionInput.rt);
             lt.targetAnimation = w_lt.targetAnimation;
             lt.type = w_lt.type;
             lt.canBeParried = w_lt.canBeParried;
             lt.changeSpeed = w_lt.changeSpeed;
             lt.animSpeed = w_lt.animSpeed;
 
-            if (l_w.leftHandMirror)
+            if (l_w.LeftHandMirror)
             {
                 lb.mirror = true;
                 lt.mirror = true;
@@ -91,11 +91,11 @@ using UnityEngine;
         {
             EmptyAllSlots();
             Weapon w = states.inventoryManager.rightHandWeapon;
-            for (int i = 0; i < w.two_handed_Actions.Count; i++)
+            for (int i = 0; i < w.two_handedActions.Count; i++)
             {
-                Action a = GetAction(w.two_handed_Actions[i].input);
-                a.targetAnimation = w.two_handed_Actions[i].targetAnimation;
-                a.type = w.two_handed_Actions[i].type;
+                Action a = GetAction(w.two_handedActions[i].input);
+                a.targetAnimation = w.two_handedActions[i].targetAnimation;
+                a.type = w.two_handedActions[i].type;
             }
         }
 
