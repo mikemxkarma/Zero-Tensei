@@ -446,6 +446,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e102701e658f51a439bd874fffd989d2, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e102701e658f51a439bd874fffd989d2, type: 3}
   m_IsPrefabParent: 0
@@ -459,7 +463,7 @@ GameObject:
   - component: {fileID: 78794266}
   - component: {fileID: 78794268}
   - component: {fileID: 78794267}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +536,7 @@ GameObject:
   - component: {fileID: 82725840}
   - component: {fileID: 82725839}
   - component: {fileID: 82725841}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Parry Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,7 +590,7 @@ GameObject:
   - component: {fileID: 100601529}
   - component: {fileID: 100601531}
   - component: {fileID: 100601530}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -762,7 +766,7 @@ GameObject:
   - component: {fileID: 121581767}
   - component: {fileID: 121581769}
   - component: {fileID: 121581768}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,7 +839,7 @@ GameObject:
   - component: {fileID: 128753796}
   - component: {fileID: 128753798}
   - component: {fileID: 128753797}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: DamageCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2249,6 +2253,286 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -0.000000009195643
       objectReference: {fileID: 0}
+    - target: {fileID: 100076, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100136, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100072, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100066, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100112, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100128, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100050, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100094, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100034, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100138, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100048, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100086, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100104, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100118, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100088, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100096, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100108, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100126, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100110, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100030, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100082, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100090, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100042, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100092, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100054, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100046, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100106, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100032, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100100, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100028, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100068, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100080, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100120, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100116, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100064, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100040, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100038, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100084, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100044, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100114, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100134, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100070, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100062, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100132, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100052, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100124, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100130, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100058, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100074, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100102, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100036, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100060, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100122, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100098, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100056, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100078, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab5761e70c33c8f4f861d25d037882f9, type: 3}
   m_IsPrefabParent: 0
@@ -2506,7 +2790,7 @@ GameObject:
   - component: {fileID: 192489819}
   - component: {fileID: 192489821}
   - component: {fileID: 192489820}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shadow_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2579,7 +2863,7 @@ GameObject:
   - component: {fileID: 200472026}
   - component: {fileID: 200472028}
   - component: {fileID: 200472027}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2652,7 +2936,7 @@ GameObject:
   - component: {fileID: 206659571}
   - component: {fileID: 206659573}
   - component: {fileID: 206659572}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2824,7 +3108,7 @@ GameObject:
   - component: {fileID: 321608345}
   - component: {fileID: 321608347}
   - component: {fileID: 321608346}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2897,7 +3181,7 @@ GameObject:
   - component: {fileID: 342086204}
   - component: {fileID: 342086206}
   - component: {fileID: 342086205}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_015
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3056,7 +3340,7 @@ GameObject:
   - component: {fileID: 423399809}
   - component: {fileID: 423399811}
   - component: {fileID: 423399810}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Katana_Blade_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3130,7 +3414,7 @@ GameObject:
   - component: {fileID: 446308410}
   - component: {fileID: 446308412}
   - component: {fileID: 446308411}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blade_Tsuba_Piece_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3203,7 +3487,7 @@ GameObject:
   - component: {fileID: 476507840}
   - component: {fileID: 476507842}
   - component: {fileID: 476507841}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_017
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3344,7 +3628,7 @@ GameObject:
   - component: {fileID: 487432396}
   - component: {fileID: 487432398}
   - component: {fileID: 487432397}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3496,7 +3780,7 @@ GameObject:
   - component: {fileID: 544805026}
   - component: {fileID: 544805028}
   - component: {fileID: 544805027}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3630,7 +3914,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 665847216
+  randomSeed: 1877406140
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6953,7 +7237,7 @@ GameObject:
   - component: {fileID: 552525355}
   - component: {fileID: 552525357}
   - component: {fileID: 552525356}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tsuba_01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7047,7 +7331,7 @@ GameObject:
   - component: {fileID: 578385849}
   - component: {fileID: 578385851}
   - component: {fileID: 578385850}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_016
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7155,7 +7439,7 @@ GameObject:
   - component: {fileID: 610978941}
   - component: {fileID: 610978943}
   - component: {fileID: 610978942}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blade_Tsuba_Piece_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7437,7 +7721,7 @@ GameObject:
   - component: {fileID: 677248766}
   - component: {fileID: 677248768}
   - component: {fileID: 677248767}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7714,7 +7998,7 @@ GameObject:
   - component: {fileID: 690841253}
   - component: {fileID: 690841255}
   - component: {fileID: 690841254}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shadow_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7815,7 +8099,7 @@ GameObject:
   - component: {fileID: 708439800}
   - component: {fileID: 708439802}
   - component: {fileID: 708439801}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7925,7 +8209,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 765958685}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8011,7 +8295,7 @@ GameObject:
   - component: {fileID: 797503645}
   - component: {fileID: 797503650}
   - component: {fileID: 797503651}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8226,12 +8510,12 @@ MonoBehaviour:
       type: 0
       targetAnimation: oh_attack_1
       mirror: 0
-      canBeParried: 1
+      canBeParried: 0
       changeSpeed: 0
       animSpeed: 0
       canParry: 0
-      canBackstab: 0
-    - input: 0
+      canBackstab: 1
+    - input: 2
       type: 3
       targetAnimation: parry
       mirror: 0
@@ -8240,25 +8524,7 @@ MonoBehaviour:
       animSpeed: 0
       canParry: 0
       canBackstab: 0
-    two_handedActions:
-    - input: 0
-      type: 0
-      targetAnimation: 
-      mirror: 0
-      canBeParried: 0
-      changeSpeed: 0
-      animSpeed: 0
-      canParry: 0
-      canBackstab: 0
-    - input: 0
-      type: 0
-      targetAnimation: 
-      mirror: 0
-      canBeParried: 0
-      changeSpeed: 0
-      animSpeed: 0
-      canParry: 0
-      canBackstab: 0
+    two_handedActions: []
     LeftHandMirror: 0
     weaponModel: {fileID: 1596726106}
     w_hook: {fileID: 1596726110}
@@ -8287,25 +8553,7 @@ MonoBehaviour:
       animSpeed: 0
       canParry: 0
       canBackstab: 0
-    two_handedActions:
-    - input: 0
-      type: 1
-      targetAnimation: oh_attack_1
-      mirror: 0
-      canBeParried: 0
-      changeSpeed: 0
-      animSpeed: 0
-      canParry: 0
-      canBackstab: 0
-    - input: 2
-      type: 3
-      targetAnimation: parry
-      mirror: 0
-      canBeParried: 0
-      changeSpeed: 0
-      animSpeed: 0
-      canParry: 0
-      canBackstab: 0
+    two_handedActions: []
     LeftHandMirror: 0
     weaponModel: {fileID: 418926812}
     w_hook: {fileID: 418926816}
@@ -8320,7 +8568,7 @@ GameObject:
   - component: {fileID: 819695805}
   - component: {fileID: 819695807}
   - component: {fileID: 819695806}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hilt_Cap_01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8503,7 +8751,7 @@ GameObject:
   - component: {fileID: 894304366}
   - component: {fileID: 894304368}
   - component: {fileID: 894304367}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8576,7 +8824,7 @@ GameObject:
   - component: {fileID: 913934933}
   - component: {fileID: 913934935}
   - component: {fileID: 913934934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8715,7 +8963,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 922932776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Muramasa (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8884,7 +9132,7 @@ GameObject:
   - component: {fileID: 944471244}
   - component: {fileID: 944471246}
   - component: {fileID: 944471245}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shadow_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8955,7 +9203,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 945153484}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hilt_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8988,7 +9236,7 @@ GameObject:
   - component: {fileID: 948990265}
   - component: {fileID: 948990267}
   - component: {fileID: 948990266}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hilt_Handle_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9216,7 +9464,7 @@ GameObject:
   - component: {fileID: 993479007}
   - component: {fileID: 993479009}
   - component: {fileID: 993479008}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9416,7 +9664,7 @@ GameObject:
   - component: {fileID: 1119296918}
   - component: {fileID: 1119296920}
   - component: {fileID: 1119296919}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9778,7 +10026,7 @@ GameObject:
   - component: {fileID: 1137430796}
   - component: {fileID: 1137430798}
   - component: {fileID: 1137430797}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9931,7 +10179,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1153287814}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tsuba_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9963,7 +10211,7 @@ GameObject:
   - component: {fileID: 1166428698}
   - component: {fileID: 1166428700}
   - component: {fileID: 1166428699}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tsuba_01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10116,7 +10364,7 @@ GameObject:
   - component: {fileID: 1223734444}
   - component: {fileID: 1223734446}
   - component: {fileID: 1223734445}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10189,7 +10437,7 @@ GameObject:
   - component: {fileID: 1236198206}
   - component: {fileID: 1236198208}
   - component: {fileID: 1236198207}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_016
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10345,7 +10593,7 @@ GameObject:
   - component: {fileID: 1246669928}
   - component: {fileID: 1246669930}
   - component: {fileID: 1246669929}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shadow_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10418,7 +10666,7 @@ GameObject:
   - component: {fileID: 1247329558}
   - component: {fileID: 1247329560}
   - component: {fileID: 1247329559}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10489,7 +10737,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1247912598}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hilt_Cap_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10527,7 +10775,7 @@ GameObject:
   - component: {fileID: 1290192071}
   - component: {fileID: 1290192073}
   - component: {fileID: 1290192072}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_Cap_Holder_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10666,7 +10914,7 @@ GameObject:
   - component: {fileID: 1398810223}
   - component: {fileID: 1398810225}
   - component: {fileID: 1398810224}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hilt_Handle_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10775,7 +11023,7 @@ GameObject:
   - component: {fileID: 1401842781}
   - component: {fileID: 1401842783}
   - component: {fileID: 1401842782}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11022,7 +11270,7 @@ GameObject:
   - component: {fileID: 1460039389}
   - component: {fileID: 1460039391}
   - component: {fileID: 1460039390}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11161,7 +11409,7 @@ GameObject:
   - component: {fileID: 1503689780}
   - component: {fileID: 1503689779}
   - component: {fileID: 1503689778}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: DamageCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11216,7 +11464,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1528522568}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hilt_Cap_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11250,7 +11498,7 @@ GameObject:
   - component: {fileID: 1548585643}
   - component: {fileID: 1548585645}
   - component: {fileID: 1548585644}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11323,7 +11571,7 @@ GameObject:
   - component: {fileID: 1558153475}
   - component: {fileID: 1558153477}
   - component: {fileID: 1558153476}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_Cap_Holder_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11517,7 +11765,7 @@ GameObject:
   - component: {fileID: 1595458331}
   - component: {fileID: 1595458333}
   - component: {fileID: 1595458332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11611,7 +11859,7 @@ GameObject:
   - component: {fileID: 1597260519}
   - component: {fileID: 1597260521}
   - component: {fileID: 1597260520}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_015
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11766,7 +12014,7 @@ GameObject:
   - component: {fileID: 1624503039}
   - component: {fileID: 1624503041}
   - component: {fileID: 1624503040}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12210,6 +12458,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: fdcee232cd8679d4a9db0602c934456e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fdcee232cd8679d4a9db0602c934456e, type: 3}
   m_IsPrefabParent: 0
@@ -12223,7 +12475,7 @@ GameObject:
   - component: {fileID: 1657023766}
   - component: {fileID: 1657023768}
   - component: {fileID: 1657023767}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12296,7 +12548,7 @@ GameObject:
   - component: {fileID: 1670223912}
   - component: {fileID: 1670223914}
   - component: {fileID: 1670223913}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_017
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12367,7 +12619,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1671387343}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12462,6 +12714,10 @@ Prefab:
     - target: {fileID: 100000, guid: fdcee232cd8679d4a9db0602c934456e, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: fdcee232cd8679d4a9db0602c934456e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fdcee232cd8679d4a9db0602c934456e, type: 3}
@@ -12615,7 +12871,7 @@ GameObject:
   - component: {fileID: 1748814205}
   - component: {fileID: 1748814207}
   - component: {fileID: 1748814206}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13051,7 +13307,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1853525285}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Muramasa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13158,7 +13414,7 @@ GameObject:
   - component: {fileID: 1855833661}
   - component: {fileID: 1855833663}
   - component: {fileID: 1855833662}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13240,7 +13496,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1906706959}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13342,7 +13598,7 @@ GameObject:
   - component: {fileID: 1956699473}
   - component: {fileID: 1956699475}
   - component: {fileID: 1956699474}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13413,7 +13669,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1970475563}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hilt_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13527,7 +13783,7 @@ GameObject:
   - component: {fileID: 1988120669}
   - component: {fileID: 1988120671}
   - component: {fileID: 1988120670}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13676,7 +13932,7 @@ GameObject:
   - component: {fileID: 2018946948}
   - component: {fileID: 2018946950}
   - component: {fileID: 2018946949}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13749,7 +14005,7 @@ GameObject:
   - component: {fileID: 2019061702}
   - component: {fileID: 2019061704}
   - component: {fileID: 2019061703}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13898,7 +14154,7 @@ GameObject:
   - component: {fileID: 2043346414}
   - component: {fileID: 2043346416}
   - component: {fileID: 2043346415}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14130,7 +14386,7 @@ GameObject:
   - component: {fileID: 2066511546}
   - component: {fileID: 2066511548}
   - component: {fileID: 2066511547}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hilt_Cap_01 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14201,7 +14457,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2071505697}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tsuba_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14233,7 +14489,7 @@ GameObject:
   - component: {fileID: 2072582037}
   - component: {fileID: 2072582039}
   - component: {fileID: 2072582038}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wrap_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14413,7 +14669,7 @@ GameObject:
   - component: {fileID: 2115268764}
   - component: {fileID: 2115268766}
   - component: {fileID: 2115268765}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Katana_Blade_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

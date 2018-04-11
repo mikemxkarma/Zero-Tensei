@@ -260,8 +260,11 @@ namespace GameControll
 
         void AttackAction(Action slot)
         {
+            if (CheckForBackStab(slot))
+                return;
             if (CheckForParry(slot))
                 return;
+
 
             string targetAnimation = null;
             targetAnimation = slot.targetAnimation;
@@ -298,7 +301,7 @@ namespace GameControll
                 parryTarget = hit.transform.GetComponentInParent<EnemyStates>();
             }
 
-            if(parryTarget == null)
+            if (parryTarget == null)
             {
                 return false;
             }
@@ -365,18 +368,28 @@ namespace GameControll
             direction.y = 0;
             float angle = Vector3.Angle(backstab.transform.forward, direction);
 
-            if(angle > 150)
+            Debug.Log("F");
+            if (angle > 150)
             {
                 Vector3 targetPosition = direction * backStabOffset;
                 targetPosition += backstab.transform.position;
                 transform.position = targetPosition;
 
-                backstab.transform.rotation = transform.rotation;
+
+                if(direction == Vector3.zero)
+                {
+                    direction = backstab.transform.forward;
+                }
+                Quaternion ourRotation = Quaternion.LookRotation(direction);
+
+                transform.rotation = transform.rotation;
                 backstab.IsGettingBackstabbed();
                 canMove = false;
                 inAction = true;
+
                 anim.SetBool("mirror", slot.mirror);
-                anim.CrossFade("parryAtack", 0.2f);
+                anim.CrossFade("parry_attack", 0.2f);
+
                 lockOnTarget = null;
                 return true;
             }
