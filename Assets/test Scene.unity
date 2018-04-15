@@ -3108,6 +3108,7 @@ MonoBehaviour:
   dontDoAnything: 0
   canMove: 0
   isDead: 0
+  parriedBy: {fileID: 0}
   anim: {fileID: 0}
   rigid: {fileID: 0}
   delta: 0
@@ -9532,6 +9533,7 @@ MonoBehaviour:
   toGround: 0.5
   rollSpeed: 10
   parryOffset: 1.4
+  backStabOffset: 1.4
   lockOnTarget: {fileID: 232065599}
   lockOnTransform: {fileID: 0}
   roll_curve:
@@ -9564,7 +9566,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  parryTarget: {fileID: 0}
   run: 0
   onGround: 0
   lockOn: 0
@@ -9659,6 +9660,8 @@ MonoBehaviour:
     canBeParried: 0
     changeSpeed: 0
     animSpeed: 1
+    canParry: 0
+    canBackstab: 0
   - input: 1
     type: 0
     targetAnimation: 
@@ -9666,6 +9669,8 @@ MonoBehaviour:
     canBeParried: 0
     changeSpeed: 0
     animSpeed: 1
+    canParry: 0
+    canBackstab: 0
   - input: 2
     type: 0
     targetAnimation: 
@@ -9673,6 +9678,8 @@ MonoBehaviour:
     canBeParried: 0
     changeSpeed: 0
     animSpeed: 1
+    canParry: 0
+    canBackstab: 0
   - input: 3
     type: 0
     targetAnimation: 
@@ -9680,6 +9687,8 @@ MonoBehaviour:
     canBeParried: 0
     changeSpeed: 0
     animSpeed: 1
+    canParry: 0
+    canBackstab: 0
   consumableItem:
     targetAnimation: bestus
     item_id: 
@@ -9699,7 +9708,25 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 3196ee561a82aa94d80b633d132714bd, type: 3}
     oh_idle: oh_idle
     th_idle: th_idle
-    actions: []
+    actions:
+    - input: 0
+      type: 0
+      targetAnimation: 
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 0
+    - input: 2
+      type: 0
+      targetAnimation: 
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 0
     two_handedActions:
     - input: 0
       type: 1
@@ -9708,6 +9735,8 @@ MonoBehaviour:
       canBeParried: 0
       changeSpeed: 0
       animSpeed: 0
+      canParry: 0
+      canBackstab: 0
     - input: 2
       type: 3
       targetAnimation: 
@@ -9715,6 +9744,8 @@ MonoBehaviour:
       canBeParried: 0
       changeSpeed: 0
       animSpeed: 0
+      canParry: 0
+      canBackstab: 0
     LeftHandMirror: 0
     weaponModel: {fileID: 1596726106}
     w_hook: {fileID: 1596726110}
@@ -9724,7 +9755,25 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 8070ce1aa0bca154d86d5dd9f52094df, type: 3}
     oh_idle: oh_idle
     th_idle: th_idle
-    actions: []
+    actions:
+    - input: 1
+      type: 1
+      targetAnimation: 
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 0
+    - input: 3
+      type: 2
+      targetAnimation: 
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 0
     two_handedActions: []
     LeftHandMirror: 0
     weaponModel: {fileID: 1515538330}
@@ -9960,6 +10009,7 @@ MonoBehaviour:
   dontDoAnything: 0
   canMove: 0
   isDead: 0
+  parriedBy: {fileID: 0}
   anim: {fileID: 0}
   rigid: {fileID: 0}
   delta: 0
@@ -16051,6 +16101,7 @@ MonoBehaviour:
   dontDoAnything: 0
   canMove: 0
   isDead: 0
+  parriedBy: {fileID: 0}
   anim: {fileID: 0}
   rigid: {fileID: 0}
   delta: 0

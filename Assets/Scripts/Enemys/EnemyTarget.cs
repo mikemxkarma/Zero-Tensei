@@ -25,7 +25,7 @@ namespace GameControll
             {
                 targets.Add(anim.GetBoneTransform(humanoidBones[i]));
             }
-           // EnemyManager.singleton.enemyTargets.Add(this);
+            EnemyManager.singleton.enemyTargets.Add(this);
         }
        
         public Transform GetTarget(bool negative = false)

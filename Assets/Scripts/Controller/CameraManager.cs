@@ -44,6 +44,7 @@ namespace GameControll
 
         public bool lockOnMode;
         bool usedRightAxis;
+
         bool changeTargetLeft;
         bool changeTargetRight;
 
@@ -86,6 +87,11 @@ namespace GameControll
                         states.lockOnTransform = lockonTransform;
                         usedRightAxis = true;
                     }
+                }
+                if(changeTargetLeft || changeTargetRight)
+                {
+                    lockonTransform = lockonTarget.GetTarget(changeTargetLeft);
+                    states.lockOnTransform = lockonTransform;
                 }
             }
             if (usedRightAxis)

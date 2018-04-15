@@ -21,10 +21,8 @@ namespace GameControll
                     r = enemyTargets[i];
                 }
             }
-
             return r;
         }
-
 
         public static EnemyManager singleton;
         void Awake()

@@ -6,6 +6,12 @@ namespace GameControll
 {
     public class DamageCollider : MonoBehaviour
     {
+        StateManager states;
+
+        public void Init(StateManager st)
+        {
+            states = st;
+        }
         void OnTriggerEnter(Collider other)
         {
             EnemyStates eStates = other.transform.GetComponentInParent<EnemyStates>();
@@ -13,8 +19,7 @@ namespace GameControll
             if (eStates == null)
                 return;
 
-            eStates.DoDamage(35);
-
+            eStates.DoDamage(states.currentAction);
         }
     }
 }

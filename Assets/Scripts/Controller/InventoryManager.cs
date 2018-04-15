@@ -8,9 +8,9 @@ namespace GameControll
     public class InventoryManager : MonoBehaviour
     {
 
-        public Weapon rightHandWeapon;
+        public ItemInstance rightHandWeapon;
+        public ItemInstance leftHandWeapon;
         public bool hasLeftHandWeapon = true;
-        public Weapon leftHandWeapon;
 
         public GameObject parryCollider;
 
@@ -19,8 +19,11 @@ namespace GameControll
         public void Init(StateManager st)
         {
             states = st;
-            EquipWeapon(rightHandWeapon, false);
-            EquipWeapon(leftHandWeapon, false);
+            if (rightHandWeapon != null)
+                EquipWeapon(rightHandWeapon.instance, false);
+            if (leftHandWeapon != null)
+                EquipWeapon(leftHandWeapon.instance, false);
+            InitAllDamageColliders();
             CloseAllDamageColliders();
 
             ParryCollider pr = parryCollider.GetComponent<ParryCollider>();
@@ -32,7 +35,7 @@ namespace GameControll
         {
             string targetIdle = w.oh_idle;
             targetIdle += (isLeft) ? "_l" : "_r";
-            states.anim.SetBool("mirror", isLeft);
+            states.anim.SetBool(StaticStrings.mirror, isLeft);
             states.anim.Play("changeWeapon");
             states.anim.Play(targetIdle);
 
@@ -40,24 +43,43 @@ namespace GameControll
             uiSlot.UpdateSlot(
                 (isLeft) ?
                 UI.QSlotType.lh : UI.QSlotType.rh, w.icon);
+
+            w.weaponModel.SetActive(true);
+        }
+
+        public Weapon GetCurrentWeapon(bool isLeft)
+        {
+            if (isLeft)
+                return leftHandWeapon.instance;
+            else
+                return rightHandWeapon.instance;
         }
 
         public void OpenAllDamageColliders()
         {
-            if (rightHandWeapon.w_hook != null)
-                rightHandWeapon.w_hook.OpenDamageColliders();
+            if (rightHandWeapon.instance.w_hook != null)
+                rightHandWeapon.instance.w_hook.OpenDamageColliders();
 
-            if (leftHandWeapon.w_hook != null)
-                leftHandWeapon.w_hook.OpenDamageColliders();
+            if (leftHandWeapon.instance.w_hook != null)
+                leftHandWeapon.instance.w_hook.OpenDamageColliders();
         }
 
         public void CloseAllDamageColliders()
         {
-            if (rightHandWeapon.w_hook != null)
-                rightHandWeapon.w_hook.CloseDamageColliders();
+            if (rightHandWeapon.instance.w_hook != null)
+                rightHandWeapon.instance.w_hook.CloseDamageColliders();
 
-            if (leftHandWeapon.w_hook != null)
-                leftHandWeapon.w_hook.CloseDamageColliders();
+            if (leftHandWeapon.instance.w_hook != null)
+                leftHandWeapon.instance.w_hook.CloseDamageColliders();
+        }
+
+        public void InitAllDamageColliders()
+        {
+            if (rightHandWeapon.instance.w_hook != null)
+                rightHandWeapon.instance.w_hook.InitDamageColliders(states);
+
+            if (leftHandWeapon.instance.w_hook != null)
+                leftHandWeapon.instance.w_hook.InitDamageColliders(states);
         }
 
         public void CloseParryCollider()
@@ -81,6 +103,9 @@ namespace GameControll
 
         public List<Action> actions;
         public List<Action> two_handedActions;
+
+        public float parryMultiplier;
+        public float backstabMultiplier;
         public bool LeftHandMirror;
 
         public GameObject weaponModel;

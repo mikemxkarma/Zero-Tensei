@@ -23,5 +23,13 @@ namespace GameControll
                 damageCollider[i].SetActive(false);
             }
         }
+
+        public void InitDamageColliders(StateManager states)
+        {
+            for (int i = 0; i < damageCollider.Length; i++)
+            {
+                damageCollider[i].GetComponent<DamageCollider>().Init(states);
+            }
+        }
     }
 }

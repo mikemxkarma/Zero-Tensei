@@ -73,6 +73,9 @@ namespace GameControll
         [HideInInspector]
         public LayerMask ignoreLayers;
         [HideInInspector]
+        // for damage check
+        public Action currentAction;
+        [HideInInspector]
         public InventoryManager inventoryManager;
 
         float _actionDelay;
@@ -131,13 +134,13 @@ namespace GameControll
             delta = d;
 
             isBlocking = false;
-            usingItem = anim.GetBool("interacting");
+            usingItem = anim.GetBool(StaticStrings.interacting);
             DetectAction();
             DetectItemAction();
-            inventoryManager.rightHandWeapon.weaponModel.SetActive(!usingItem);
+            inventoryManager.rightHandWeapon.instance.weaponModel.SetActive(!usingItem);
 
-            anim.SetBool("blocking", isBlocking);
-            anim.SetBool("isLeft", isLeftHand);
+            anim.SetBool(StaticStrings.blocking, isBlocking);
+            anim.SetBool(StaticStrings.isLeft, isLeftHand);
 
             if (inAction)
             {
@@ -260,17 +263,18 @@ namespace GameControll
 
         void AttackAction(Action slot)
         {
-            if (CheckForBackStab(slot))
-                return;
             if (CheckForParry(slot))
                 return;
-
+            if (CheckForBackStab(slot))
+                return;
 
             string targetAnimation = null;
             targetAnimation = slot.targetAnimation;
 
             if (string.IsNullOrEmpty(targetAnimation))
                 return;
+
+            currentAction = slot;
 
             canMove = false;
             inAction = true;
@@ -284,13 +288,21 @@ namespace GameControll
             }
 
             canBeParried = slot.canBeParried;
-            anim.SetFloat("animSpeed", targetSpeed);
-            anim.SetBool("mirror", slot.mirror);
+            anim.SetFloat(StaticStrings.animSpeed, targetSpeed);
+            anim.SetBool(StaticStrings.mirror, slot.mirror);
             anim.CrossFade(targetAnimation, 0.2f);
+        }
+
+        bool IsLeftHandSlot(Action slot)
+        {
+            return (slot.input == ActionInput.lb || slot.input == ActionInput.lt);
         }
 
         bool CheckForParry(Action slot)
         {
+          //  if (slot.canParry == false)
+            //    return false;
+
             EnemyStates parryTarget = null;
             Vector3 origin = transform.position;
             origin.y += 1;
@@ -334,12 +346,13 @@ namespace GameControll
 
                 parryTarget.transform.rotation = eRotation;
                 transform.rotation = ourRot;
-                parryTarget.IsGettingParried();
+
+                parryTarget.IsGettingParried(slot);
                 canMove = false;
                 inAction = true;
-                anim.SetBool("mirror", slot.mirror);
-                anim.CrossFade("parry_attack", 0.2f);
-
+                anim.SetBool(StaticStrings.mirror, slot.mirror);
+                anim.CrossFade(StaticStrings.parry_attack, 0.2f);
+                lockOnTarget = null;
                 return true;
             }
 
@@ -368,28 +381,18 @@ namespace GameControll
             direction.y = 0;
             float angle = Vector3.Angle(backstab.transform.forward, direction);
 
-            Debug.Log("F");
             if (angle > 150)
             {
                 Vector3 targetPosition = direction * backStabOffset;
                 targetPosition += backstab.transform.position;
                 transform.position = targetPosition;
 
-
-                if(direction == Vector3.zero)
-                {
-                    direction = backstab.transform.forward;
-                }
-                Quaternion ourRotation = Quaternion.LookRotation(direction);
-
                 transform.rotation = transform.rotation;
-                backstab.IsGettingBackstabbed();
+                backstab.IsGettingBackstabbed(slot);
                 canMove = false;
                 inAction = true;
-
-                anim.SetBool("mirror", slot.mirror);
-                anim.CrossFade("parry_attack", 0.2f);
-
+                anim.SetBool(StaticStrings.mirror, slot.mirror);
+                anim.CrossFade(StaticStrings.parry_attack, 0.2f);
                 lockOnTarget = null;
                 return true;
             }
@@ -418,12 +421,12 @@ namespace GameControll
                     targetSpeed = 1;
             }
 
-            anim.SetFloat("animSpeed", targetSpeed);
+            anim.SetFloat(StaticStrings.animSpeed, targetSpeed);
             canBeParried = slot.canBeParried;
             canBeParried = slot.canBeParried;
             canMove = false;
             inAction = true;
-            anim.SetBool("mirror", slot.mirror);
+            anim.SetBool(StaticStrings.mirror, slot.mirror);
             anim.CrossFade(targetAnimation, 0.2f);
         }
 
@@ -431,7 +434,7 @@ namespace GameControll
         {
             delta = d;
             onGround = OnGround();
-            anim.SetBool("onGround", onGround);
+            anim.SetBool(StaticStrings.onGround,onGround);
         }
 
         void HandleRolls()
@@ -475,18 +478,18 @@ namespace GameControll
             }
 
 
-            anim.SetFloat("vertical", v);
-            anim.SetFloat("horizontal", h);
+            anim.SetFloat(StaticStrings.vertical, v);
+            anim.SetFloat(StaticStrings.horizontal, h);
 
             canMove = false;
             inAction = true;
-            anim.CrossFade("Rolls", 0.2f);
+            anim.CrossFade(StaticStrings.Rolls, 0.2f);
         }
 
         void HandleMovementAnimations()
         {
-            anim.SetBool("run", run);
-            anim.SetFloat("vertical", moveAmount, 0.4f, delta);
+            anim.SetBool(StaticStrings.run, run);
+            anim.SetFloat(StaticStrings.vertical, moveAmount, 0.4f, delta);
         }
 
         void HandleLockOnAnimations(Vector3 moveDirection)
@@ -495,8 +498,8 @@ namespace GameControll
             float h = relativeDir.x;
             float v = relativeDir.z;
 
-            anim.SetFloat("vertical", v, 0.2f, delta);
-            anim.SetFloat("horizontal", h, 0.2f, delta);
+            anim.SetFloat(StaticStrings.vertical, v, 0.2f, delta);
+            anim.SetFloat(StaticStrings.horizontal, h, 0.2f, delta);
         }
 
         public bool OnGround()
@@ -518,13 +521,13 @@ namespace GameControll
 
         public void HandlerTwoHanded()
         {
-            anim.SetBool("twoHanded", isTwoHanded);
+            anim.SetBool(StaticStrings.two_handed, isTwoHanded);
 
             if (isTwoHanded)
                 actionManager.UpdateActionsTwoHanded();
             else
                 actionManager.UpdateActionsOneHanded();
-        }
+        } 
 
         public void IsGettingParried()
         {

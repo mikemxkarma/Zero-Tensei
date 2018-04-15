@@ -7,7 +7,9 @@ namespace GameControll
     public class EnemyStates : MonoBehaviour
     {
 
-        public float health;
+        public int health;
+        public CharacterStats characterStats;
+
         public bool canBeParried = true;
         public bool parryIsOn = true;
         //    public bool doParry = false;
@@ -23,6 +25,7 @@ namespace GameControll
         AnimatorHook a_hook;
         public Rigidbody rigid;
         public float delta;
+        public float poiseDegradeRate = 2;
 
         List<Rigidbody> ragdollRigids = new List<Rigidbody>();
         List<Collider> ragdollColliders = new List<Collider>();
@@ -31,7 +34,7 @@ namespace GameControll
 
         void Start()
         {
-            health = 100;
+            health = 10000;
             anim = GetComponentInChildren<Animator>();
             enTarget = GetComponent<EnemyTarget>();
             enTarget.Init(this);
@@ -91,7 +94,7 @@ namespace GameControll
         void Update()
         {
             delta = Time.deltaTime;
-            canMove = anim.GetBool("canMove");
+            canMove = anim.GetBool(StaticStrings.canMove);
 
             if (dontDoAnything)
             {
@@ -116,7 +119,7 @@ namespace GameControll
 
             if (parriedBy != null && parryIsOn == false)
             {
-               // parriedBy.parryTarget = null;
+                // parriedBy.parryTarget = null;
                 parriedBy = null;
             }
 
@@ -133,25 +136,45 @@ namespace GameControll
                     timer = 0;
                 }
             }
+            characterStats.poise -= delta * poiseDegradeRate; // lower poise gradually
+            if (characterStats.poise < 0)
+                characterStats.poise = 0;
         }
 
         void DoAction()
         {
             anim.Play("oh_attack_1");
             anim.applyRootMotion = true;
-            anim.SetBool("canMove", false);
+            anim.SetBool(StaticStrings.canMove, false);
         }
 
-        public void DoDamage(float v)
+        public void DoDamage(Action action)
         {
             if (isInvicible)
                 return;
 
-            health -= v;
+            int damage = StatsCalculations.CalculateBaseDamage(action.weaponStats, characterStats);
+
+            characterStats.poise += damage;
+            health -= damage;
+
+            if (canMove || characterStats.poise > 100)
+            {
+                if (action.overrideDamageAnim)
+                    anim.Play(action.damageAnim);
+                else
+                {
+                    int ran = Random.Range(0, 100);
+                    string tempAnim = (ran < 50) ? StaticStrings.damage1 : StaticStrings.damage2;
+                    anim.Play(tempAnim);
+                }
+            }
+            Debug.Log("Damage is " + damage + "Poise is " + characterStats.poise);
+
             isInvicible = true;
-            anim.Play("damage_2");
+            //anim.Play("damage_2");
             anim.applyRootMotion = true;
-            anim.SetBool("canMove", false);
+            anim.SetBool(StaticStrings.canMove, false);
         }
 
         public void CheckForParry(Transform target, StateManager states)
@@ -166,28 +189,34 @@ namespace GameControll
                 return;
 
             isInvicible = true;
-            anim.Play("attack_interrupt");
+            anim.Play(StaticStrings.attack_interrupt);
             anim.applyRootMotion = true;
-            anim.SetBool("canMove", false);
+            anim.SetBool(StaticStrings.canMove, false);
             //states.parryTarget = this;
             parriedBy = states;
             return;
         }
 
-        public void IsGettingParried()
+        public void IsGettingParried(Action action)
         {
-            health -= 500;
+            int damage = StatsCalculations.CalculateBaseDamage(action.weaponStats, characterStats, action.parryMultiplier);
+            Debug.Log(damage);
+
+            health -= damage;
             dontDoAnything = true;
-            anim.SetBool("canMove", false);
-            anim.Play("parry_recieved");
+            anim.SetBool(StaticStrings.canMove, false);
+            anim.Play(StaticStrings.parry_recieved);
         }
 
-        public void IsGettingBackstabbed()
+        public void IsGettingBackstabbed(Action action)
         {
-            health -= 500;
+            int damage = StatsCalculations.CalculateBaseDamage(action.weaponStats, characterStats, action.backstabMultiplier);
+            Debug.Log(damage);
+
+            health -= damage;
             dontDoAnything = true;
-            anim.SetBool("canMove", false);
-            anim.Play("backstabed");
+            anim.SetBool(StaticStrings.canMove, false);
+            anim.Play(StaticStrings.backstabbed);
         }
     }
 }

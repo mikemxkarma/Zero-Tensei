@@ -13,7 +13,6 @@ namespace GameControll
 
         StateManager states;
 
-
         public void Init(StateManager st)
         {
             states = st;
@@ -52,32 +51,49 @@ namespace GameControll
             a.changeSpeed = w_action.changeSpeed;
             a.animSpeed = w_action.animSpeed;
             a.canBackstab = w_action.canBackstab;
+            a.overrideDamageAnim = w_action.overrideDamageAnim;
+            a.damageAnim = w_action.damageAnim;
+            a.parryMultiplier = w.parryMultiplier;
+            a.backstabMultiplier = w.backstabMultiplier;
 
             if (isLeftHand)
                 a.mirror = true;
+            DeepCopyWeaponStats(w_action.weaponStats, a.weaponStats);
         }
+        public void DeepCopyWeaponStats(WeaponStats from, WeaponStats to)
+        {
+            to.physical = from.physical;
+            to.slash = from.slash;
+            to.strike = from.strike;
+            to.thrust = from.thrust;
+            to.magic = from.magic;
+            to.lighting = from.lighting;
+            to.fire = from.fire;
+            to.dark = from.dark;
+        }
+
         public void UpdateActionsWithLeftHand()
         {
 
-            DeepCopyAction(states.inventoryManager.rightHandWeapon, ActionInput.rb, ActionInput.rb);
-            DeepCopyAction(states.inventoryManager.rightHandWeapon, ActionInput.rt, ActionInput.rt);
+            DeepCopyAction(states.inventoryManager.rightHandWeapon.instance, ActionInput.rb, ActionInput.rb);
+            DeepCopyAction(states.inventoryManager.rightHandWeapon.instance, ActionInput.rt, ActionInput.rt);
 
             if (states.inventoryManager.hasLeftHandWeapon)
             {
-                DeepCopyAction(states.inventoryManager.leftHandWeapon, ActionInput.rb, ActionInput.lb, true);
-                DeepCopyAction(states.inventoryManager.leftHandWeapon, ActionInput.rt, ActionInput.lt, true);
+                DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.rb, ActionInput.lb, true);
+                DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.rt, ActionInput.lt, true);
             }
             else
             {
-                DeepCopyAction(states.inventoryManager.leftHandWeapon, ActionInput.lb, ActionInput.lb);
-                DeepCopyAction(states.inventoryManager.leftHandWeapon, ActionInput.lt, ActionInput.lt);
+                DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.lb, ActionInput.lb);
+                DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.lt, ActionInput.lt);
             }
         }
 
         public void UpdateActionsTwoHanded()
         {
             EmptyAllSlots();
-            Weapon w = states.inventoryManager.rightHandWeapon;
+            Weapon w = states.inventoryManager.rightHandWeapon.instance;
             for (int i = 0; i < w.two_handedActions.Count; i++)
             {
                 Action a = GetAction(w.two_handedActions[i].input);
@@ -162,6 +178,16 @@ namespace GameControll
         public float animSpeed = 1;
         public bool canParry = false;
         public bool canBackstab = false;
+
+        [HideInInspector]
+        public float parryMultiplier;
+        [HideInInspector]
+        public float backstabMultiplier;
+
+        public bool overrideDamageAnim;
+        public string damageAnim;
+
+        public WeaponStats weaponStats;
 
     }
 
