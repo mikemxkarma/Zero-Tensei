@@ -300,7 +300,7 @@ namespace GameControll
 
         bool CheckForParry(Action slot)
         {
-          //  if (slot.canParry == false)
+            //  if (slot.canParry == false)
             //    return false;
 
             EnemyStates parryTarget = null;
@@ -434,7 +434,7 @@ namespace GameControll
         {
             delta = d;
             onGround = OnGround();
-            anim.SetBool(StaticStrings.onGround,onGround);
+            anim.SetBool(StaticStrings.onGround, onGround);
         }
 
         void HandleRolls()
@@ -521,13 +521,53 @@ namespace GameControll
 
         public void HandlerTwoHanded()
         {
-            anim.SetBool(StaticStrings.two_handed, isTwoHanded);
+            bool isRight = true;
+            Weapon w = inventoryManager.rightHandWeapon.instance;
+            if (w == null)
+            {
+                w = inventoryManager.leftHandWeapon.instance;
+                isRight = false;
+            }
+
+            if (w == null)
+                return;
 
             if (isTwoHanded)
+            {
+                anim.CrossFade(w.th_idle, 0.2f);
                 actionManager.UpdateActionsTwoHanded();
+
+                if (isRight)
+                {
+                    if (inventoryManager.leftHandWeapon)
+                        inventoryManager.leftHandWeapon.instance.weaponModel.SetActive(false);
+                }
+                else
+                {
+                    if (inventoryManager.rightHandWeapon)
+                        inventoryManager.rightHandWeapon.instance.weaponModel.SetActive(false);
+                }
+            }
+
             else
+            {
+                anim.SetBool(StaticStrings.mirror, true);
+                anim.Play(StaticStrings.equipWeapon_oh);
+                //anim.Play(StaticStrings.emptyBoth);
                 actionManager.UpdateActionsOneHanded();
-        } 
+
+                if (isRight)
+                {
+                    if (inventoryManager.leftHandWeapon)
+                        inventoryManager.leftHandWeapon.instance.weaponModel.SetActive(true);
+                }
+                else
+                {
+                    if (inventoryManager.rightHandWeapon)
+                        inventoryManager.rightHandWeapon.instance.weaponModel.SetActive(true);
+                }
+            }
+        }
 
         public void IsGettingParried()
         {
