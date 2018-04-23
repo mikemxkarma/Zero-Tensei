@@ -9756,6 +9756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rh_weapons:
   - pyromancy
+  - sword
   lh_weapons:
   - shield
   spell_items:
@@ -13793,7 +13794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1413347393
 Transform:
   m_ObjectHideFlags: 0
@@ -17507,9 +17508,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4549716776fb841a7f26e450fb4bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponId: fireball
-  weaponModel: {fileID: 2116045761}
-  leftHand: 1
+  weaponId: sword
+  weaponModel: {fileID: 376157226}
+  leftHand: 0
   saveWeapon: 0
 --- !u!4 &2047934335
 Transform:
@@ -18128,11 +18129,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2115268763}
   m_Mesh: {fileID: 4300000, guid: c5d037ed6471ca24eb1dc1c7ad4acb3b, type: 3}
---- !u!1 &2116045761 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1542346458948332, guid: c5e327c0d2fd7794bad2ecddf378767a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1190589638}
 --- !u!4 &2116045762 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4934288608791500, guid: c5e327c0d2fd7794bad2ecddf378767a,

@@ -19,6 +19,8 @@ namespace GameControll
         public static string RB = "RB";
         public static string LB = "LB";
         public static string L = "L";
+        public static string Pad_x = "Pad_X";
+        public static string Pad_y = "Pad_Y";
 
         //Animator Parameters
         public static string vertical = "vertical";

@@ -29,6 +29,13 @@ namespace GameControll
         float lt_axis;
         bool lt_input;
 
+        float d_y;
+        float d_x;
+        bool d_up;
+        bool d_down;
+        bool d_right;
+        bool d_left;
+
         bool leftAxis_down;
         bool rightAxis_down;
 
@@ -92,6 +99,14 @@ namespace GameControll
 
             if (b_input)
                 b_timer += delta;
+
+            d_x = Input.GetAxis(StaticStrings.Pad_x);
+            d_y = Input.GetAxis(StaticStrings.Pad_y);
+            // keyboard and joystick
+            d_up = Input.GetKeyUp(KeyCode.Alpha1) || d_x > 0;
+            d_down = Input.GetKeyUp(KeyCode.Alpha2) || d_x < 0;
+            d_left = Input.GetKeyUp(KeyCode.Alpha3) || d_y < 0;
+            d_right = Input.GetKeyUp(KeyCode.Alpha4) || d_y > 0;
         }
 
         void UpdateStates()
