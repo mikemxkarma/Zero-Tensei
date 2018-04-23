@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace GameControll
@@ -52,5 +53,16 @@ namespace GameControll
         //Other
         public static string _l = "_l";
         public static string _r = "_r";
+
+        //Data
+        public static string itemFolder = "/Items/";
+
+        public static string SaveLocation()
+        {
+            string r = Application.streamingAssetsPath;
+            if (!Directory.Exists(r))
+                Directory.CreateDirectory(r);
+            return r;
+        }
     }
 }

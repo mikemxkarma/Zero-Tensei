@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace GameControll
 {
-    public class ItemInstance : MonoBehaviour
+    public class WeaponScriptableObject : ScriptableObject
     {
-        public Weapon instance;
-
-
+        public List<Weapon> wepons_all = new List<Weapon>();
     }
-
 }
+

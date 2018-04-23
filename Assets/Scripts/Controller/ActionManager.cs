@@ -22,71 +22,19 @@ namespace GameControll
         public void UpdateActionsOneHanded()
         {
             EmptyAllSlots();
-            UpdateActionsWithLeftHand();
-            //    if (states.inventoryManager.hasLeftHandWeapon)
-            //    {
-            //        UpdateActionsWithLeftHand();
-            //        return;
-            //    }
 
-            //    Weapon w = states.inventoryManager.rightHandWeapon;
-            //    for (int i = 0; i < w.actions.Count; i++)
-            //    {
-            //        Action a = GetAction(w.actions[i].input);
-            //        a.targetAnimation = w.actions[i].targetAnimation;
-            //    }
-            //
-        }
-
-        public void DeepCopyAction(Weapon w, ActionInput input, ActionInput assign, bool isLeftHand = false)
-        {
-            Action a = GetAction(assign);
-            Action w_action = w.GetAction(w.actions, input);
-            if (w_action == null)
-                return;
-
-            a.targetAnimation = w_action.targetAnimation;
-            a.type = w_action.type;
-            a.canBeParried = w_action.canBeParried;
-            a.changeSpeed = w_action.changeSpeed;
-            a.animSpeed = w_action.animSpeed;
-            a.canBackstab = w_action.canBackstab;
-            a.overrideDamageAnim = w_action.overrideDamageAnim;
-            a.damageAnim = w_action.damageAnim;
-            a.parryMultiplier = w.parryMultiplier;
-            a.backstabMultiplier = w.backstabMultiplier;
-
-            if (isLeftHand)
-                a.mirror = true;
-            DeepCopyWeaponStats(w_action.weaponStats, a.weaponStats);
-        }
-        public void DeepCopyWeaponStats(WeaponStats from, WeaponStats to)
-        {
-            to.physical = from.physical;
-            to.slash = from.slash;
-            to.strike = from.strike;
-            to.thrust = from.thrust;
-            to.magic = from.magic;
-            to.lighting = from.lighting;
-            to.fire = from.fire;
-            to.dark = from.dark;
-        }
-
-        public void UpdateActionsWithLeftHand()
-        {
-
-            DeepCopyAction(states.inventoryManager.rightHandWeapon.instance, ActionInput.rb, ActionInput.rb);
-            DeepCopyAction(states.inventoryManager.rightHandWeapon.instance, ActionInput.rt, ActionInput.rt);
+            StaticFunctions.DeepCopyAction(states.inventoryManager.rightHandWeapon.instance, ActionInput.rb, ActionInput.rb, actionSlot);
+            StaticFunctions.DeepCopyAction(states.inventoryManager.rightHandWeapon.instance, ActionInput.rt, ActionInput.rt, actionSlot);
 
             if (states.inventoryManager.hasLeftHandWeapon)
             {
-                DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.rb, ActionInput.lb, true);
-                DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.rt, ActionInput.lt, true);
+                StaticFunctions.DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.rb, ActionInput.lb, actionSlot, true);
+                StaticFunctions.DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.rt, ActionInput.lt, actionSlot, true);
             }
             else
             {
-                DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.lb, ActionInput.lb);
-                DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.lt, ActionInput.lt);
+                StaticFunctions.DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.lb, ActionInput.lb, actionSlot);
+                StaticFunctions.DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.lt, ActionInput.lt, actionSlot);
             }
         }
 
@@ -96,7 +44,7 @@ namespace GameControll
             Weapon w = states.inventoryManager.rightHandWeapon.instance;
             for (int i = 0; i < w.two_handedActions.Count; i++)
             {
-                Action a = GetAction(w.two_handedActions[i].input);
+                Action a = StaticFunctions.GetAction(w.two_handedActions[i].input, actionSlot);
                 a.targetAnimation = w.two_handedActions[i].targetAnimation;
                 a.type = w.two_handedActions[i].type;
             }
@@ -106,7 +54,7 @@ namespace GameControll
         {
             for (int i = 0; i < 4; i++)
             {
-                Action a = GetAction((ActionInput)i);
+                Action a = StaticFunctions.GetAction((ActionInput)i, actionSlot);
                 a.targetAnimation = null;
                 a.mirror = false;
                 a.type = ActionType.attack;
@@ -126,18 +74,10 @@ namespace GameControll
         public Action GetActionSlot(StateManager st)
         {
             ActionInput a_input = GetActionInput(st);
-            return GetAction(a_input);
+            return StaticFunctions.GetAction(a_input, actionSlot);
         }
 
-        Action GetAction(ActionInput inp)
-        {
-            for (int i = 0; i < actionSlot.Count; i++)
-            {
-                if (actionSlot[i].input == inp)
-                    return actionSlot[i];
-            }
-            return null;
-        }
+
 
         public ActionInput GetActionInput(StateManager st)
         {
@@ -164,6 +104,14 @@ namespace GameControll
     {
         attack, block, spells, parry
     }
+    public enum SpellClass
+    {
+        pryromancy, miracles, sorcery
+    }
+    public enum SpellType
+    {
+        projectile, buff, looping
+    }
 
     [System.Serializable]
     public class Action
@@ -171,6 +119,7 @@ namespace GameControll
 
         public ActionInput input;
         public ActionType type;
+        public SpellClass spellClass;
         public string targetAnimation;
         public bool mirror = false;
         public bool canBeParried = true;

@@ -137,7 +137,7 @@ namespace GameControll
             usingItem = anim.GetBool(StaticStrings.interacting);
             DetectAction();
             DetectItemAction();
-            inventoryManager.rightHandWeapon.instance.weaponModel.SetActive(!usingItem);
+            inventoryManager.rightHandWeapon.weapon_Model.SetActive(!usingItem);
 
             anim.SetBool(StaticStrings.blocking, isBlocking);
             anim.SetBool(StaticStrings.isLeft, isLeftHand);
@@ -540,18 +540,18 @@ namespace GameControll
                 if (isRight)
                 {
                     if (inventoryManager.leftHandWeapon)
-                        inventoryManager.leftHandWeapon.instance.weaponModel.SetActive(false);
+                        inventoryManager.leftHandWeapon.weapon_Model.SetActive(false);
                 }
                 else
                 {
                     if (inventoryManager.rightHandWeapon)
-                        inventoryManager.rightHandWeapon.instance.weaponModel.SetActive(false);
+                        inventoryManager.rightHandWeapon.weapon_Model.SetActive(false);
                 }
             }
 
             else
             {
-                anim.SetBool(StaticStrings.mirror, true);
+                
                 anim.Play(StaticStrings.equipWeapon_oh);
                 //anim.Play(StaticStrings.emptyBoth);
                 actionManager.UpdateActionsOneHanded();
@@ -559,12 +559,12 @@ namespace GameControll
                 if (isRight)
                 {
                     if (inventoryManager.leftHandWeapon)
-                        inventoryManager.leftHandWeapon.instance.weaponModel.SetActive(true);
+                        inventoryManager.leftHandWeapon.weapon_Model.SetActive(true);
                 }
                 else
                 {
                     if (inventoryManager.rightHandWeapon)
-                        inventoryManager.rightHandWeapon.instance.weaponModel.SetActive(true);
+                        inventoryManager.rightHandWeapon.weapon_Model.SetActive(true);
                 }
             }
         }
