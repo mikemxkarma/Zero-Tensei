@@ -11,6 +11,14 @@ namespace GameControll
         public List<string> lh_weapons;
         public List<string> spell_items;
 
+        public int r_index;
+        public int l_index;
+        public int s_index;
+        List<RuntimeWeapon> r_rh_weapons = new List<RuntimeWeapon>();
+        List<RuntimeWeapon> r_lh_weapons = new List<RuntimeWeapon>();
+        List<RuntimeSpellItems> r_spells = new List<RuntimeSpellItems>();
+
+
         public RuntimeSpellItems currentSpell;
         public RuntimeWeapon rightHandWeapon;
         public bool hasLeftHandWeapon = true;
@@ -24,46 +32,88 @@ namespace GameControll
         public void Init(StateManager st)
         {
             states = st;
-            if (rh_weapons.Count > 0)
-            {
-                rightHandWeapon = WeaponToRuntimeWeapon(
-                    ResourcesManager.singleton.GetWeapon(rh_weapons[0])
-                    );
-            }
 
-            if (lh_weapons.Count > 0)
-            {
-                leftHandWeapon = WeaponToRuntimeWeapon(
-                              ResourcesManager.singleton.GetWeapon(lh_weapons[0]),
-                              true
-                              );
-                hasLeftHandWeapon = true;
-            }
-
-            if (rightHandWeapon != null)
-                EquipWeapon(rightHandWeapon, false);
-            if (leftHandWeapon != null)
-                EquipWeapon(leftHandWeapon, true);
-
-            if(spell_items.Count > 0)
-            {
-                currentSpell = SpellToRuntimeSpell(ResourcesManager.singleton.GetSpell(spell_items[0]));
-            }
-            if(currentSpell != null)
-            {
-                EquipSpell(currentSpell);
-            }
-
-            InitAllDamageColliders();
-            CloseAllDamageColliders();
+            LoadInventory();
 
             ParryCollider pr = parryCollider.GetComponent<ParryCollider>();
             pr.InitPlayer(st);
             CloseParryCollider();
         }
+        public void LoadInventory()
+        {
+            for (int i = 0; i < rh_weapons.Count; i++)
+            {
+                WeaponToRuntimeWeapon(
+                    ResourcesManager.singleton.GetWeapon(rh_weapons[i])
+                    );
+            }
+            for (int i = 0; i < lh_weapons.Count; i++)
+            {
+                WeaponToRuntimeWeapon(
+                    ResourcesManager.singleton.GetWeapon(lh_weapons[i])
+                    , true);
+            }
 
+            if (r_rh_weapons.Count > 0)
+            {
+                if (r_index > r_rh_weapons.Count - 1)
+                    r_index = 0;
+                rightHandWeapon = r_rh_weapons[r_index];
+            }
+            if (r_lh_weapons.Count > 0)
+            {
+                if (r_index > r_lh_weapons.Count - 1)
+                    r_index = 0;
+                leftHandWeapon = r_lh_weapons[l_index];
+            }
+
+
+            if (rightHandWeapon != null)
+                EquipWeapon(rightHandWeapon, false);
+            if (leftHandWeapon != null)
+            {
+                EquipWeapon(leftHandWeapon, true);
+                hasLeftHandWeapon = true;
+            }
+
+
+            for(int i = 0; i < spell_items.Count; i++)
+            {
+                SpellToRuntimeSpell(
+                    ResourcesManager.singleton.GetSpell(spell_items[i])
+                    );
+            }
+
+            if (r_spells.Count > 0)
+            {
+                if (s_index > r_spells.Count - 1)
+                    s_index = 0;
+
+                EquipSpell(r_spells[s_index]);
+            }
+
+            InitAllDamageColliders(states);
+            CloseAllDamageColliders();
+        }
         public void EquipWeapon(RuntimeWeapon w, bool isLeft = false)
         {
+            if (isLeft)
+            {
+                if (leftHandWeapon != null)
+                {
+                    leftHandWeapon.weapon_Model.SetActive(false);
+                } 
+                leftHandWeapon = w;
+            }
+            else
+            {
+                if (rightHandWeapon != null)
+                {
+                    rightHandWeapon.weapon_Model.SetActive(false);
+                }
+                rightHandWeapon = w;
+            }
+
             string targetIdle = w.instance.oh_idle;
             targetIdle += (isLeft) ? "_l" : "_r";
             states.anim.SetBool(StaticStrings.mirror, isLeft);
@@ -78,11 +128,14 @@ namespace GameControll
             w.weapon_Model.SetActive(true);
         }
 
-        public void EquipSpell(RuntimeSpellItems s, bool isLeft = false)
+
+        public void EquipSpell(RuntimeSpellItems spell, bool isLeft = false)
         {
+
+            currentSpell = spell;
             UI.QuickSlot uiSlot = UI.QuickSlot.singleton;
 
-            uiSlot.UpdateSlot(UI.QSlotType.spell, s.instance.icon);
+            uiSlot.UpdateSlot(UI.QSlotType.spell, spell.instance.icon);
         }
         public Weapon GetCurrentWeapon(bool isLeft)
         {
@@ -110,7 +163,7 @@ namespace GameControll
                 leftHandWeapon.weapon_Hook.CloseDamageColliders();
         }
 
-        public void InitAllDamageColliders()
+        public void InitAllDamageColliders(StateManager states)
         {
             if (rightHandWeapon.weapon_Hook != null)
                 rightHandWeapon.weapon_Hook.InitDamageColliders(states);
@@ -137,6 +190,7 @@ namespace GameControll
             StaticFunctions.DeepCopySpell(s, inst.instance);
             go.name = s.itemName;
 
+            r_spells.Add(inst);
             return inst;
         }
         public RuntimeWeapon WeaponToRuntimeWeapon(Weapon w, bool isLeft = false)
@@ -158,7 +212,49 @@ namespace GameControll
             inst.weapon_Hook = inst.weapon_Model.GetComponentInChildren<WeaponHook>();
             inst.weapon_Hook.InitDamageColliders(states);
 
+            if (isLeft)
+            {
+                r_lh_weapons.Add(inst);
+            }
+            else
+            {
+                r_rh_weapons.Add(inst);
+            }
+
             return inst;
+        }
+        /// <summary>
+        /// Changes to the next weapon in the equiped weapons
+        /// </summary>
+        /// <param name="isLeft"> true :: left hand</param>
+        public void ChangeToNextWeapon(bool isLeft)
+        {
+            if (isLeft)
+            {
+                if (l_index < r_rh_weapons.Count - 1)
+                    l_index++;
+                else
+                    l_index = 0;
+                EquipWeapon(r_lh_weapons[l_index], true);
+            }
+            else
+            {
+                if (r_index < r_rh_weapons.Count - 1)
+                    r_index++;
+                else
+                    r_index = 0;
+                EquipWeapon(r_rh_weapons[r_index]);
+            }
+            states.actionManager.UpdateActionsOneHanded();
+        }
+        public void ChangeToNextSpell()
+        {
+            if (s_index < r_spells.Count - 1)
+                s_index++;
+            else
+                s_index = 0;
+
+            EquipSpell(r_spells[s_index]);
         }
     }
     [System.Serializable]

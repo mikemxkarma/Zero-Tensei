@@ -24,7 +24,7 @@ namespace GameControll
                 Debug.Log("SpellItemScriptableObject coundlt load");
                 return;
             }
-            for (int i = 0; i < spell_ids.Count; i++)
+            for (int i = 0; i < obj.spellItems_List.Count; i++)
             {
                 if (spell_ids.ContainsKey(obj.spellItems_List[i].itemName))
                 {

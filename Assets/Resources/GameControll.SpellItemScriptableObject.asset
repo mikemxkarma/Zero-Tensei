@@ -14,8 +14,15 @@ MonoBehaviour:
   spellItems_List:
   - itemName: fireball
     itemDescription: 
-    icon: {fileID: 21300000, guid: fe2254c7535fb084f99bc00b6d0cb9f7, type: 3}
+    icon: {fileID: 21300000, guid: 0bb9ad72897cb0e469b3b690458cadd2, type: 3}
     spellType: 0
     projectile: {fileID: 0}
     particle_prefab: {fileID: 1819081214966656, guid: f336baebf7e9f714fbc11cc37ea792d3,
+      type: 2}
+  - itemName: firebreath
+    itemDescription: 
+    icon: {fileID: 21300000, guid: 94b52434f2cd7684c8ff148a68df7a7a, type: 3}
+    spellType: 2
+    projectile: {fileID: 0}
+    particle_prefab: {fileID: 1415910306628326, guid: 5e0caebaf969cbf47a9ab8a2e9812726,
       type: 2}

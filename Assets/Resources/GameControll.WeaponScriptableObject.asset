@@ -232,7 +232,7 @@ MonoBehaviour:
     model_scale: {x: 1, y: 1, z: 1}
   - itemName: pyromancy
     itemDescription: 
-    icon: {fileID: 21300000, guid: fe2254c7535fb084f99bc00b6d0cb9f7, type: 3}
+    icon: {fileID: 21300000, guid: 76c1ed0a9ba8b0e4593ec4e5687789dc, type: 3}
     oh_idle: oh_idle
     th_idle: th_idle
     actions:
