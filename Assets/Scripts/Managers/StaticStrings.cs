@@ -36,6 +36,7 @@ namespace GameControll
         public static string isLeft = "isLeft";
         public static string canMove = "canMove";
         public static string lockOn = "lockOn";
+        public static string spellcasting = "spellcasting";
 
 
         //Animator States

@@ -108,8 +108,24 @@ namespace GameControll
             to.itemDescription = from.itemDescription;
             to.icon = from.icon;
             to.spellType = from.spellType;
+            to.spellClass = from.spellClass;
             to.projectile = from.projectile;
             to.particle_prefab = from.particle_prefab;
+
+            to.spell_Actions = new List<SpellAction>();
+            for (int i = 0; i < from.spell_Actions.Count; i++)
+            {
+                SpellAction action = new SpellAction();
+                DeepCopySpellAction(action, from.spell_Actions[i]);
+                to.spell_Actions.Add(action);
+            }
+        }
+        public static void DeepCopySpellAction(SpellAction to, SpellAction from)
+        {
+            to.input = from.input;
+            to.targetAnimation = from.targetAnimation;
+            to.throwAnimation = from.throwAnimation;
+            to.castTime = from.castTime;
         }
     }
 }

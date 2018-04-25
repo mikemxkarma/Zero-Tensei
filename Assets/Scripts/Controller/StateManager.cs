@@ -51,6 +51,7 @@ namespace GameControll
         public bool onGround;
         public bool lockOn;
         public bool inAction;
+        public bool isSpellcasting;
         public bool canMove;
         public bool usingItem;
         public bool canBeParried;
@@ -135,6 +136,8 @@ namespace GameControll
 
             isBlocking = false;
             usingItem = anim.GetBool(StaticStrings.interacting);
+
+            anim.SetBool(StaticStrings.spellcasting, isSpellcasting);
             DetectAction();
             DetectItemAction();
             inventoryManager.rightHandWeapon.weapon_Model.SetActive(!usingItem);
@@ -163,9 +166,7 @@ namespace GameControll
             {
                 return;
             }
-            // a_hook.rootMotionMultiplier = 1;
-            a_hook.CloseRoll();
-            HandleRolls();
+
 
 
             anim.applyRootMotion = false;
@@ -173,7 +174,7 @@ namespace GameControll
 
             float targetSpeed = moveSpeed;
 
-            if (usingItem)
+            if (usingItem || isSpellcasting)
             {
                 run = false;
                 moveAmount = Mathf.Clamp(moveAmount, 0, 0.5f);
@@ -189,11 +190,33 @@ namespace GameControll
                 lockOn = false;
 
 
+            HandleRotation();
+            anim.SetBool("lockOn", lockOn);
+
+            if (lockOn == false)
+                HandleMovementAnimations();
+            else
+                HandleLockOnAnimations(moveDirection);
+
+            if (isSpellcasting)
+            {
+                HandleSpellcasting();
+                return;
+            }
+
+
+            // a_hook.rootMotionMultiplier = 1;
+            a_hook.CloseRoll();
+            HandleRolls();
+        }
+
+        void HandleRotation()
+        {
             Vector3 targetDirection = (lockOn == false) ? moveDirection
-                : (lockOnTransform != null) ?
-                lockOnTransform.transform.position - transform.position
-                :
-                moveDirection;
+               : (lockOnTransform != null) ?
+               lockOnTransform.transform.position - transform.position
+               :
+               moveDirection;
 
             targetDirection.y = 0;
             if (targetDirection == Vector3.zero)
@@ -201,13 +224,6 @@ namespace GameControll
             Quaternion tRotation = Quaternion.LookRotation(targetDirection);
             Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tRotation, delta * moveAmount * rotateSpeed);
             transform.rotation = targetRotation;
-
-            anim.SetBool("lockOn", lockOn);
-
-            if (lockOn == false)
-                HandleMovementAnimations();
-            else
-                HandleLockOnAnimations(moveDirection);
         }
 
         public void DetectItemAction()
@@ -232,7 +248,7 @@ namespace GameControll
 
         public void DetectAction()
         {
-            if (canMove == false || usingItem)
+            if (canMove == false || usingItem || isSpellcasting)
                 return;
 
             if (rb == false && rt == false && lt == false && lb == false)
@@ -251,6 +267,7 @@ namespace GameControll
                     BlockAction(slot);
                     break;
                 case ActionType.spells:
+                    SpellAction(slot);
                     break;
                 case ActionType.parry:
                     ParryAction(slot);
@@ -296,6 +313,64 @@ namespace GameControll
         bool IsLeftHandSlot(Action slot)
         {
             return (slot.input == ActionInput.lb || slot.input == ActionInput.lt);
+        }
+
+        void SpellAction(Action slot)
+        {
+            if (slot.spellClass != inventoryManager.currentSpell.instance.spellClass)
+            {
+                // target animation = cant cast
+                Debug.Log("spell doesnt match!");
+                //anim.CrossFade(targetAnim, 0.2f);
+                return;
+            }
+            ActionInput inp = actionManager.GetActionInput(this);
+            if (inp == ActionInput.lb)
+                inp = ActionInput.rb;
+            if (inp == ActionInput.lt)
+                inp = ActionInput.rt;
+
+            Spell s_inst = inventoryManager.currentSpell.instance;
+            SpellAction s_slot = s_inst.GetSpellAction(s_inst.spell_Actions, inp);
+            if (s_slot == null)
+            {
+                Debug.Log("Cant find spell slot");
+            }
+
+            isSpellcasting = true;
+            spellcastTime = 0;
+            max_spellcastTime = s_slot.castTime;
+            spellTargetAnim = s_slot.throwAnimation;
+            spellIsMirrored = slot.mirror;
+
+            string targetAnim = s_slot.targetAnimation;
+            if (spellIsMirrored)
+                targetAnim += StaticStrings._l;
+            else
+                targetAnim += StaticStrings._r;
+
+            anim.SetBool(StaticStrings.mirror, slot.mirror);
+            anim.CrossFade(targetAnim, 0.2f);
+        }
+
+
+        float spellcastTime;
+        float max_spellcastTime;
+        string spellTargetAnim;
+        bool spellIsMirrored;
+        void HandleSpellcasting()
+        {
+            spellcastTime += delta;
+            if (spellcastTime > max_spellcastTime)
+            {
+                canMove = false;
+                inAction = true;
+                isSpellcasting = false;
+
+                string targetAnim = spellTargetAnim;
+                anim.SetBool(StaticStrings.mirror, spellIsMirrored);
+                anim.CrossFade(targetAnim, 0.2f);
+            }
         }
 
         bool CheckForParry(Action slot)
@@ -551,7 +626,7 @@ namespace GameControll
 
             else
             {
-                
+
                 anim.Play(StaticStrings.equipWeapon_oh);
                 //anim.Play(StaticStrings.emptyBoth);
                 actionManager.UpdateActionsOneHanded();

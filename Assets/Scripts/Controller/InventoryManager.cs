@@ -77,7 +77,7 @@ namespace GameControll
             }
 
 
-            for(int i = 0; i < spell_items.Count; i++)
+            for (int i = 0; i < spell_items.Count; i++)
             {
                 SpellToRuntimeSpell(
                     ResourcesManager.singleton.GetSpell(spell_items[i])
@@ -102,7 +102,7 @@ namespace GameControll
                 if (leftHandWeapon != null)
                 {
                     leftHandWeapon.weapon_Model.SetActive(false);
-                } 
+                }
                 leftHandWeapon = w;
             }
             else
@@ -264,6 +264,22 @@ namespace GameControll
         public string itemName;
         public string itemDescription;
         public Sprite icon;
+
+        public Action GetAction(List<Action> l, ActionInput inp)
+        {
+            if (l == null)
+                return null;
+
+            for (int i = 0; i < l.Count; i++)
+            {
+                if (l[i].input == inp)
+                {
+                    return l[i];
+                }
+            }
+
+            return null;
+        }
     }
 
     [System.Serializable]
@@ -281,19 +297,6 @@ namespace GameControll
 
         public GameObject modelPrefab;
 
-        public Action GetAction(List<Action> l, ActionInput inp)
-        {
-            for (int i = 0; i < l.Count; i++)
-            {
-                if (l[i].input == inp)
-                {
-                    return l[i];
-                }
-            }
-
-            return null;
-        }
-
         public Vector3 r_model_pos;
         public Vector3 l_model_pos;
         public Vector3 r_model_eulers;
@@ -305,9 +308,26 @@ namespace GameControll
     public class Spell : Item
     {
         public SpellType spellType;
+        public SpellClass spellClass;
+        public List<SpellAction> spell_Actions = new List<SpellAction>();
         public GameObject projectile;
         public GameObject particle_prefab;
 
+        public SpellAction GetSpellAction(List<SpellAction> l, ActionInput inp)
+        {
+            if (l == null)
+                return null;
+
+            for (int i = 0; i < l.Count; i++)
+            {
+                if (l[i].input == inp)
+                {
+                    return l[i];
+                }
+            }
+
+            return null;
+        }
     }
 
 }

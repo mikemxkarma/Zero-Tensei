@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f16e1eecd6846bf43a9d1870f3e36727, type: 3}
-  m_Name: GameControll.WeaponScriptableObject
+  m_Name: GameControll.WeaponScriptableObject 1
   m_EditorClassIdentifier: 
   wepons_all:
   - itemName: sword
@@ -222,7 +222,7 @@ MonoBehaviour:
         dark: 0
     parryMultiplier: 1
     backstabMultiplier: 1
-    LeftHandMirror: 1
+    LeftHandMirror: 0
     modelPrefab: {fileID: 1221947274310874, guid: 5caf8bea08fd98042a42b4e38dfa1c23,
       type: 2}
     r_model_pos: {x: 0.05, y: 0.029, z: 0.012}
@@ -237,9 +237,9 @@ MonoBehaviour:
     th_idle: th_idle
     actions:
     - input: 0
-      type: 2
+      type: 0
       spellClass: 0
-      targetAnimation: 
+      targetAnimation: throw
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
         dark: 0
     parryMultiplier: 1
     backstabMultiplier: 1
-    LeftHandMirror: 1
+    LeftHandMirror: 0
     modelPrefab: {fileID: 1542346458948332, guid: c5e327c0d2fd7794bad2ecddf378767a,
       type: 2}
     r_model_pos: {x: 0, y: 0, z: 0}

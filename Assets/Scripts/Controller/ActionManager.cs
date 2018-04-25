@@ -141,6 +141,14 @@ namespace GameControll
     }
 
     [System.Serializable]
+    public class SpellAction
+    {
+        public ActionInput input;
+        public string targetAnimation;
+        public string throwAnimation;
+        public float castTime;
+    }
+    [System.Serializable]
     public class ItemAction
     {
         public string targetAnimation;
