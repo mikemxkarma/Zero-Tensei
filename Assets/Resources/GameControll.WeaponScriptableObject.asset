@@ -23,11 +23,11 @@ MonoBehaviour:
       spellClass: 0
       targetAnimation: oh_attack_1
       mirror: 0
-      canBeParried: 0
+      canBeParried: 1
       changeSpeed: 0
       animSpeed: 0
-      canParry: 0
-      canBackstab: 0
+      canParry: 1
+      canBackstab: 1
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
       canBeParried: 0
       changeSpeed: 0
       animSpeed: 0
-      canParry: 0
+      canParry: 1
       canBackstab: 0
       parryMultiplier: 0
       backstabMultiplier: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
       canBeParried: 0
       changeSpeed: 0
       animSpeed: 0
-      canParry: 0
+      canParry: 1
       canBackstab: 0
       parryMultiplier: 0
       backstabMultiplier: 0
