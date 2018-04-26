@@ -39,6 +39,7 @@ namespace GameControll
             pr.InitPlayer(st);
             CloseParryCollider();
         }
+
         public void LoadInventory()
         {
             for (int i = 0; i < rh_weapons.Count; i++)
@@ -95,6 +96,7 @@ namespace GameControll
             InitAllDamageColliders(states);
             CloseAllDamageColliders();
         }
+
         public void EquipWeapon(RuntimeWeapon w, bool isLeft = false)
         {
             if (isLeft)
@@ -128,7 +130,6 @@ namespace GameControll
             w.weapon_Model.SetActive(true);
         }
 
-
         public void EquipSpell(RuntimeSpellItems spell)
         {
 
@@ -137,6 +138,7 @@ namespace GameControll
 
             uiSlot.UpdateSlot(UI.QSlotType.spell, spell.instance.icon);
         }
+
         public Weapon GetCurrentWeapon(bool isLeft)
         {
             if (isLeft)
@@ -215,16 +217,17 @@ namespace GameControll
             inst.instance = new Weapon();
             StaticFunctions.DeepCopyWeapon(w, inst.instance);
 
+
             inst.weapon_Model = Instantiate(inst.instance.modelPrefab);
             Transform p = states.anim.GetBoneTransform((isLeft) ? HumanBodyBones.LeftHand : HumanBodyBones.RightHand);
             inst.weapon_Model.transform.parent = p;
             inst.weapon_Model.transform.localPosition = (isLeft) ? inst.instance.l_model_pos : inst.instance.r_model_pos;
             inst.weapon_Model.transform.localEulerAngles = (isLeft) ? inst.instance.l_model_eulers : inst.instance.r_model_eulers;
             inst.weapon_Model.transform.localScale = Vector3.one;
+       
 
             inst.weapon_Hook = inst.weapon_Model.GetComponentInChildren<WeaponHook>();
             inst.weapon_Hook.InitDamageColliders(states);
-
             if (isLeft)
             {
                 r_lh_weapons.Add(inst);
@@ -233,7 +236,6 @@ namespace GameControll
             {
                 r_rh_weapons.Add(inst);
             }
-
             return inst;
         }
         /// <summary>
@@ -249,7 +251,6 @@ namespace GameControll
                 else
                     l_index = 0;
                 EquipWeapon(r_lh_weapons[l_index], true);
-
             }
             else
             {

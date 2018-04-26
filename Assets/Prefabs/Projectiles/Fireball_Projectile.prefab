@@ -325,6 +325,8 @@ MonoBehaviour:
   hSpeed: 15
   vSpeed: 2
   target: {fileID: 0}
+  explosionPrefab: {fileID: 1008027047699370, guid: 37a038858938c5f40b3fd9d9b55f61fd,
+    type: 2}
 --- !u!198 &198015497882178464
 ParticleSystem:
   m_ObjectHideFlags: 1
