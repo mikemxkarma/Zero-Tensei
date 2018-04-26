@@ -129,7 +129,7 @@ namespace GameControll
         }
 
 
-        public void EquipSpell(RuntimeSpellItems spell, bool isLeft = false)
+        public void EquipSpell(RuntimeSpellItems spell)
         {
 
             currentSpell = spell;
@@ -193,6 +193,19 @@ namespace GameControll
             r_spells.Add(inst);
             return inst;
         }
+        public void CreateSpellParticle(RuntimeSpellItems inst, bool isLeft = false)
+        {
+            if (inst.currentParticle == null)
+            {
+                inst.currentParticle = Instantiate(inst.instance.projectile) as GameObject;
+                Transform p = states.anim.GetBoneTransform((isLeft) ? HumanBodyBones.LeftHand : HumanBodyBones.RightHand);
+                inst.currentParticle.transform.parent = p;
+                inst.currentParticle.transform.localPosition = Vector3.zero;
+                inst.currentParticle.transform.localRotation = Quaternion.identity;
+                inst.currentParticle.SetActive(false);
+            }
+
+        }
         public RuntimeWeapon WeaponToRuntimeWeapon(Weapon w, bool isLeft = false)
         {
             GameObject go = new GameObject();
@@ -231,11 +244,12 @@ namespace GameControll
         {
             if (isLeft)
             {
-                if (l_index < r_rh_weapons.Count - 1)
+                if (l_index < r_lh_weapons.Count - 1)
                     l_index++;
                 else
                     l_index = 0;
                 EquipWeapon(r_lh_weapons[l_index], true);
+
             }
             else
             {

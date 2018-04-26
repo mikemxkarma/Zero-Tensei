@@ -22,7 +22,7 @@ MonoBehaviour:
       targetAnimation: fireball_start
       throwAnimation: throw
       castTime: 1
-    projectile: {fileID: 1625433938004722, guid: 3a3012d0ee8c45842bde35f4ca3042c6,
+    projectile: {fileID: 1822851688747178, guid: 3a3012d0ee8c45842bde35f4ca3042c6,
       type: 2}
     particle_prefab: {fileID: 1819081214966656, guid: f336baebf7e9f714fbc11cc37ea792d3,
       type: 2}
@@ -32,6 +32,7 @@ MonoBehaviour:
     spellType: 2
     spellClass: 0
     spell_Actions: []
-    projectile: {fileID: 0}
+    projectile: {fileID: 1411402046131104, guid: 3a3012d0ee8c45842bde35f4ca3042c6,
+      type: 2}
     particle_prefab: {fileID: 1415910306628326, guid: 5e0caebaf969cbf47a9ab8a2e9812726,
       type: 2}

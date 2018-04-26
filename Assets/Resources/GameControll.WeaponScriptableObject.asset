@@ -309,7 +309,7 @@ MonoBehaviour:
     parryMultiplier: 1
     backstabMultiplier: 1
     LeftHandMirror: 1
-    modelPrefab: {fileID: 1542346458948332, guid: c5e327c0d2fd7794bad2ecddf378767a,
+    modelPrefab: {fileID: 1989430885407142, guid: c5e327c0d2fd7794bad2ecddf378767a,
       type: 2}
     r_model_pos: {x: 0, y: 0, z: 0}
     l_model_pos: {x: -0.084, y: -0.03, z: -0.001}
