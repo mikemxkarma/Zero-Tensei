@@ -14225,6 +14225,21 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.13651085
       objectReference: {fileID: 0}
+    - target: {fileID: 108924192805336064, guid: 3a3012d0ee8c45842bde35f4ca3042c6,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.81799936
+      objectReference: {fileID: 0}
+    - target: {fileID: 108924192805336064, guid: 3a3012d0ee8c45842bde35f4ca3042c6,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108924192805336064, guid: 3a3012d0ee8c45842bde35f4ca3042c6,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a3012d0ee8c45842bde35f4ca3042c6, type: 2}
   m_IsPrefabParent: 0
@@ -117159,7 +117174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15bf27bb68e2eb04d93c588a9b8708ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followSpeed: 6
+  followSpeed: 20
   mouseSpeed: 2
   controllerSpeed: 3
   target: {fileID: 797503648}
@@ -117179,7 +117194,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1932953218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.29, y: 3.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2145800437}
@@ -119104,6 +119119,7 @@ GameObject:
   - component: {fileID: 1981037074}
   - component: {fileID: 1981037073}
   - component: {fileID: 1981037072}
+  - component: {fileID: 1981037076}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -119168,12 +119184,24 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1981037071}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.668, z: -3.445}
+  m_LocalPosition: {x: 0.34, y: 0.32, z: -1.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2145800437}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1981037076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1981037071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 12f1d99da273bab4d97cbbb43726038e, type: 2}
 --- !u!1 &1984381802
 GameObject:
   m_ObjectHideFlags: 0
