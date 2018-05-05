@@ -11,6 +11,7 @@ namespace GameControll
         public float vSpeed = 2;
 
         public Transform target;
+        public GameObject explosionPrefab;
 
         public void Init()
         {
@@ -20,6 +21,20 @@ namespace GameControll
             targetForce += transform.up * vSpeed;
             rigid.AddForce(targetForce, ForceMode.Impulse);
 
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            EnemyStates es = other.GetComponentInParent<EnemyStates>();
+            if (es != null)
+            {
+                es.health -= 40;
+                es.DoDamage2();
+                SpellEffectsManager.singleton.UseSpellEffect("onFire", null, es);
+            }
+
+            GameObject go = Instantiate(explosionPrefab, transform.position, transform.rotation) as GameObject;
+           
+            Destroy(this.gameObject);
         }
     }
 }

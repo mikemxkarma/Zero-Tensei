@@ -20,17 +20,18 @@ namespace GameControll
         [Header("Initialize")]
         public GameObject activeModel;
         [Header("Inputs")]
-        public Vector3 moveDirection;
-        public float moveAmount;
         public float horizontal;
         public float vertical;
+        public Vector3 moveDirection;
+        public float moveAmount;
         public bool rt, rb, lt, lb;
-
         public bool rollInput;
         public bool itemInput;
 
 
         [Header("Stats")]
+        //public Attributes attributes;
+        public CharacterStats characterStats;
         public float moveSpeed = 2;
         public float runSpeed = 3.5f;
         public float rotateSpeed = 5;
@@ -70,14 +71,16 @@ namespace GameControll
         [HideInInspector]
         public ActionManager actionManager;
         [HideInInspector]
+        public InventoryManager inventoryManager;
+
+        [HideInInspector]
         public float delta;
         [HideInInspector]
         public LayerMask ignoreLayers;
         [HideInInspector]
         // for damage check
         public Action currentAction;
-        [HideInInspector]
-        public InventoryManager inventoryManager;
+
 
         float _actionDelay;
         #endregion
@@ -90,6 +93,7 @@ namespace GameControll
             rigidBody.angularDrag = 999;
             rigidBody.drag = 4;
             rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
 
             inventoryManager = GetComponent<InventoryManager>();
             inventoryManager.Init(this);
@@ -160,7 +164,7 @@ namespace GameControll
                     return;
                 }
             }
-            canMove = anim.GetBool("canMove");
+            canMove = anim.GetBool(StaticStrings.canMove);
 
             if (!canMove)
             {
@@ -191,7 +195,7 @@ namespace GameControll
 
 
             HandleRotation();
-            anim.SetBool("lockOn", lockOn);
+            anim.SetBool(StaticStrings.lockOn, lockOn);
 
             if (lockOn == false)
                 HandleMovementAnimations();
@@ -204,19 +208,15 @@ namespace GameControll
                 return;
             }
 
-
-            // a_hook.rootMotionMultiplier = 1;
             a_hook.CloseRoll();
             HandleRolls();
         }
 
         void HandleRotation()
         {
-            Vector3 targetDirection = (lockOn == false) ? moveDirection
-               : (lockOnTransform != null) ?
-               lockOnTransform.transform.position - transform.position
-               :
-               moveDirection;
+            Vector3 targetDirection = (lockOn == false) ? moveDirection :
+                (lockOnTransform != null) ?
+                lockOnTransform.transform.position - transform.position : moveDirection;
 
             targetDirection.y = 0;
             if (targetDirection == Vector3.zero)
@@ -337,11 +337,14 @@ namespace GameControll
                 Debug.Log("Cant find spell slot");
             }
 
+            SpellEffectsManager.singleton.UseSpellEffect(s_inst.spell_effect, this);
+
             isSpellcasting = true;
             spellcastTime = 0;
             max_spellcastTime = s_slot.castTime;
             spellTargetAnim = s_slot.throwAnimation;
             spellIsMirrored = slot.mirror;
+            curSpellType = s_inst.spellType;
 
             string targetAnim = s_slot.targetAnimation;
             if (spellIsMirrored)
@@ -350,10 +353,16 @@ namespace GameControll
                 targetAnim += StaticStrings._r;
 
             projectileCandidate = inventoryManager.currentSpell.instance.projectile;
-            inventoryManager.CreateSpellParticle(inventoryManager.currentSpell, spellIsMirrored);
+            inventoryManager.CreateSpellParticle(inventoryManager.currentSpell, spellIsMirrored,
+                (s_inst.spellType == SpellType.looping));
             anim.SetBool(StaticStrings.spellcasting, true);
             anim.SetBool(StaticStrings.mirror, slot.mirror);
             anim.CrossFade(targetAnim, 0.2f);
+
+            if(spellCast_start != null)
+            {
+                spellCast_start();
+            }
         }
 
 
@@ -361,14 +370,42 @@ namespace GameControll
         float max_spellcastTime;
         string spellTargetAnim;
         bool spellIsMirrored;
+        SpellType curSpellType;
         GameObject projectileCandidate;
 
+        public delegate void SpellCast_Start();
+        public delegate void SpellCast_Loop();
+        public delegate void SpellCast_Stop();
+        public SpellCast_Start spellCast_start;
+        public SpellCast_Loop spellCast_loop;
+        public SpellCast_Stop spellCast_stop;
 
         void HandleSpellcasting()
         {
+            if(curSpellType == SpellType.looping)
+            {
+
+                if (spellCast_loop != null)
+                    spellCast_loop();
+                if(rb == false && lb == false)
+                {
+                    isSpellcasting = false;
+
+                    if(spellCast_stop != null)
+                    {
+                        spellCast_stop();
+                    }
+                }
+             
+               
+                return;
+            }
+
+
             spellcastTime += delta;
             if (inventoryManager.currentSpell.currentParticle != null)
                 inventoryManager.currentSpell.currentParticle.SetActive(true);
+
             if (spellcastTime > max_spellcastTime)
             {
                 canMove = false;
@@ -640,31 +677,32 @@ namespace GameControll
 
                 if (isRight)
                 {
-                    if (inventoryManager.leftHandWeapon)
+                    if (inventoryManager.leftHandWeapon != null)
                         inventoryManager.leftHandWeapon.weapon_Model.SetActive(false);
                 }
                 else
                 {
-                    if (inventoryManager.rightHandWeapon)
+                    if (inventoryManager.rightHandWeapon != null)
                         inventoryManager.rightHandWeapon.weapon_Model.SetActive(false);
                 }
             }
 
             else
             {
-
+                string targetAnim = w.oh_idle;
+                targetAnim += (isRight) ? StaticStrings._r : StaticStrings._l;
                 anim.Play(StaticStrings.equipWeapon_oh);
                 //anim.Play(StaticStrings.emptyBoth);
                 actionManager.UpdateActionsOneHanded();
 
                 if (isRight)
                 {
-                    if (inventoryManager.leftHandWeapon)
+                    if (inventoryManager.leftHandWeapon != null)
                         inventoryManager.leftHandWeapon.weapon_Model.SetActive(true);
                 }
                 else
                 {
-                    if (inventoryManager.rightHandWeapon)
+                    if (inventoryManager.rightHandWeapon != null)
                         inventoryManager.rightHandWeapon.weapon_Model.SetActive(true);
                 }
             }
@@ -673,6 +711,11 @@ namespace GameControll
         public void IsGettingParried()
         {
 
+        }
+
+        public void AddHealth()
+        {
+            characterStats.hp++;
         }
 
         #endregion

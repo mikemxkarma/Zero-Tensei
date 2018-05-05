@@ -53,6 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4561455109165772}
+  - component: {fileID: 114053873622955498}
   m_Layer: 0
   m_Name: Fireball_Hand
   m_TagString: Untagged
@@ -101,6 +102,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114053873622955498
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1819081214966656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 270bc98e7b438b747b8adcaa866e0666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198116675253047898
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -113,7 +125,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -3402,7 +3414,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -6700,7 +6712,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: d8f4b48f25c2bb5479dae153f83e2db6, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -6754,7 +6766,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 90f75c17f716c5f419fa61944a56c155, type: 2}
+  - {fileID: 0}
   - {fileID: 2100000, guid: f71408d8f9a125f40aa33091b3dd4e5f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

@@ -110,6 +110,7 @@ namespace GameControll
             to.spellType = from.spellType;
             to.spellClass = from.spellClass;
             to.projectile = from.projectile;
+            to.spell_effect = from.spell_effect;
             to.particle_prefab = from.particle_prefab;
 
             to.spell_Actions = new List<SpellAction>();

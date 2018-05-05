@@ -30,6 +30,9 @@ namespace GameControll
         List<Rigidbody> ragdollRigids = new List<Rigidbody>();
         List<Collider> ragdollColliders = new List<Collider>();
 
+        public delegate void SpellEffect_Loop();
+        public SpellEffect_Loop spellEffect_loop;
+
         float timer;
 
         void Start()
@@ -96,6 +99,8 @@ namespace GameControll
             delta = Time.deltaTime;
             canMove = anim.GetBool(StaticStrings.canMove);
 
+            if (spellEffect_loop != null)
+                spellEffect_loop();
             if (dontDoAnything)
             {
                 dontDoAnything = !canMove;
@@ -176,6 +181,13 @@ namespace GameControll
             anim.applyRootMotion = true;
             anim.SetBool(StaticStrings.canMove, false);
         }
+        public void DoDamage2()
+        {
+            if (isInvicible)
+                return;
+            anim.Play(StaticStrings.damage3);
+
+        }
 
         public void CheckForParry(Transform target, StateManager states)
         {
@@ -217,6 +229,24 @@ namespace GameControll
             dontDoAnything = true;
             anim.SetBool(StaticStrings.canMove, false);
             anim.Play(StaticStrings.backstabbed);
+        }
+
+        public ParticleSystem fireParticle;
+        float _t;
+
+
+        public void OnFire()
+        {
+            if(_t < 5)
+            {
+                _t += Time.deltaTime;
+                fireParticle.Emit(1);
+            }
+            else
+            {
+                _t = 0;
+                spellEffect_loop = null;
+            }
         }
     }
 }

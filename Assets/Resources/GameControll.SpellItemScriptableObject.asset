@@ -26,13 +26,32 @@ MonoBehaviour:
       type: 2}
     particle_prefab: {fileID: 1819081214966656, guid: f336baebf7e9f714fbc11cc37ea792d3,
       type: 2}
+    spell_effect: fireball
   - itemName: firebreath
     itemDescription: 
     icon: {fileID: 21300000, guid: 94b52434f2cd7684c8ff148a68df7a7a, type: 3}
     spellType: 2
     spellClass: 0
-    spell_Actions: []
-    projectile: {fileID: 1411402046131104, guid: 3a3012d0ee8c45842bde35f4ca3042c6,
+    spell_Actions:
+    - input: 0
+      targetAnimation: hold_spell_start
+      throwAnimation: 
+      castTime: 1
+    projectile: {fileID: 0}
+    particle_prefab: {fileID: 1884404874469692, guid: eef60611cf317f64591f5fe81a3d9d73,
       type: 2}
-    particle_prefab: {fileID: 1415910306628326, guid: 5e0caebaf969cbf47a9ab8a2e9812726,
+    spell_effect: firebreath
+  - itemName: Dark Shield
+    itemDescription: 
+    icon: {fileID: 21300000, guid: 8070ce1aa0bca154d86d5dd9f52094df, type: 3}
+    spellType: 2
+    spellClass: 0
+    spell_Actions:
+    - input: 0
+      targetAnimation: hold_spell_start
+      throwAnimation: 
+      castTime: 1
+    projectile: {fileID: 0}
+    particle_prefab: {fileID: 1497246781728562, guid: 688aaf1bb16db4e4d8297315f48df621,
       type: 2}
+    spell_effect: darkshield

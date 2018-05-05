@@ -270,10 +270,10 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1822851688747178}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.25, z: 0.25}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &108924192805336064
 Light:
@@ -325,6 +325,8 @@ MonoBehaviour:
   hSpeed: 15
   vSpeed: 2
   target: {fileID: 0}
+  explosionPrefab: {fileID: 1966011102790094, guid: c6f0557fb714aa047964fe09ed31b819,
+    type: 2}
 --- !u!198 &198015497882178464
 ParticleSystem:
   m_ObjectHideFlags: 1

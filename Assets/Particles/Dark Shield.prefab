@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4043009580737892}
   - component: {fileID: 114273969663292866}
+  - component: {fileID: 114030347099203768}
   m_Layer: 0
   m_Name: Dark Shield
   m_TagString: Untagged
@@ -68,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1497246781728562}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.92, y: 2.802, z: 4.373}
+  m_LocalPosition: {x: -2.0163174, y: 7.89, z: 12.179914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4563196521524512}
@@ -102,6 +103,17 @@ Transform:
   m_Father: {fileID: 4043009580737892}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114030347099203768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1497246781728562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 270bc98e7b438b747b8adcaa866e0666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114273969663292866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,7 +185,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1113991901
+  randomSeed: -90103557
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3468,7 +3480,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1479684824
+  randomSeed: -1052361674
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6718,7 +6730,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 21055a2c86658b64889c96c303320a79, type: 2}
+  - {fileID: 2100000, guid: f71408d8f9a125f40aa33091b3dd4e5f, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -6772,7 +6784,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 59f70b73143c2674ca42b334a9093a1c, type: 2}
+  - {fileID: 2100000, guid: ab55680a358d4f94c8792d9f4cee160b, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
