@@ -153,12 +153,12 @@ namespace GameControll
             anim.SetBool(StaticStrings.canMove, false);
         }
 
-        public void DoDamage(Action action)
+        public void DoDamage(Action action,Weapon curWeapon)
         {
             if (isInvicible)
                 return;
 
-            int damage = StatsCalculations.CalculateBaseDamage(action.weaponStats, characterStats);
+            int damage = StatsCalculations.CalculateBaseDamage(curWeapon.weaponStats, characterStats);
 
             characterStats.poise += damage;
             health -= damage;
@@ -209,9 +209,9 @@ namespace GameControll
             return;
         }
 
-        public void IsGettingParried(Action action)
+        public void IsGettingParried(Action action, Weapon curWeapon)
         {
-            int damage = StatsCalculations.CalculateBaseDamage(action.weaponStats, characterStats, action.parryMultiplier);
+            int damage = StatsCalculations.CalculateBaseDamage(curWeapon.weaponStats, characterStats, action.parryMultiplier);
             Debug.Log(damage);
 
             health -= damage;
@@ -220,9 +220,9 @@ namespace GameControll
             anim.Play(StaticStrings.parry_recieved);
         }
 
-        public void IsGettingBackstabbed(Action action)
+        public void IsGettingBackstabbed(Action action, Weapon curWeapon)
         {
-            int damage = StatsCalculations.CalculateBaseDamage(action.weaponStats, characterStats, action.backstabMultiplier);
+            int damage = StatsCalculations.CalculateBaseDamage(curWeapon.weaponStats, characterStats, action.backstabMultiplier);
             Debug.Log(damage);
 
             health -= damage;

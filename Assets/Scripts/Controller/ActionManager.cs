@@ -127,6 +127,8 @@ namespace GameControll
         public float animSpeed = 1;
         public bool canParry = false;
         public bool canBackstab = false;
+        public float staminaCost = 5;
+        public int manaCost = 0;
 
         [HideInInspector]
         public float parryMultiplier;
@@ -135,9 +137,6 @@ namespace GameControll
 
         public bool overrideDamageAnim;
         public string damageAnim;
-
-        public WeaponStats weaponStats;
-
     }
 
     [System.Serializable]

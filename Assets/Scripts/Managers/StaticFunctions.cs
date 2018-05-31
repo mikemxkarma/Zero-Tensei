@@ -16,7 +16,6 @@ namespace GameControll
             for (int i = 0; i < from.actions.Count; i++)
             {
                 Action action = new Action();
-                action.weaponStats = new WeaponStats();
                 DeepCopyActionToAction(action, from.actions[i]);
                 to.actions.Add(action);
             }
@@ -24,7 +23,6 @@ namespace GameControll
             for (int i = 0; i < from.two_handedActions.Count; i++)
             {
                 Action action = new Action();
-                action.weaponStats = new WeaponStats();
                 DeepCopyActionToAction(action, from.two_handedActions[i]);
                 to.two_handedActions.Add(action);
             }
@@ -38,6 +36,8 @@ namespace GameControll
             to.l_model_eulers = from.l_model_eulers;
             to.model_scale = from.model_scale;
 
+            to.weaponStats = new WeaponStats();
+            DeepCopyWeaponStats(from.weaponStats, to.weaponStats);
         }
         public static void DeepCopyActionToAction(Action action, Action w_action)
         {
@@ -52,8 +52,6 @@ namespace GameControll
             action.canBackstab = w_action.canBackstab;
             action.overrideDamageAnim = w_action.overrideDamageAnim;
             action.damageAnim = w_action.damageAnim;
-
-            DeepCopyWeaponStats(w_action.weaponStats, action.weaponStats);
         }
         public static void DeepCopyAction(Weapon w, ActionInput input, ActionInput assign, List<Action> actionSlots, bool isLeftHand = false)
         {
@@ -80,7 +78,6 @@ namespace GameControll
 
             if (isLeftHand)
                 a.mirror = true;
-            DeepCopyWeaponStats(w_action.weaponStats, a.weaponStats);
         }
         public static void DeepCopyWeaponStats(WeaponStats from, WeaponStats to)
         {

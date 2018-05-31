@@ -19,7 +19,7 @@ namespace GameControll
             if (eStates == null)
                 return;
 
-            eStates.DoDamage(states.currentAction);
+            eStates.DoDamage(states.currentAction, states.inventoryManager.GetCurrentWeapon(states.currentAction.mirror));
         }
     }
 }

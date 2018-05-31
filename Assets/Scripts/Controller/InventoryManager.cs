@@ -364,6 +364,7 @@ namespace GameControll
         public bool LeftHandMirror;
 
         public GameObject modelPrefab;
+        public WeaponStats weaponStats;
 
         public Vector3 r_model_pos;
         public Vector3 l_model_pos;

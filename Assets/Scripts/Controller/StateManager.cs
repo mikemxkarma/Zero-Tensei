@@ -53,6 +53,7 @@ namespace GameControll
         public bool lockOn;
         public bool inAction;
         public bool isSpellcasting;
+        public bool enableIK;
         public bool canMove;
         public bool usingItem;
         public bool canBeParried;
@@ -72,6 +73,8 @@ namespace GameControll
         public ActionManager actionManager;
         [HideInInspector]
         public InventoryManager inventoryManager;
+        //[HideInInspector]
+        //public BoneHelper boneHelper;
 
         [HideInInspector]
         public float delta;
@@ -94,6 +97,7 @@ namespace GameControll
             rigidBody.drag = 4;
             rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
+            //boneHelper = gameObject.AddComponent<BoneHelper>();
 
             inventoryManager = GetComponent<InventoryManager>();
             inventoryManager.Init(this);
@@ -104,14 +108,16 @@ namespace GameControll
             a_hook = activeModel.GetComponent<AnimatorHook>();
             if (a_hook == null)
                 a_hook = activeModel.AddComponent<AnimatorHook>();
-
             a_hook.Init(this, null);
-
-
 
             gameObject.layer = 8;
             ignoreLayers = ~(1 << 9);
-            anim.SetBool("onGround", true);
+
+            anim.SetBool(StaticStrings.onGround, true);
+
+            characterStats.InitCurrent();
+
+            UIManager.singleton.AffectAll(characterStats.hp, characterStats.fp, characterStats.stamina);
         }
 
         void SetupAnimator()
@@ -140,7 +146,6 @@ namespace GameControll
 
             isBlocking = false;
             usingItem = anim.GetBool(StaticStrings.interacting);
-
             anim.SetBool(StaticStrings.spellcasting, isSpellcasting);
             DetectAction();
             DetectItemAction();
@@ -148,6 +153,14 @@ namespace GameControll
 
             anim.SetBool(StaticStrings.blocking, isBlocking);
             anim.SetBool(StaticStrings.isLeft, isLeftHand);
+
+            if (isBlocking == false && isSpellcasting == false)
+            {
+                enableIK = false;
+            }
+
+            a_hook.useIk = enableIK;
+            //a_hook.useIk = true;
 
             if (inAction)
             {
@@ -167,11 +180,7 @@ namespace GameControll
             canMove = anim.GetBool(StaticStrings.canMove);
 
             if (!canMove)
-            {
                 return;
-            }
-
-
 
             anim.applyRootMotion = false;
             rigidBody.drag = (moveAmount > 0 || onGround == false) ? 0 : 4;
@@ -280,6 +289,9 @@ namespace GameControll
 
         void AttackAction(Action slot)
         {
+
+            if (characterStats._stamina < slot.staminaCost)
+                return;
             if (CheckForParry(slot))
                 return;
             if (CheckForBackStab(slot))
@@ -308,6 +320,7 @@ namespace GameControll
             anim.SetFloat(StaticStrings.animSpeed, targetSpeed);
             anim.SetBool(StaticStrings.mirror, slot.mirror);
             anim.CrossFade(targetAnimation, 0.2f);
+            characterStats._stamina -= slot.staminaCost;
         }
 
         bool IsLeftHandSlot(Action slot)
@@ -317,13 +330,16 @@ namespace GameControll
 
         void SpellAction(Action slot)
         {
-            if (slot.spellClass != inventoryManager.currentSpell.instance.spellClass)
+            if (slot.spellClass != inventoryManager.currentSpell.instance.spellClass
+                || characterStats._stamina < slot.staminaCost || characterStats._mana < slot.manaCost)
             {
-                // target animation = cant cast
-                Debug.Log("spell doesnt match!");
-                //anim.CrossFade(targetAnim, 0.2f);
+                anim.SetBool(StaticStrings.mirror, slot.mirror);
+                anim.CrossFade("cant_spell", 0.2f);
+                canMove = false;
+                inAction = true;
                 return;
             }
+
             ActionInput inp = actionManager.GetActionInput(this);
             if (inp == ActionInput.lb)
                 inp = ActionInput.rb;
@@ -335,6 +351,7 @@ namespace GameControll
             if (s_slot == null)
             {
                 Debug.Log("Cant find spell slot");
+                return;
             }
 
             SpellEffectsManager.singleton.UseSpellEffect(s_inst.spell_effect, this);
@@ -359,12 +376,14 @@ namespace GameControll
             anim.SetBool(StaticStrings.mirror, slot.mirror);
             anim.CrossFade(targetAnim, 0.2f);
 
-            if(spellCast_start != null)
-            {
-                spellCast_start();
-            }
-        }
+            //characterStats._stamina -= slot.staminaCost;
+            characterStats._mana -= slot.manaCost;
 
+            a_hook.InitIKForBreathSpell(spellIsMirrored);
+
+            if (spellCast_start != null)
+                spellCast_start();
+        }
 
         float spellcastTime;
         float max_spellcastTime;
@@ -382,27 +401,37 @@ namespace GameControll
 
         void HandleSpellcasting()
         {
-            if(curSpellType == SpellType.looping)
+            if (curSpellType == SpellType.looping)
             {
+                enableIK = true;
+                a_hook.currentHand = (spellIsMirrored) ? AvatarIKGoal.LeftHand : AvatarIKGoal.RightHand;
 
-                if (spellCast_loop != null)
-                    spellCast_loop();
-                if(rb == false && lb == false)
+
+
+                if (rb == false && lb == false || characterStats._mana < 2)
                 {
                     isSpellcasting = false;
 
-                    if(spellCast_stop != null)
-                    {
+                    enableIK = false;
+
+                    inventoryManager.breathCollider.SetActive(false);
+                    inventoryManager.blockCollider.SetActive(false);
+
+                    if (spellCast_stop != null)
                         spellCast_stop();
-                    }
+
+                    return;
                 }
-             
-               
+                if (spellCast_loop != null)
+                    spellCast_loop();
+
+                characterStats._mana -= 0.5f;
+
                 return;
             }
 
-
             spellcastTime += delta;
+
             if (inventoryManager.currentSpell.currentParticle != null)
                 inventoryManager.currentSpell.currentParticle.SetActive(true);
 
@@ -485,7 +514,8 @@ namespace GameControll
                 parryTarget.transform.rotation = eRotation;
                 transform.rotation = ourRot;
 
-                parryTarget.IsGettingParried(slot);
+
+                parryTarget.IsGettingParried(slot, inventoryManager.GetCurrentWeapon(slot.mirror));
                 canMove = false;
                 inAction = true;
                 anim.SetBool(StaticStrings.mirror, slot.mirror);
@@ -526,7 +556,7 @@ namespace GameControll
                 transform.position = targetPosition;
 
                 transform.rotation = transform.rotation;
-                backstab.IsGettingBackstabbed(slot);
+                backstab.IsGettingBackstabbed(slot, inventoryManager.GetCurrentWeapon(slot.mirror));
                 canMove = false;
                 inAction = true;
                 anim.SetBool(StaticStrings.mirror, slot.mirror);
@@ -540,7 +570,9 @@ namespace GameControll
         void BlockAction(Action slot)
         {
             isBlocking = true;
-            isLeftHand = slot.mirror;//if its mirror , block with left hand
+            enableIK = true;
+            a_hook.currentHand = (slot.mirror) ? AvatarIKGoal.LeftHand : AvatarIKGoal.RightHand;
+            a_hook.InitIKForShield((slot.mirror));
         }
 
         void ParryAction(Action slot)
@@ -560,7 +592,6 @@ namespace GameControll
             }
 
             anim.SetFloat(StaticStrings.animSpeed, targetSpeed);
-            canBeParried = slot.canBeParried;
             canBeParried = slot.canBeParried;
             canMove = false;
             inAction = true;
@@ -622,6 +653,7 @@ namespace GameControll
             canMove = false;
             inAction = true;
             anim.CrossFade(StaticStrings.Rolls, 0.2f);
+            isBlocking = false;
         }
 
         void HandleMovementAnimations()
@@ -716,6 +748,25 @@ namespace GameControll
         public void AddHealth()
         {
             characterStats.hp++;
+        }
+
+        public void MonitorStats()
+        {
+            if (run && moveAmount > 0)
+            {
+                Debug.Log("running");
+                characterStats._stamina -= delta * 5;
+            }
+            else
+            {
+                characterStats._stamina += delta;
+            }
+
+            if (characterStats._stamina > characterStats.fp)
+                characterStats._stamina = characterStats.fp;
+
+            characterStats._health = Mathf.Clamp(characterStats._health, 0, characterStats.hp);
+            characterStats._mana = Mathf.Clamp(characterStats._mana, 0, characterStats.fp);
         }
 
         #endregion

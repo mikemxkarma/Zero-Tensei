@@ -7,6 +7,10 @@ namespace GameControll
     [System.Serializable]
     public class CharacterStats
     {
+        [Header("Current")]
+        public float _health;
+        public float _mana;
+        public float _stamina;
         [Header("Base Power")]
         public int hp = 100;
         public int fp = 100;
@@ -40,6 +44,31 @@ namespace GameControll
         public int curse = 100;
 
         public int attunemntSlots = 0;
+
+        public void InitCurrent()
+        {
+            if (statEffects != null)
+            {
+                statEffects();
+            }
+            _health = hp;
+            _mana = fp;
+            _stamina = stamina;
+
+
+        }
+
+        public delegate void StatEffects();
+        public StatEffects statEffects;
+
+        public void AddHealth()
+        {
+            hp += 5;
+        }
+        public void RemoveHealth()
+        {
+            hp = -5;
+        }
     }
     [System.Serializable]
     public class Atributes

@@ -50,6 +50,7 @@ namespace GameControll
 
         StateManager states;
         CameraManager camManager;
+        UIManager uiManager;
 
         float delta;
 
@@ -62,6 +63,9 @@ namespace GameControll
 
             camManager = CameraManager.singleton;
             camManager.Init(states);
+
+            uiManager = UIManager.singleton;
+            
         }
 
         void FixedUpdate()
@@ -71,6 +75,7 @@ namespace GameControll
             UpdateStates();
             states.FixedTick(delta);
             camManager.Tick(delta);
+
         }
 
         void Update()
@@ -78,6 +83,8 @@ namespace GameControll
             delta = Time.deltaTime;
             states.Tick(delta);
             ResetInputNStates();
+            states.MonitorStats();
+            uiManager.Tick(states.characterStats, delta);
         }
 
         void GetInput()
@@ -132,7 +139,7 @@ namespace GameControll
 
             if (b_input && b_timer > 0.5f)
             {
-                states.run = (states.moveAmount > 0);
+                states.run = (states.moveAmount > 0) && states.characterStats._stamina > 0;
             }
 
             if (b_input == false && b_timer > 0 && b_timer < 0.5f)
@@ -233,7 +240,6 @@ namespace GameControll
             if (!d_right)
                 p_d_right = false;
         }
-
 
         void ResetInputNStates()
         {

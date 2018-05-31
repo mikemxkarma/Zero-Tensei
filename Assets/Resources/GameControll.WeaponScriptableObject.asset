@@ -28,19 +28,12 @@ MonoBehaviour:
       animSpeed: 0
       canParry: 1
       canBackstab: 1
+      staminaCost: 20
+      manaCost: 0
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-      weaponStats:
-        physical: 40
-        strike: 0
-        slash: 0
-        thrust: 0
-        magic: 0
-        fire: 0
-        lighting: 0
-        dark: 0
     - input: 2
       type: 0
       spellClass: 0
@@ -51,19 +44,12 @@ MonoBehaviour:
       animSpeed: 0
       canParry: 1
       canBackstab: 0
+      staminaCost: 30
+      manaCost: 0
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 1
       damageAnim: damage_3
-      weaponStats:
-        physical: 0
-        strike: 0
-        slash: 0
-        thrust: 0
-        magic: 0
-        fire: 0
-        lighting: 0
-        dark: 0
     two_handedActions:
     - input: 0
       type: 0
@@ -75,19 +61,12 @@ MonoBehaviour:
       animSpeed: 1
       canParry: 0
       canBackstab: 0
+      staminaCost: 5
+      manaCost: 0
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-      weaponStats:
-        physical: 0
-        strike: 0
-        slash: 0
-        thrust: 0
-        magic: 0
-        fire: 0
-        lighting: 0
-        dark: 0
     - input: 2
       type: 0
       spellClass: 0
@@ -98,24 +77,26 @@ MonoBehaviour:
       animSpeed: 1
       canParry: 0
       canBackstab: 0
+      staminaCost: 5
+      manaCost: 0
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 1
       damageAnim: damage_3
-      weaponStats:
-        physical: 50
-        strike: 0
-        slash: 0
-        thrust: 0
-        magic: 0
-        fire: 0
-        lighting: 0
-        dark: 0
     parryMultiplier: 2
     backstabMultiplier: 2
     LeftHandMirror: 0
     modelPrefab: {fileID: 1761767580271928, guid: 7b0e79656d7e9b049bc3abf54431db25,
       type: 2}
+    weaponStats:
+      physical: 0
+      strike: 0
+      slash: 0
+      thrust: 0
+      magic: 0
+      fire: 0
+      lighting: 0
+      dark: 0
     r_model_pos: {x: 0.0536, y: -0.0112, z: 0.0008}
     l_model_pos: {x: 0, y: 0, z: 0}
     r_model_eulers: {x: 296.369, y: 117.33701, z: 0.67698663}
@@ -137,19 +118,12 @@ MonoBehaviour:
       animSpeed: 1
       canParry: 0
       canBackstab: 0
+      staminaCost: 5
+      manaCost: 0
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-      weaponStats:
-        physical: 0
-        strike: 0
-        slash: 0
-        thrust: 0
-        magic: 0
-        fire: 0
-        lighting: 0
-        dark: 0
     - input: 2
       type: 3
       spellClass: 0
@@ -160,19 +134,12 @@ MonoBehaviour:
       animSpeed: 0
       canParry: 1
       canBackstab: 0
+      staminaCost: 5
+      manaCost: 0
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-      weaponStats:
-        physical: 0
-        strike: 0
-        slash: 0
-        thrust: 0
-        magic: 0
-        fire: 0
-        lighting: 0
-        dark: 0
     two_handedActions:
     - input: 0
       type: 1
@@ -184,19 +151,12 @@ MonoBehaviour:
       animSpeed: 0
       canParry: 0
       canBackstab: 1
+      staminaCost: 5
+      manaCost: 0
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-      weaponStats:
-        physical: 0
-        strike: 0
-        slash: 0
-        thrust: 0
-        magic: 0
-        fire: 0
-        lighting: 0
-        dark: 0
     - input: 2
       type: 0
       spellClass: 0
@@ -207,24 +167,26 @@ MonoBehaviour:
       animSpeed: 0
       canParry: 0
       canBackstab: 0
+      staminaCost: 5
+      manaCost: 0
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: damage_3
-      weaponStats:
-        physical: 0
-        strike: 0
-        slash: 0
-        thrust: 0
-        magic: 0
-        fire: 0
-        lighting: 0
-        dark: 0
     parryMultiplier: 1
     backstabMultiplier: 1
-    LeftHandMirror: 1
+    LeftHandMirror: 0
     modelPrefab: {fileID: 1221947274310874, guid: 5caf8bea08fd98042a42b4e38dfa1c23,
       type: 2}
+    weaponStats:
+      physical: 0
+      strike: 0
+      slash: 0
+      thrust: 0
+      magic: 0
+      fire: 0
+      lighting: 0
+      dark: 0
     r_model_pos: {x: 0.05, y: 0.029, z: 0.012}
     l_model_pos: {x: -0.08, y: -0.035, z: 0.033}
     r_model_eulers: {x: 295.456, y: 70.85101, z: 16.78399}
@@ -246,19 +208,12 @@ MonoBehaviour:
       animSpeed: 1
       canParry: 0
       canBackstab: 0
+      staminaCost: 5
+      manaCost: 30
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-      weaponStats:
-        physical: 0
-        strike: 0
-        slash: 0
-        thrust: 0
-        magic: 0
-        fire: 0
-        lighting: 0
-        dark: 0
     two_handedActions:
     - input: 0
       type: 1
@@ -270,19 +225,12 @@ MonoBehaviour:
       animSpeed: 0
       canParry: 0
       canBackstab: 0
+      staminaCost: 5
+      manaCost: 0
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-      weaponStats:
-        physical: 0
-        strike: 0
-        slash: 0
-        thrust: 0
-        magic: 0
-        fire: 0
-        lighting: 0
-        dark: 0
     - input: 2
       type: 0
       spellClass: 0
@@ -293,24 +241,26 @@ MonoBehaviour:
       animSpeed: 0
       canParry: 0
       canBackstab: 0
+      staminaCost: 5
+      manaCost: 0
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: damage_3
-      weaponStats:
-        physical: 0
-        strike: 0
-        slash: 0
-        thrust: 0
-        magic: 0
-        fire: 0
-        lighting: 0
-        dark: 0
     parryMultiplier: 1
     backstabMultiplier: 1
     LeftHandMirror: 1
     modelPrefab: {fileID: 1989430885407142, guid: c5e327c0d2fd7794bad2ecddf378767a,
       type: 2}
+    weaponStats:
+      physical: 0
+      strike: 0
+      slash: 0
+      thrust: 0
+      magic: 0
+      fire: 0
+      lighting: 0
+      dark: 0
     r_model_pos: {x: 0, y: 0, z: 0}
     l_model_pos: {x: -0.084, y: -0.03, z: -0.001}
     r_model_eulers: {x: -0.000011099056, y: -0.000010245283, z: -0.0000012806594}
