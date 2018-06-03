@@ -220,6 +220,7 @@ namespace GameControll
                 eStates.parryIsOn = false;
             }
         }
+
         public void CloseParticle()
         {
             if (states)
@@ -228,6 +229,7 @@ namespace GameControll
                     states.inventoryManager.currentSpell.currentParticle.SetActive(false);
             }
         }
+
         public void InitiateThrowForProjectile()
         {
             if (states)

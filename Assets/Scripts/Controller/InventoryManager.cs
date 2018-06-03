@@ -328,7 +328,6 @@ namespace GameControll
     [System.Serializable]
     public class Item
     {
-        private int itemId;
         public string itemName;
         public string itemDescription;
         public Sprite icon;

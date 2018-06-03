@@ -160,7 +160,6 @@ namespace GameControll
             }
 
             a_hook.useIk = enableIK;
-            //a_hook.useIk = true;
 
             if (inAction)
             {
