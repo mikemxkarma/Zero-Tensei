@@ -10,10 +10,10 @@ namespace GameControll
 
         Transform handHelper;
         Transform bodyHelper;
-        Transform headHelper;
+        //Transform headHelper;
         Transform shoulderHelper;
         Transform animShoulder;
-        Transform headTrans;
+        //Transform headTrans;
 
         public float weight;
 
@@ -38,8 +38,8 @@ namespace GameControll
         {
             anim = a;
         
-            headHelper = new GameObject().transform;
-            headHelper.name = "head helper";
+            //headHelper = new GameObject().transform;
+            //headHelper.name = "head helper";
             handHelper = new GameObject().transform;
             handHelper.name = "hand helper";
             bodyHelper = new GameObject().transform;
@@ -50,11 +50,11 @@ namespace GameControll
             shoulderHelper.parent = transform.parent;
             shoulderHelper.localPosition = Vector3.zero;
             shoulderHelper.localRotation = Quaternion.identity;
-            headHelper.parent = shoulderHelper;
+            //headHelper.parent = shoulderHelper;
             bodyHelper.parent = shoulderHelper;
             handHelper.parent = shoulderHelper;
 
-            headTrans = anim.GetBoneTransform(HumanBodyBones.Head);
+            //headTrans = anim.GetBoneTransform(HumanBodyBones.Head);
         }
 
         public void UpdateIKTargets(IKSnapshotType type, bool isLeft)
@@ -68,11 +68,12 @@ namespace GameControll
 
             handHelper.localPosition = snap.handPos;
             handHelper.localEulerAngles = snap.hand_eulers;
-
+            /*
             if (snap.overwriteHeadPos)
                 headHelper.localPosition = snap.headPos;
             else
                 headHelper.localPosition = defaultHeadPos;
+                */
         }
 
         public void OnAnimatorMoveTick(bool isLeft)
@@ -99,6 +100,7 @@ namespace GameControll
 
         public void LateTick()
         {
+            /*
             if (headTrans == null || headHelper == null)
                 return;
 
@@ -109,6 +111,7 @@ namespace GameControll
             Quaternion targetRot = Quaternion.LookRotation(direction);
             Quaternion curRot = Quaternion.Slerp(headTrans.rotation, targetRot, weight);
             headTrans.rotation = curRot;
+            */
         }
 
     }

@@ -409,9 +409,9 @@ namespace GameControll
 
                 if (rb == false && lb == false || characterStats._mana < 2)
                 {
-                    isSpellcasting = false;
+                    //isSpellcasting = false;
 
-                    enableIK = false;
+                    //enableIK = false;
 
                     inventoryManager.breathCollider.SetActive(false);
                     inventoryManager.blockCollider.SetActive(false);
