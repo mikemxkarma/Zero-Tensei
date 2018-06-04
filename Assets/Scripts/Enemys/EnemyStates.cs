@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace GameControll
 {
@@ -10,6 +11,9 @@ namespace GameControll
         public int health;
         public CharacterStats characterStats;
 
+        public float moveAmount;
+        public float rotateSpeed;
+
         public bool canBeParried = true;
         public bool parryIsOn = true;
         //    public bool doParry = false;
@@ -18,11 +22,23 @@ namespace GameControll
         public bool canMove;
         public bool isDead;
 
+        Vector3 moveDirection;
+        Vector3 targetDirection;
+
+        bool run;
+        bool lockOn;
+        bool first;
+        bool fight = false;
+
+        public Transform player;
+        public EnemyTarget lockOnTransform;
         public StateManager parriedBy;
 
         public Animator anim;
         EnemyTarget enTarget;
+        public EnemyTarget playerTarget;
         AnimatorHook a_hook;
+        NavMeshAgent navAgent;
         public Rigidbody rigid;
         public float delta;
         public float poiseDegradeRate = 2;
@@ -34,6 +50,10 @@ namespace GameControll
         public SpellEffect_Loop spellEffect_loop;
 
         float timer;
+        float firstTimer;
+
+        float cooldown = 3f;
+        float combatRotationCooldown = 0.5f;
 
         void Start()
         {
@@ -41,6 +61,8 @@ namespace GameControll
             anim = GetComponentInChildren<Animator>();
             enTarget = GetComponent<EnemyTarget>();
             enTarget.Init(this);
+            
+            navAgent = this.GetComponent<NavMeshAgent>();
 
             rigid = GetComponent<Rigidbody>();
 
@@ -51,6 +73,8 @@ namespace GameControll
 
             InitRagdoll();
             parryIsOn = false;
+
+            firstTimer = 2f;
         }
 
         void InitRagdoll()
@@ -97,6 +121,7 @@ namespace GameControll
         void Update()
         {
             delta = Time.deltaTime;
+            firstTimer += Time.deltaTime;
             canMove = anim.GetBool(StaticStrings.canMove);
 
             if (spellEffect_loop != null)
@@ -133,17 +158,78 @@ namespace GameControll
                 parryIsOn = false;
                 anim.applyRootMotion = false;
 
+                if((player.transform.position - this.transform.position).magnitude < 2f)
+                {
+                    navAgent.isStopped = true;
+                    fight = true;
+                    
+                }
+                else if ((player.transform.position - this.transform.position).magnitude < 20f)
+                {
+                    fight = false;
+                    if(firstTimer > cooldown) first = true;
+
+                    navAgent.isStopped = false;
+
+                    navAgent.SetDestination(player.position);
+                }
+                else
+                {
+                    first = true;
+                    fight = false;
+                    navAgent.isStopped = true;
+                }
+                
                 //Debug
+                /*
                 timer += Time.deltaTime;
                 if (timer > 3)
                 {
                     DoAction();
                     timer = 0;
                 }
+                */
             }
+
+            if (navAgent.isStopped) run = false;
+            else run = true;
+
+            if (fight)
+            {
+                timer += Time.deltaTime;
+
+                if (first)
+                {
+
+                    DoAction();
+                    first = false;
+                    timer = 0;
+                    firstTimer = 0;
+
+                }
+                
+                
+                if (timer < cooldown && timer > combatRotationCooldown)
+                {
+                    HandleRotation();
+                }
+                else if(timer > cooldown) 
+                {
+
+                    DoAction();
+                    timer = 0;
+                }
+
+
+            }
+
+            
+            
             characterStats.poise -= delta * poiseDegradeRate; // lower poise gradually
             if (characterStats.poise < 0)
                 characterStats.poise = 0;
+            
+            HandleMovementAnimations();
         }
 
         void DoAction()
@@ -181,6 +267,7 @@ namespace GameControll
             anim.applyRootMotion = true;
             anim.SetBool(StaticStrings.canMove, false);
         }
+
         public void DoDamage2()
         {
             if (isInvicible)
@@ -234,7 +321,6 @@ namespace GameControll
         public ParticleSystem fireParticle;
         float _t;
 
-
         public void OnFire()
         {
             if(_t < 5)
@@ -247,6 +333,20 @@ namespace GameControll
                 _t = 0;
                 spellEffect_loop = null;
             }
+        }
+
+        void HandleMovementAnimations()
+        {
+            anim.SetBool(StaticStrings.run, run);
+            anim.SetFloat(StaticStrings.vertical, moveAmount, 0.4f, delta);
+        }
+
+        
+
+        void HandleRotation()
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.position - this.transform.position), rotateSpeed * Time.deltaTime);
+            
         }
     }
 }
