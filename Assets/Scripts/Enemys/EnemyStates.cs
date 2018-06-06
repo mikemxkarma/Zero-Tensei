@@ -61,7 +61,7 @@ namespace GameControll
             anim = GetComponentInChildren<Animator>();
             enTarget = GetComponent<EnemyTarget>();
             enTarget.Init(this);
-            
+
             navAgent = this.GetComponent<NavMeshAgent>();
 
             rigid = GetComponent<Rigidbody>();
@@ -153,21 +153,23 @@ namespace GameControll
                 parriedBy = null;
             }
 
+
+
             if (canMove)
             {
                 parryIsOn = false;
                 anim.applyRootMotion = false;
 
-                if((player.transform.position - this.transform.position).magnitude < 2f)
+                if ((player.transform.position - this.transform.position).magnitude < 2f)
                 {
                     navAgent.isStopped = true;
                     fight = true;
-                    
+
                 }
                 else if ((player.transform.position - this.transform.position).magnitude < 20f)
                 {
                     fight = false;
-                    if(firstTimer > cooldown) first = true;
+                    if (firstTimer > cooldown) first = true;
 
                     navAgent.isStopped = false;
 
@@ -179,7 +181,7 @@ namespace GameControll
                     fight = false;
                     navAgent.isStopped = true;
                 }
-                
+
                 //Debug
                 /*
                 timer += Time.deltaTime;
@@ -207,13 +209,13 @@ namespace GameControll
                     firstTimer = 0;
 
                 }
-                
-                
+
+
                 if (timer < cooldown && timer > combatRotationCooldown)
                 {
                     HandleRotation();
                 }
-                else if(timer > cooldown) 
+                else if (timer > cooldown)
                 {
 
                     DoAction();
@@ -223,12 +225,12 @@ namespace GameControll
 
             }
 
-            
-            
+
+
             characterStats.poise -= delta * poiseDegradeRate; // lower poise gradually
             if (characterStats.poise < 0)
                 characterStats.poise = 0;
-            
+
             HandleMovementAnimations();
         }
 
@@ -239,7 +241,7 @@ namespace GameControll
             anim.SetBool(StaticStrings.canMove, false);
         }
 
-        public void DoDamage(Action action,Weapon curWeapon)
+        public void DoDamage(Action action, Weapon curWeapon)
         {
             if (isInvicible)
                 return;
@@ -323,7 +325,7 @@ namespace GameControll
 
         public void OnFire()
         {
-            if(_t < 5)
+            if (_t < 5)
             {
                 _t += Time.deltaTime;
                 fireParticle.Emit(1);
@@ -341,12 +343,13 @@ namespace GameControll
             anim.SetFloat(StaticStrings.vertical, moveAmount, 0.4f, delta);
         }
 
-        
+
 
         void HandleRotation()
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.position - this.transform.position), rotateSpeed * Time.deltaTime);
-            
+
         }
     }
-}
+}
+
