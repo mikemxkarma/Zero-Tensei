@@ -193,6 +193,7 @@ namespace GameControll
         {
             if (states)
             {
+                states.damageIsOn = true;
                 states.inventoryManager.OpenAllDamageColliders();
             }
 
@@ -203,8 +204,8 @@ namespace GameControll
         {
             if (states)
             {
+                states.damageIsOn = false;
                 states.inventoryManager.CloseAllDamageColliders();
-                states.canMove = true;
             }
 
             CloseParryFlag();
@@ -249,6 +250,21 @@ namespace GameControll
             if (eStates)
             {
                 eStates.parryIsOn = false;
+            }
+        }
+        public void OpenRotationControl()
+        {
+            if (states)
+            {
+                states.canRotate = true;
+            }
+        }
+
+        public void CloseRotationControl()
+        {
+            if (states)
+            {
+                states.canRotate = false;
             }
         }
 

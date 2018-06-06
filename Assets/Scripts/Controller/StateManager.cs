@@ -55,6 +55,8 @@ namespace GameControll
         public bool isSpellcasting;
         public bool enableIK;
         public bool canMove;
+        public bool damageIsOn;
+        public bool canRotate;
         public bool canAttack;
         public bool onEmpty;
         public bool usingItem;
@@ -160,8 +162,6 @@ namespace GameControll
                 enableIK = false;
             }
 
-            a_hook.useIk = enableIK;
-
             if (inAction)
             {
                 anim.applyRootMotion = true;
@@ -185,8 +185,12 @@ namespace GameControll
                 canAttack = true;
                 canMove = true;
             }
+            if (canRotate)
+            {
+                HandleRotation();
+            }
 
-            if (!onEmpty && !canMove && !canAttack)
+            if (!onEmpty && !canMove && !canAttack) // Animation playing
                 return;
 
             if (canMove && !onEmpty)
@@ -235,7 +239,8 @@ namespace GameControll
             else
                 HandleLockOnAnimations(moveDirection);
 
-           // anim.SetBool(StaticStrings.blocking, isBlocking);
+            a_hook.useIk = enableIK;
+            // anim.SetBool(StaticStrings.blocking, isBlocking);
             anim.SetBool(StaticStrings.isLeft, isLeftHand);
 
             HandleBlocking();
@@ -445,8 +450,8 @@ namespace GameControll
             anim.SetBool(StaticStrings.mirror, slot.mirror);
             anim.CrossFade(targetAnim, 0.2f);
 
-            //characterStats._stamina -= slot.staminaCost;
-            characterStats._mana -= slot.manaCost;
+            cur_manaCost = s_slot.manaCost;
+            cur_stamCost = s_slot.staminaCost;
 
             a_hook.InitIKForBreathSpell(spellIsMirrored);
 
@@ -454,6 +459,9 @@ namespace GameControll
                 spellCast_start();
         }
 
+
+        float cur_manaCost;
+        float cur_stamCost;
         float spellcastTime;
         float max_spellcastTime;
         string spellTargetAnim;
@@ -554,8 +562,8 @@ namespace GameControll
             Projectile proj = go.GetComponent<Projectile>();
             proj.Init();
 
-            //characterStats._stamina -= cur_stamCost;
-            //characterStats._mana -= cur_focusCost;
+            characterStats._stamina -= cur_stamCost;
+            characterStats._mana -= cur_manaCost;
         }
 
         bool CheckForParry(Action slot)
@@ -877,6 +885,26 @@ namespace GameControll
 
             characterStats._health = Mathf.Clamp(characterStats._health, 0, characterStats.hp);
             characterStats._mana = Mathf.Clamp(characterStats._mana, 0, characterStats.fp);
+        }
+
+        public void SubstractStaminaOverTime()
+        {
+            characterStats._stamina -= cur_stamCost;
+        }
+
+        public void SubstractManaOverTime()
+        {
+            characterStats._mana -= cur_manaCost;
+        }
+
+        public void AffectBlocking()
+        {
+            isBlocking = true;
+        }
+
+        public void StopAffectBlocking()
+        {
+            isBlocking = false;
         }
 
         #endregion

@@ -55,6 +55,8 @@ namespace GameControll
         {
             caster.spellCast_start = caster.inventoryManager.OpenBreathCollider;
             caster.spellCast_loop = caster.inventoryManager.EmitSpellParticle;
+            caster.spellCast_loop += caster.SubstractManaOverTime;
+
             caster.spellCast_stop = caster.inventoryManager.CloseBreathCollider;
         }
 
@@ -62,7 +64,12 @@ namespace GameControll
         {
             caster.spellCast_start = caster.inventoryManager.OpenBlockCollider;
             caster.spellCast_loop = caster.inventoryManager.EmitSpellParticle;
+            caster.spellCast_loop += caster.SubstractManaOverTime;
+            caster.spellCast_loop += caster.AffectBlocking;
             caster.spellCast_stop = caster.inventoryManager.OpenBlockCollider;
+            caster.spellCast_stop += caster.StopAffectBlocking;
+
+
         }
 
         void Healing(StateManager caster)

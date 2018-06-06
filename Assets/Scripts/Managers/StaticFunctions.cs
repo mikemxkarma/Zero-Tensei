@@ -152,6 +152,8 @@ namespace GameControll
             to.targetAnimation = from.targetAnimation;
             to.throwAnimation = from.throwAnimation;
             to.castTime = from.castTime;
+            to.manaCost = from.manaCost;
+            to.staminaCost = from.staminaCost;
         }
     }
 }

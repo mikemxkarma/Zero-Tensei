@@ -204,6 +204,8 @@ namespace GameControll
         public string targetAnimation;
         public string throwAnimation;
         public float castTime;
+        public float manaCost;
+        public float staminaCost;
     }
     [System.Serializable]
     public class ItemAction
