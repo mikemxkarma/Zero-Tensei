@@ -19,16 +19,18 @@ namespace GameControll
 
         bool firstEntry = true;
 
-        float moveSpeed = 10f;
-        float idleSpeed = 6f;
-        float acceleration = 5f;
-        float turnSpeed = 5f;
+        public float moveSpeed;
+        public float idleSpeed;
+        public float acceleration;
+        public float turnSpeed;
 
         Vector3 yPlaneView = new Vector3(0, 1.5f, 0);
         Vector3 looAtPlayerY = new Vector3(0, 1.2f, 0);
 
         float cooldownTimer = 0f;
         float randomCooldown = 2f;
+
+        public float idleDistance;
 
 
         private void Start()
@@ -81,14 +83,14 @@ namespace GameControll
             }
 
 
-            if ((position - transform.position).magnitude <= 4f)
+            if ((position - transform.position).magnitude <= idleDistance)
             {
                 acceleration = 3f;
 
                 if (firstEntry)
                 {
                     
-                    Vector3 randomPosition = position + Random.insideUnitSphere * 4f;
+                    Vector3 randomPosition = position + Random.insideUnitSphere * idleDistance;
                     if (randomPosition.y < position.y - 1)
                     {
                         randomPosition += yPlaneView;
@@ -99,7 +101,7 @@ namespace GameControll
                 }
                 else if (cooldownTimer > randomCooldown)
                 {
-                    Vector3 randomPosition = position + Random.insideUnitSphere * 4f;
+                    Vector3 randomPosition = position + Random.insideUnitSphere * idleDistance;
                     if (randomPosition.y < position.y - 1)
                     {
                         randomPosition += yPlaneView;
