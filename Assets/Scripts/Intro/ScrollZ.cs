@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ScrollZ : MonoBehaviour {
 
-    public float scrollSpeed = 20;
+    public float scrollSpeed;
+    public int screen;
     Vector3 pos;
     Vector3 localVectorUp;
 	// Update is called once per frame
@@ -20,7 +21,7 @@ public class ScrollZ : MonoBehaviour {
 
         if(transform.position.z > 35)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(screen);
         }
 
 	}

@@ -18,5 +18,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene/Controls.unity
     guid: bf6e18b85dcf8a84b81f96d55f481cac
   - enabled: 1
+    path: Assets/Scenes/GameScene/Intro.unity
+    guid: 9bd5231598d78a140adb18c98e17e03b
+  - enabled: 1
     path: Assets/Scenes/GameScene/Stage1.unity
     guid: 19df5a1a6a36dbc429f591fa22488f04
