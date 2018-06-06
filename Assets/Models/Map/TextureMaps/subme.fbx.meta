@@ -1,0 +1,243 @@
+fileFormatVersion: 2
+guid: 40c5bb99345589147951fc31df87ddbf
+timeCreated: 1528223447
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: adorment
+    100002: Big_Floor_Corridor52
+    100004: Big_Floor_CorridorOpener3
+    100006: Big_Gates14
+    100008: cealing116
+    100010: cell_corridor29
+    100012: cell_corridor_fundo5
+    100014: cell_corridor_small_wall13
+    100016: cell_room_wall_small323
+    100018: cell_room_wallback140
+    100020: coisa1
+    100022: Corridor_Floor121
+    100024: Corridor_Floor122
+    100026: corridor_top169
+    100028: corridor_topcornerconector24
+    100030: floor407
+    100032: LongBanner4
+    100034: pCube60
+    100036: pCylinder17
+    100038: romrom5
+    100040: room_pillar156
+    100042: roomEntrance175
+    100044: sidewall_Cover53
+    100046: //RootNode
+    100048: Top_corridorJoint3
+    100050: Wall_Corridor182
+    100052: Wall_Corridor183
+    400000: adorment
+    400002: Big_Floor_Corridor52
+    400004: Big_Floor_CorridorOpener3
+    400006: Big_Gates14
+    400008: cealing116
+    400010: cell_corridor29
+    400012: cell_corridor_fundo5
+    400014: cell_corridor_small_wall13
+    400016: cell_room_wall_small323
+    400018: cell_room_wallback140
+    400020: coisa1
+    400022: Corridor_Floor121
+    400024: Corridor_Floor122
+    400026: corridor_top169
+    400028: corridor_topcornerconector24
+    400030: floor407
+    400032: LongBanner4
+    400034: pCube60
+    400036: pCylinder17
+    400038: romrom5
+    400040: room_pillar156
+    400042: roomEntrance175
+    400044: sidewall_Cover53
+    400046: //RootNode
+    400048: Top_corridorJoint3
+    400050: Wall_Corridor182
+    400052: Wall_Corridor183
+    2100000: lambert1
+    2100002: lambert20
+    2100004: unwrapChekcerShader
+    2100006: lambert30
+    2100008: lambert27
+    2100010: lambert38
+    2100012: lambert29
+    2100014: lambert26
+    2100016: lambert36
+    2100018: lambert25
+    2100020: lambert28
+    2100022: lambert37
+    2100024: lambert24
+    2100026: lambert32
+    2100028: lambert33
+    2100030: lambert34
+    2100032: lambert40
+    2100034: lambert22
+    2100036: lambert31
+    2100038: lambert35
+    2100040: lambert39
+    2100042: lambert23
+    2100044: lambert21
+    2300000: adorment
+    2300002: Big_Floor_Corridor52
+    2300004: Big_Floor_CorridorOpener3
+    2300006: Big_Gates14
+    2300008: cealing116
+    2300010: cell_corridor29
+    2300012: cell_corridor_fundo5
+    2300014: cell_corridor_small_wall13
+    2300016: cell_room_wall_small323
+    2300018: cell_room_wallback140
+    2300020: coisa1
+    2300022: Corridor_Floor121
+    2300024: Corridor_Floor122
+    2300026: corridor_top169
+    2300028: corridor_topcornerconector24
+    2300030: floor407
+    2300032: LongBanner4
+    2300034: pCube60
+    2300036: pCylinder17
+    2300038: romrom5
+    2300040: room_pillar156
+    2300042: roomEntrance175
+    2300044: sidewall_Cover53
+    2300046: Top_corridorJoint3
+    2300048: Wall_Corridor182
+    2300050: Wall_Corridor183
+    3300000: adorment
+    3300002: Big_Floor_Corridor52
+    3300004: Big_Floor_CorridorOpener3
+    3300006: Big_Gates14
+    3300008: cealing116
+    3300010: cell_corridor29
+    3300012: cell_corridor_fundo5
+    3300014: cell_corridor_small_wall13
+    3300016: cell_room_wall_small323
+    3300018: cell_room_wallback140
+    3300020: coisa1
+    3300022: Corridor_Floor121
+    3300024: Corridor_Floor122
+    3300026: corridor_top169
+    3300028: corridor_topcornerconector24
+    3300030: floor407
+    3300032: LongBanner4
+    3300034: pCube60
+    3300036: pCylinder17
+    3300038: romrom5
+    3300040: room_pillar156
+    3300042: roomEntrance175
+    3300044: sidewall_Cover53
+    3300046: Top_corridorJoint3
+    3300048: Wall_Corridor182
+    3300050: Wall_Corridor183
+    4300000: pCylinder17
+    4300002: pCube60
+    4300004: adorment
+    4300006: sidewall_Cover53
+    4300008: floor407
+    4300010: cell_room_wallback140
+    4300012: roomEntrance175
+    4300014: corridor_top169
+    4300016: cell_corridor_fundo5
+    4300018: cell_corridor29
+    4300020: cell_corridor_small_wall13
+    4300022: Corridor_Floor121
+    4300024: room_pillar156
+    4300026: Top_corridorJoint3
+    4300028: Big_Floor_CorridorOpener3
+    4300030: Wall_Corridor182
+    4300032: Corridor_Floor122
+    4300034: corridor_topcornerconector24
+    4300036: romrom5
+    4300038: Big_Floor_Corridor52
+    4300040: Big_Gates14
+    4300042: Wall_Corridor183
+    4300044: cell_room_wall_small323
+    4300046: cealing116
+    4300048: LongBanner4
+    4300050: coisa1
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

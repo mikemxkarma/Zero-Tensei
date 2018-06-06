@@ -1,0 +1,161 @@
+fileFormatVersion: 2
+guid: ca04fadcc3189084e9216439b36e5d49
+timeCreated: 1528253855
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Big_Gates14
+    100002: cell_room_top_small47
+    100004: cellroom_floor113
+    100006: cellroom_top109
+    100008: Corridor_Floor121
+    100010: corridor_top169
+    100012: LongBanner
+    100014: mainCorridorOpening3
+    100016: roomEntrance110
+    100018: roomEntrance134
+    100020: //RootNode
+    100022: Top_wall103
+    100024: Wall_Main_Corridor117
+    400000: Big_Gates14
+    400002: cell_room_top_small47
+    400004: cellroom_floor113
+    400006: cellroom_top109
+    400008: Corridor_Floor121
+    400010: corridor_top169
+    400012: LongBanner
+    400014: mainCorridorOpening3
+    400016: roomEntrance110
+    400018: roomEntrance134
+    400020: //RootNode
+    400022: Top_wall103
+    400024: Wall_Main_Corridor117
+    2100000: lambert1
+    2100002: lambert41
+    2100004: lambert42
+    2100006: lambert48
+    2100008: lambert49
+    2100010: lambert47
+    2100012: lambert45
+    2100014: lambert44
+    2100016: lambert50
+    2100018: lambert46
+    2100020: lambert43
+    2300000: Big_Gates14
+    2300002: cell_room_top_small47
+    2300004: cellroom_floor113
+    2300006: cellroom_top109
+    2300008: Corridor_Floor121
+    2300010: corridor_top169
+    2300012: LongBanner
+    2300014: mainCorridorOpening3
+    2300016: roomEntrance110
+    2300018: roomEntrance134
+    2300020: Top_wall103
+    2300022: Wall_Main_Corridor117
+    3300000: Big_Gates14
+    3300002: cell_room_top_small47
+    3300004: cellroom_floor113
+    3300006: cellroom_top109
+    3300008: Corridor_Floor121
+    3300010: corridor_top169
+    3300012: LongBanner
+    3300014: mainCorridorOpening3
+    3300016: roomEntrance110
+    3300018: roomEntrance134
+    3300020: Top_wall103
+    3300022: Wall_Main_Corridor117
+    4300000: Wall_Main_Corridor117
+    4300002: Top_wall103
+    4300004: LongBanner
+    4300006: mainCorridorOpening3
+    4300008: cell_room_top_small47
+    4300010: roomEntrance134
+    4300012: roomEntrance110
+    4300014: cellroom_top109
+    4300016: cellroom_floor113
+    4300018: Big_Gates14
+    4300020: corridor_top169
+    4300022: Corridor_Floor121
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
