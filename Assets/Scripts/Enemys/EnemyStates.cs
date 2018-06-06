@@ -52,7 +52,7 @@ namespace GameControll
         float timer;
         float firstTimer;
 
-        float cooldown = 3f;
+        float cooldown = 1.5f;
         float combatRotationCooldown = 0.5f;
 
         void Start()
@@ -154,9 +154,7 @@ namespace GameControll
             }
 
 
-
-            if (canMove)
-            {
+            
                 parryIsOn = false;
                 anim.applyRootMotion = false;
 
@@ -174,6 +172,7 @@ namespace GameControll
                     navAgent.isStopped = false;
 
                     navAgent.SetDestination(player.position);
+                    
                 }
                 else
                 {
@@ -191,7 +190,6 @@ namespace GameControll
                     timer = 0;
                 }
                 */
-            }
 
             if (navAgent.isStopped) run = false;
             else run = true;
@@ -248,7 +246,7 @@ namespace GameControll
 
             int damage = StatsCalculations.CalculateBaseDamage(curWeapon.weaponStats, characterStats);
 
-            characterStats.poise += damage;
+            //characterStats.poise += damage;
             health -= damage;
 
             if (canMove || characterStats.poise > 100)
@@ -351,5 +349,8 @@ namespace GameControll
 
         }
     }
-}
-
+}
+
+
+
+

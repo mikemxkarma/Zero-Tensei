@@ -21,7 +21,7 @@ MonoBehaviour:
     - input: 0
       type: 0
       spellClass: 0
-      targetAnimation: 
+      targetAnimation: oh_attack_1
       steps: []
       mirror: 0
       canBeParried: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
     - input: 2
       type: 0
       spellClass: 0
-      targetAnimation: 
+      targetAnimation: oh_attack_2
       steps: []
       mirror: 0
       canBeParried: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
     - input: 0
       type: 0
       spellClass: 0
-      targetAnimation: 
+      targetAnimation: oh_attack_1
       steps: []
       mirror: 0
       canBeParried: 1
@@ -73,7 +73,7 @@ MonoBehaviour:
     - input: 2
       type: 0
       spellClass: 0
-      targetAnimation: 
+      targetAnimation: oh_attack_2
       steps: []
       mirror: 0
       canBeParried: 1
@@ -93,7 +93,7 @@ MonoBehaviour:
     modelPrefab: {fileID: 1761767580271928, guid: 7b0e79656d7e9b049bc3abf54431db25,
       type: 2}
     weaponStats:
-      physical: 0
+      physical: 40
       strike: 0
       slash: 0
       thrust: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
     - input: 0
       type: 1
       spellClass: 0
-      targetAnimation: 
+      targetAnimation: shield
       steps: []
       mirror: 0
       canBeParried: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
     - input: 2
       type: 0
       spellClass: 0
-      targetAnimation: 
+      targetAnimation: parry
       steps: []
       mirror: 0
       canBeParried: 0
@@ -187,14 +187,14 @@ MonoBehaviour:
     modelPrefab: {fileID: 1221947274310874, guid: 5caf8bea08fd98042a42b4e38dfa1c23,
       type: 2}
     weaponStats:
-      physical: 0
+      physical: 20
       strike: 0
       slash: 0
       thrust: 0
-      magic: 0
-      fire: 0
-      lighting: 0
-      dark: 0
+      magic: 20
+      fire: 20
+      lighting: 20
+      dark: 20
     r_model_pos: {x: 0, y: 0, z: 0}
     l_model_pos: {x: 0, y: 0, z: 0}
     r_model_eulers: {x: -50.08, y: -35.262, z: -0.8}
@@ -209,7 +209,7 @@ MonoBehaviour:
     - input: 0
       type: 2
       spellClass: 0
-      targetAnimation: 
+      targetAnimation: throw
       steps: []
       mirror: 0
       canBeParried: 0

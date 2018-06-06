@@ -176,7 +176,7 @@ namespace GameControll
                 states.canAttack = true;
             }
 
-            Debug.Log("can attack");
+           // Debug.Log("can attack");
         }
 
         public void OpenCanMove()
@@ -186,7 +186,7 @@ namespace GameControll
                 states.canMove = true;
             }
 
-            Debug.Log("can move");
+           // Debug.Log("can move");
         }
 
         public void OpenDamageColliders()

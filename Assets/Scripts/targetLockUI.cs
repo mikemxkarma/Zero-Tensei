@@ -17,13 +17,13 @@ public class targetLockUI : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (camera.lockOnMode){
-            transform.position = Camera.main.WorldToScreenPoint(camera.lockonTransform.position);
-            trans.SetAlpha(1);
-        }
-        else
-        {
-            trans.SetAlpha(0);
-        }
+        //if (camera.lockOnMode){
+        //    transform.position = Camera.main.WorldToScreenPoint(camera.lockonTransform.position);
+        //    trans.SetAlpha(1);
+        //}
+        //else
+        //{
+        //    trans.SetAlpha(0);
+        //}
     }
 }
