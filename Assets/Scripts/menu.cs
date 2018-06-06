@@ -14,11 +14,11 @@ public class menu : MonoBehaviour
     public Button aboutGameBtn;
 
     void Start () {
-        playBtn.onClick.AddListener(() => { SceneManager.LoadScene("Stage1"); });
-        optionsBtn.onClick.AddListener(() => {  SceneManager.LoadScene("Controls"); });
+        playBtn.onClick.AddListener(() => { SceneManager.LoadScene(4); });
+        optionsBtn.onClick.AddListener(() => {  SceneManager.LoadScene(2); });
         exitBtn.onClick.AddListener(() => {  Application.Quit(); });
-        controlsBtn.onClick.AddListener(() => { SceneManager.LoadScene("Controls"); });
-        aboutGameBtn.onClick.AddListener(() => { SceneManager.LoadScene("AboutGame"); });
+        controlsBtn.onClick.AddListener(() => { SceneManager.LoadScene(2); });
+        aboutGameBtn.onClick.AddListener(() => { SceneManager.LoadScene(3); });
 
 
 
