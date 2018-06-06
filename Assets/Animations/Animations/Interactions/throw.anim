@@ -31869,6 +31869,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
+  - time: 0.8333333
+    functionName: SwordSwing
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.8666667
     functionName: InitiateThrowForProjectile
     data: 
@@ -31878,6 +31885,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.9
     functionName: CloseParticle
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.93333334
+    functionName: Step
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

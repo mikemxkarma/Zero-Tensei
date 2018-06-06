@@ -28,7 +28,7 @@ namespace GameControll
         Vector3 looAtPlayerY = new Vector3(0, 1.2f, 0);
 
         float cooldownTimer = 0f;
-        float randomCooldown = 2f;
+        public float randomCooldown;
 
         public float idleDistance;
 
