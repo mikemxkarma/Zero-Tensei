@@ -115,7 +115,7 @@ MonoBehaviour:
     - input: 0
       type: 1
       spellClass: 0
-      targetAnimation: 
+      targetAnimation: shield
       steps: []
       mirror: 0
       canBeParried: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
     - input: 2
       type: 3
       spellClass: 0
-      targetAnimation: 
+      targetAnimation: parry
       steps: []
       mirror: 0
       canBeParried: 0

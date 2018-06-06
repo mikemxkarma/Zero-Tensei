@@ -235,7 +235,7 @@ namespace GameControll
             else
                 HandleLockOnAnimations(moveDirection);
 
-            anim.SetBool(StaticStrings.blocking, isBlocking);
+           // anim.SetBool(StaticStrings.blocking, isBlocking);
             anim.SetBool(StaticStrings.isLeft, isLeftHand);
 
             HandleBlocking();
