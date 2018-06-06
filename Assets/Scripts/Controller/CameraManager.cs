@@ -13,10 +13,8 @@ using UnityEngine;
 ///
 namespace GameControll
 {
-
     public class CameraManager : MonoBehaviour
     {
-
         public float followSpeed = 500;
         public float mouseSpeed = 2;
         public float controllerSpeed = 20;

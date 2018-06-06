@@ -97,7 +97,7 @@ namespace GameControll
         void Update()
         {
             delta = Time.deltaTime;
-            canMove = anim.GetBool(StaticStrings.canMove);
+            //canMove = anim.GetBool(StaticStrings.canMove);
 
             if (spellEffect_loop != null)
                 spellEffect_loop();

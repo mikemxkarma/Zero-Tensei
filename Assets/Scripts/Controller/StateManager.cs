@@ -55,6 +55,8 @@ namespace GameControll
         public bool isSpellcasting;
         public bool enableIK;
         public bool canMove;
+        public bool canAttack;
+        public bool onEmpty;
         public bool usingItem;
         public bool canBeParried;
         public bool parryIsOn;
@@ -84,6 +86,10 @@ namespace GameControll
         // for damage check
         public Action currentAction;
 
+        [HideInInspector]
+        public float airTimer;
+        public ActionInput storePrevActionInput;
+        public ActionInput storeActionInput;
 
         float _actionDelay;
         #endregion
@@ -147,8 +153,6 @@ namespace GameControll
             isBlocking = false;
             usingItem = anim.GetBool(StaticStrings.interacting);
             anim.SetBool(StaticStrings.spellcasting, isSpellcasting);
-            DetectAction();
-            DetectItemAction();
             inventoryManager.rightHandWeapon.weapon_Model.SetActive(!usingItem);
 
             anim.SetBool(StaticStrings.blocking, isBlocking);
@@ -176,10 +180,44 @@ namespace GameControll
                     return;
                 }
             }
-            canMove = anim.GetBool(StaticStrings.canMove);
 
-            if (!canMove)
+            onEmpty = anim.GetBool(StaticStrings.onEmpty);
+            // canMove = anim.GetBool(StaticStrings.canMove);
+
+            if (onEmpty)
+            {
+                canAttack = true;
+                canMove = true;
+            }
+
+            if (!onEmpty && !canMove && !canAttack)
                 return;
+
+            if (canMove && !onEmpty)
+            {
+                if (moveAmount > 0.3f)
+                {
+                    anim.CrossFade("Empty Override", 0.1f);
+                    onEmpty = true;
+                }
+            }
+
+            if (canAttack)
+            {
+                if (IsInput())
+                {
+                    //anim.CrossFade("Empty Override", 0.1f);
+                }
+            }
+
+
+            if (canAttack)
+                DetectAction();
+            if (!canMove)
+            {
+                DetectItemAction();
+            }
+
 
             anim.applyRootMotion = false;
             rigidBody.drag = (moveAmount > 0 || onGround == false) ? 0 : 4;
@@ -195,7 +233,7 @@ namespace GameControll
             if (run)
                 targetSpeed = runSpeed;
 
-            if (onGround)
+            if (onGround && canMove)
                 rigidBody.velocity = moveDirection * (targetSpeed * moveAmount);
 
             if (run)
@@ -220,6 +258,25 @@ namespace GameControll
             HandleRolls();
         }
 
+        public void Tick(float d)
+        {
+            delta = d;
+            onGround = OnGround();
+            anim.SetBool(StaticStrings.onGround, onGround);
+
+            if (!onGround)
+                airTimer += delta;
+            else
+                airTimer = 0;
+        }
+
+        public bool IsInput()
+        {
+            if (rt || rb || lt || lb || rollInput)
+                return true;
+
+            return false;
+        }
         void HandleRotation()
         {
             Vector3 targetDirection = (lockOn == false) ? moveDirection :
@@ -236,7 +293,7 @@ namespace GameControll
 
         public void DetectItemAction()
         {
-            if (canMove == false || usingItem || isBlocking)
+            if (onEmpty == false || usingItem || isBlocking)
                 return;
 
             if (itemInput == false)
@@ -256,13 +313,23 @@ namespace GameControll
 
         public void DetectAction()
         {
-            if (canMove == false || usingItem || isSpellcasting)
+            if (canAttack == false && (onEmpty == false || usingItem || isSpellcasting))
                 return;
 
             if (rb == false && rt == false && lt == false && lb == false)
                 return;
 
-            Action slot = actionManager.GetActionSlot(this);
+            ActionInput targetInput = actionManager.GetActionInput(this);
+            storeActionInput = targetInput;
+            if (onEmpty == false)
+            {
+                a_hook.killDelta = true;
+                targetInput = storePrevActionInput;
+            }
+
+            storePrevActionInput = targetInput;
+            Action slot = actionManager.GetActionFromInput(targetInput);
+
             if (slot == null)
                 return;
 
@@ -297,13 +364,19 @@ namespace GameControll
                 return;
 
             string targetAnimation = null;
-            targetAnimation = slot.targetAnimation;
+            targetAnimation =
+                slot.GetActionStep(ref actionManager.actionIndex)
+                .GetBranch(storeActionInput).targetAnim;
+
+            Debug.Log(storeActionInput);
 
             if (string.IsNullOrEmpty(targetAnimation))
                 return;
 
             currentAction = slot;
 
+            canAttack = false;
+            onEmpty = false;
             canMove = false;
             inAction = true;
 
@@ -318,7 +391,8 @@ namespace GameControll
             canBeParried = slot.canBeParried;
             anim.SetFloat(StaticStrings.animSpeed, targetSpeed);
             anim.SetBool(StaticStrings.mirror, slot.mirror);
-            anim.CrossFade(targetAnimation, 0.2f);
+            //anim.CrossFade(targetAnimation, 0.2f);
+            anim.Play(targetAnimation);
             characterStats._stamina -= slot.staminaCost;
         }
 
@@ -334,6 +408,8 @@ namespace GameControll
             {
                 anim.SetBool(StaticStrings.mirror, slot.mirror);
                 anim.CrossFade("cant_spell", 0.2f);
+                canAttack = false;
+                onEmpty = false;
                 canMove = false;
                 inAction = true;
                 return;
@@ -409,9 +485,9 @@ namespace GameControll
 
                 if (rb == false && lb == false || characterStats._mana < 2)
                 {
-                    //isSpellcasting = false;
+                    isSpellcasting = false;
 
-                    //enableIK = false;
+                    enableIK = false;
 
                     inventoryManager.breathCollider.SetActive(false);
                     inventoryManager.blockCollider.SetActive(false);
@@ -436,6 +512,8 @@ namespace GameControll
 
             if (spellcastTime > max_spellcastTime)
             {
+                canAttack = false;
+                onEmpty = false;
                 canMove = false;
                 inAction = true;
                 isSpellcasting = false;
@@ -515,6 +593,8 @@ namespace GameControll
 
 
                 parryTarget.IsGettingParried(slot, inventoryManager.GetCurrentWeapon(slot.mirror));
+                canAttack = false;
+                onEmpty = false;
                 canMove = false;
                 inAction = true;
                 anim.SetBool(StaticStrings.mirror, slot.mirror);
@@ -556,6 +636,7 @@ namespace GameControll
 
                 transform.rotation = transform.rotation;
                 backstab.IsGettingBackstabbed(slot, inventoryManager.GetCurrentWeapon(slot.mirror));
+                onEmpty = false;
                 canMove = false;
                 inAction = true;
                 anim.SetBool(StaticStrings.mirror, slot.mirror);
@@ -569,6 +650,7 @@ namespace GameControll
         void BlockAction(Action slot)
         {
             isBlocking = true;
+            onEmpty = false;
             enableIK = true;
             a_hook.currentHand = (slot.mirror) ? AvatarIKGoal.LeftHand : AvatarIKGoal.RightHand;
             a_hook.InitIKForShield((slot.mirror));
@@ -577,7 +659,10 @@ namespace GameControll
         void ParryAction(Action slot)
         {
             string targetAnimation = null;
-            targetAnimation = slot.targetAnimation;
+
+            targetAnimation =
+                slot.GetActionStep(ref actionManager.actionIndex)
+                .GetBranch(storeActionInput).targetAnim;
 
             if (string.IsNullOrEmpty(targetAnimation))
                 return;
@@ -592,17 +677,11 @@ namespace GameControll
 
             anim.SetFloat(StaticStrings.animSpeed, targetSpeed);
             canBeParried = slot.canBeParried;
+            onEmpty = false;
             canMove = false;
             inAction = true;
             anim.SetBool(StaticStrings.mirror, slot.mirror);
             anim.CrossFade(targetAnimation, 0.2f);
-        }
-
-        public void Tick(float d)
-        {
-            delta = d;
-            onGround = OnGround();
-            anim.SetBool(StaticStrings.onGround, onGround);
         }
 
         void HandleRolls()
@@ -649,6 +728,7 @@ namespace GameControll
             anim.SetFloat(StaticStrings.vertical, v);
             anim.SetFloat(StaticStrings.horizontal, h);
 
+            onEmpty = false;
             canMove = false;
             inAction = true;
             anim.CrossFade(StaticStrings.Rolls, 0.2f);

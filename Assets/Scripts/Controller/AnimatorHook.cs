@@ -29,6 +29,8 @@ namespace GameControll
         public bool useIk;
         public AvatarIKGoal currentHand;
 
+        public bool killDelta;
+
         public void Init(StateManager st, EnemyStates eSt)
         {
             states = st;
@@ -107,8 +109,15 @@ namespace GameControll
             if (rolling == false)
             {
                 Vector3 delta2 = anim.deltaPosition;
-                delta2.y = 0;
+                if (killDelta)
+                {
+                    killDelta = false;
+                    delta2 = Vector3.zero;
+                }
+
                 Vector3 v = (delta2 * rm_multi) / delta;
+                //v += Physics.gravity;
+
                 rigid.velocity = v;
             }
             else
@@ -127,6 +136,7 @@ namespace GameControll
                 Vector3 v1 = Vector3.forward * zValue;
                 Vector3 relative = transform.TransformDirection(v1);
                 Vector3 v2 = (relative * rm_multi);
+
                 rigid.velocity = v2;
             }
         }
@@ -159,6 +169,26 @@ namespace GameControll
                 ik_handler.LateTick();
         }
 
+        public void OpenAttack()
+        {
+            if (states)
+            {
+                states.canAttack = true;
+            }
+
+            Debug.Log("can attack");
+        }
+
+        public void OpenCanMove()
+        {
+            if (states)
+            {
+                states.canMove = true;
+            }
+
+            Debug.Log("can move");
+        }
+
         public void OpenDamageColliders()
         {
             if (states)
@@ -174,6 +204,7 @@ namespace GameControll
             if (states)
             {
                 states.inventoryManager.CloseAllDamageColliders();
+                states.canMove = true;
             }
 
             CloseParryFlag();

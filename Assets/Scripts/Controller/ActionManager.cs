@@ -8,7 +8,9 @@ namespace GameControll
 
     public class ActionManager : MonoBehaviour
     {
+        
         public List<Action> actionSlot = new List<Action>();
+        public int actionIndex;
         public ItemAction consumableItem;
 
         StateManager states;
@@ -45,7 +47,7 @@ namespace GameControll
             for (int i = 0; i < w.two_handedActions.Count; i++)
             {
                 Action a = StaticFunctions.GetAction(w.two_handedActions[i].input, actionSlot);
-                a.targetAnimation = w.two_handedActions[i].targetAnimation;
+                a.steps = w.two_handedActions[i].steps;
                 a.type = w.two_handedActions[i].type;
             }
         }
@@ -55,7 +57,7 @@ namespace GameControll
             for (int i = 0; i < 4; i++)
             {
                 Action a = StaticFunctions.GetAction((ActionInput)i, actionSlot);
-                a.targetAnimation = null;
+                a.steps = null;
                 a.mirror = false;
                 a.type = ActionType.attack;
             }
@@ -77,7 +79,10 @@ namespace GameControll
             return StaticFunctions.GetAction(a_input, actionSlot);
         }
 
-
+        public Action GetActionFromInput(ActionInput a_input)
+        {
+            return StaticFunctions.GetAction(a_input, actionSlot);
+        }
 
         public ActionInput GetActionInput(StateManager st)
         {
@@ -116,11 +121,11 @@ namespace GameControll
     [System.Serializable]
     public class Action
     {
-
         public ActionInput input;
         public ActionType type;
         public SpellClass spellClass;
         public string targetAnimation;
+        public List<ActionSteps> steps;
         public bool mirror = false;
         public bool canBeParried = true;
         public bool changeSpeed = false;
@@ -130,6 +135,36 @@ namespace GameControll
         public float staminaCost = 5;
         public int manaCost = 0;
 
+        ActionSteps defaultStep;
+
+        public ActionSteps GetActionStep(ref int index)
+        {
+            if (steps == null || steps.Count == 0)
+            {
+                if (defaultStep == null)
+                {
+                    defaultStep = new ActionSteps();
+                    defaultStep.branches = new List<ActionAnim>();
+                    ActionAnim aa = new ActionAnim();
+                    aa.input = input;
+                    aa.targetAnim = targetAnimation;
+                    defaultStep.branches.Add(aa);
+                }
+                return defaultStep;
+            }
+
+            if (index > steps.Count - 1)
+                index = 0;
+            ActionSteps retVal = steps[index];
+
+            if (index > steps.Count - 1)
+                index = 0;
+            else
+                index++;
+
+            return retVal;
+        }
+
         [HideInInspector]
         public float parryMultiplier;
         [HideInInspector]
@@ -138,6 +173,29 @@ namespace GameControll
         public bool overrideDamageAnim;
         public string damageAnim;
     }
+    [System.Serializable]
+    public class ActionSteps
+    {
+        public List<ActionAnim> branches = new List<ActionAnim>();
+
+        public ActionAnim GetBranch(ActionInput inp)
+        {
+            for (int i = 0; i < branches.Count; i++)
+            {
+                if (branches[i].input == inp)
+                    return branches[i];
+            }
+
+            return branches[0];
+        }
+    }
+    [System.Serializable]
+    public class ActionAnim
+    {
+        public ActionInput input;
+        public string targetAnim;
+    }
+
 
     [System.Serializable]
     public class SpellAction

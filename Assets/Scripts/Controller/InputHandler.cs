@@ -210,11 +210,10 @@ namespace GameControll
                 p_d_down = false;
 
 
-            if (states.canMove == false)
+            if (states.onEmpty == false)
                 return;
             if (states.isTwoHanded)
                 return;
-
 
             if (d_left)
             {

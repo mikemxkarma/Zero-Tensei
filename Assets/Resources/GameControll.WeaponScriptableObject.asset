@@ -21,7 +21,8 @@ MonoBehaviour:
     - input: 0
       type: 0
       spellClass: 0
-      targetAnimation: oh_attack_1
+      targetAnimation: 
+      steps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -37,7 +38,8 @@ MonoBehaviour:
     - input: 2
       type: 0
       spellClass: 0
-      targetAnimation: oh_attack_2
+      targetAnimation: 
+      steps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -54,7 +56,8 @@ MonoBehaviour:
     - input: 0
       type: 0
       spellClass: 0
-      targetAnimation: th_attack_1
+      targetAnimation: 
+      steps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -70,7 +73,8 @@ MonoBehaviour:
     - input: 2
       type: 0
       spellClass: 0
-      targetAnimation: th_attack_2
+      targetAnimation: 
+      steps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -111,7 +115,8 @@ MonoBehaviour:
     - input: 0
       type: 1
       spellClass: 0
-      targetAnimation: shield
+      targetAnimation: 
+      steps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -127,7 +132,8 @@ MonoBehaviour:
     - input: 2
       type: 3
       spellClass: 0
-      targetAnimation: parry
+      targetAnimation: 
+      steps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -144,7 +150,8 @@ MonoBehaviour:
     - input: 0
       type: 1
       spellClass: 0
-      targetAnimation: shield
+      targetAnimation: 
+      steps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -160,7 +167,8 @@ MonoBehaviour:
     - input: 2
       type: 0
       spellClass: 0
-      targetAnimation: th_attack_1
+      targetAnimation: 
+      steps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -202,6 +210,7 @@ MonoBehaviour:
       type: 2
       spellClass: 0
       targetAnimation: 
+      steps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -218,7 +227,8 @@ MonoBehaviour:
     - input: 0
       type: 1
       spellClass: 0
-      targetAnimation: shield
+      targetAnimation: 
+      steps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -234,7 +244,8 @@ MonoBehaviour:
     - input: 2
       type: 0
       spellClass: 0
-      targetAnimation: th_attack_1
+      targetAnimation: 
+      steps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -270,12 +281,13 @@ MonoBehaviour:
     itemDescription: big sword
     icon: {fileID: 21300000, guid: 7cf9b1e5e992e4e49acdce20e5a865db, type: 3}
     oh_idle: gs_oh_idle
-    th_idle: th_idle
+    th_idle: gs_th_idle
     actions:
     - input: 0
       type: 0
       spellClass: 0
       targetAnimation: gs_oh_attack_1
+      steps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -291,14 +303,20 @@ MonoBehaviour:
     - input: 2
       type: 0
       spellClass: 0
-      targetAnimation: gs_oh_attack_2
+      targetAnimation: 
+      steps:
+      - branches:
+        - input: 2
+          targetAnim: gs_th_to_pose
+        - input: 0
+          targetAnim: gs_attack_from_pose
       mirror: 0
-      canBeParried: 0
+      canBeParried: 1
       changeSpeed: 0
       animSpeed: 1
-      canParry: 0
-      canBackstab: 0
-      staminaCost: 50
+      canParry: 1
+      canBackstab: 1
+      staminaCost: 5
       manaCost: 0
       parryMultiplier: 0
       backstabMultiplier: 0
@@ -309,6 +327,7 @@ MonoBehaviour:
       type: 0
       spellClass: 0
       targetAnimation: gs_th_attack_1
+      steps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -325,6 +344,7 @@ MonoBehaviour:
       type: 0
       spellClass: 0
       targetAnimation: gs_th_attack_1
+      steps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -339,7 +359,7 @@ MonoBehaviour:
       damageAnim: damage_3
     parryMultiplier: 1
     backstabMultiplier: 1
-    LeftHandMirror: 0
+    LeftHandMirror: 1
     modelPrefab: {fileID: 1801723532985550, guid: 4dbb02b5a9fee384c935d161c48239bf,
       type: 2}
     weaponStats:
@@ -365,7 +385,16 @@ MonoBehaviour:
     - input: 0
       type: 0
       spellClass: 0
-      targetAnimation: rap_oh_attack_1
+      targetAnimation: 
+      steps:
+      - branches:
+        - input: 0
+          targetAnim: rap_oh_attack_1
+      - branches:
+        - input: 0
+          targetAnim: rap_oh_attack_2
+        - input: 2
+          targetAnim: rap_oh_attack_3
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -381,7 +410,8 @@ MonoBehaviour:
     - input: 2
       type: 0
       spellClass: 0
-      targetAnimation: rap_oh_attack_2
+      targetAnimation: 
+      steps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -398,7 +428,14 @@ MonoBehaviour:
     - input: 0
       type: 0
       spellClass: 0
-      targetAnimation: rap_oh_attack_3
+      targetAnimation: 
+      steps:
+      - branches:
+        - input: 0
+          targetAnim: rap_oh_attack_1
+      - branches:
+        - input: 0
+          targetAnim: rap_oh_attack_2
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -414,7 +451,8 @@ MonoBehaviour:
     - input: 2
       type: 0
       spellClass: 0
-      targetAnimation: rap_oh_attack_3
+      targetAnimation: 
+      steps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -429,7 +467,7 @@ MonoBehaviour:
       damageAnim: 
     parryMultiplier: 1
     backstabMultiplier: 1
-    LeftHandMirror: 0
+    LeftHandMirror: 1
     modelPrefab: {fileID: 1433591524128976, guid: 4b6ac0d01f1b43e43a53dd257c5d01ce,
       type: 2}
     weaponStats:

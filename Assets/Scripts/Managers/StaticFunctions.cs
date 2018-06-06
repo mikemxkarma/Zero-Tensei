@@ -52,10 +52,38 @@ namespace GameControll
             action.canBackstab = w_action.canBackstab;
             action.overrideDamageAnim = w_action.overrideDamageAnim;
             action.damageAnim = w_action.damageAnim;
+
+            DeepCopyStepsList(w_action, action);
         }
+        public static void DeepCopyStepsList(Action from, Action to)
+        {
+            to.steps = new List<ActionSteps>();
+
+            for (int i = 0; i < from.steps.Count; i++)
+            {
+                ActionSteps step = new ActionSteps();
+                DeepCopyStep(from.steps[i], step);
+                to.steps.Add(step);
+            }
+        }
+
+        public static void DeepCopyStep(ActionSteps from, ActionSteps to)
+        {
+            to.branches = new List<ActionAnim>();
+
+            for (int i = 0; i < from.branches.Count; i++)
+            {
+                ActionAnim a = new ActionAnim();
+                a.input = from.branches[i].input;
+                a.targetAnim = from.branches[i].targetAnim;
+                to.branches.Add(a);
+            }
+        }
+
+
         public static void DeepCopyAction(Weapon w, ActionInput input, ActionInput assign, List<Action> actionSlots, bool isLeftHand = false)
         {
-            Action a = GetAction(assign, actionSlots);
+            Action action = GetAction(assign, actionSlots);
             Action w_action = w.GetAction(w.actions, input);
             if (w_action == null)
             {
@@ -63,21 +91,21 @@ namespace GameControll
                 return;
             }
 
-
-            a.targetAnimation = w_action.targetAnimation;
-            a.type = w_action.type;
-            a.spellClass = w_action.spellClass;
-            a.canBeParried = w_action.canBeParried;
-            a.changeSpeed = w_action.changeSpeed;
-            a.animSpeed = w_action.animSpeed;
-            a.canBackstab = w_action.canBackstab;
-            a.overrideDamageAnim = w_action.overrideDamageAnim;
-            a.damageAnim = w_action.damageAnim;
-            a.parryMultiplier = w.parryMultiplier;
-            a.backstabMultiplier = w.backstabMultiplier;
+            DeepCopyStepsList(w_action, action);
+            action.targetAnimation = w_action.targetAnimation;
+            action.type = w_action.type;
+            action.spellClass = w_action.spellClass;
+            action.canBeParried = w_action.canBeParried;
+            action.changeSpeed = w_action.changeSpeed;
+            action.animSpeed = w_action.animSpeed;
+            action.canBackstab = w_action.canBackstab;
+            action.overrideDamageAnim = w_action.overrideDamageAnim;
+            action.damageAnim = w_action.damageAnim;
+            action.parryMultiplier = w.parryMultiplier;
+            action.backstabMultiplier = w.backstabMultiplier;
 
             if (isLeftHand)
-                a.mirror = true;
+                action.mirror = true;
         }
         public static void DeepCopyWeaponStats(WeaponStats from, WeaponStats to)
         {
