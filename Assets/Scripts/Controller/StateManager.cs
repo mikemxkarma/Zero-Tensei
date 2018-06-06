@@ -155,9 +155,6 @@ namespace GameControll
             anim.SetBool(StaticStrings.spellcasting, isSpellcasting);
             inventoryManager.rightHandWeapon.weapon_Model.SetActive(!usingItem);
 
-            anim.SetBool(StaticStrings.blocking, isBlocking);
-            anim.SetBool(StaticStrings.isLeft, isLeftHand);
-
             if (isBlocking == false && isSpellcasting == false)
             {
                 enableIK = false;
@@ -182,7 +179,6 @@ namespace GameControll
             }
 
             onEmpty = anim.GetBool(StaticStrings.onEmpty);
-            // canMove = anim.GetBool(StaticStrings.canMove);
 
             if (onEmpty)
             {
@@ -201,15 +197,6 @@ namespace GameControll
                     onEmpty = true;
                 }
             }
-
-            if (canAttack)
-            {
-                if (IsInput())
-                {
-                    //anim.CrossFade("Empty Override", 0.1f);
-                }
-            }
-
 
             if (canAttack)
                 DetectAction();
@@ -248,11 +235,17 @@ namespace GameControll
             else
                 HandleLockOnAnimations(moveDirection);
 
+            anim.SetBool(StaticStrings.blocking, isBlocking);
+            anim.SetBool(StaticStrings.isLeft, isLeftHand);
+
+            HandleBlocking();
+
             if (isSpellcasting)
             {
                 HandleSpellcasting();
                 return;
             }
+
 
             a_hook.CloseRoll();
             HandleRolls();
@@ -277,6 +270,7 @@ namespace GameControll
 
             return false;
         }
+
         void HandleRotation()
         {
             Vector3 targetDirection = (lockOn == false) ? moveDirection :
@@ -524,6 +518,25 @@ namespace GameControll
             }
         }
 
+        bool blockAnim;
+        string block_idle_anim;
+
+        void HandleBlocking()
+        {
+            if (isBlocking == false)
+            {
+                if (blockAnim)
+                {
+                    anim.CrossFade(block_idle_anim, 0.1f);
+                    blockAnim = false;
+                }
+            }
+            else
+            {
+
+            }
+        }
+
         public void ThrowProjectile()
         {
             if (projectileCandidate == null)
@@ -540,6 +553,9 @@ namespace GameControll
 
             Projectile proj = go.GetComponent<Projectile>();
             proj.Init();
+
+            //characterStats._stamina -= cur_stamCost;
+            //characterStats._mana -= cur_focusCost;
         }
 
         bool CheckForParry(Action slot)
@@ -654,6 +670,21 @@ namespace GameControll
             enableIK = true;
             a_hook.currentHand = (slot.mirror) ? AvatarIKGoal.LeftHand : AvatarIKGoal.RightHand;
             a_hook.InitIKForShield((slot.mirror));
+
+            if (blockAnim == false)
+            {
+                block_idle_anim =
+                    (isTwoHanded == false) ?
+                    inventoryManager.GetCurrentWeapon(isLeftHand).oh_idle
+                    : inventoryManager.GetCurrentWeapon(isLeftHand).th_idle;
+
+                block_idle_anim += (isLeftHand) ? "_l" : "_r";
+
+                string targetAnim = slot.targetAnimation;
+                targetAnim += (isLeftHand) ? "_l" : "_r";
+                anim.CrossFade(targetAnim, 0.1f);
+                blockAnim = true;
+            }
         }
 
         void ParryAction(Action slot)
