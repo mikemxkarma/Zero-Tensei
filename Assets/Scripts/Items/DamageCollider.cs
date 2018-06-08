@@ -11,6 +11,7 @@ namespace GameControll
         public void Init(StateManager st)
         {
             states = st;
+            states.ignoreLayers = 9;
         }
         void OnTriggerEnter(Collider other)
         {

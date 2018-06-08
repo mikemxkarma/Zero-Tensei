@@ -65,6 +65,7 @@ namespace GameControll
         public bool isTwoHanded;
         public bool isBlocking;
         public bool isLeftHand;
+        public bool isInvicible;
 
 
         [HideInInspector]
@@ -304,7 +305,6 @@ namespace GameControll
             if (string.IsNullOrEmpty(targetAnimation))
                 return;
 
-            // inventoryManager.currentWeapon.weaponModel.SetActive(false);
             usingItem = true;
             anim.Play(targetAnimation);
 
@@ -390,8 +390,7 @@ namespace GameControll
             canBeParried = slot.canBeParried;
             anim.SetFloat(StaticStrings.animSpeed, targetSpeed);
             anim.SetBool(StaticStrings.mirror, slot.mirror);
-            //anim.CrossFade(targetAnimation, 0.2f);
-            anim.Play(targetAnimation);
+            anim.CrossFade(targetAnimation, 0.2f);
             characterStats._stamina -= slot.staminaCost;
         }
 
@@ -905,6 +904,34 @@ namespace GameControll
         public void StopAffectBlocking()
         {
             isBlocking = false;
+        }
+
+        public void DoDamage(AIAttacks a)
+        {
+            if (isInvicible)
+                return;
+
+            int damage = 5;
+
+            characterStats._health -= damage;
+
+            if (a.hasReactAnim)
+            {
+                anim.Play(a.reactAnim);
+            }
+            else
+            {
+                int ran = Random.Range(0, 100);
+                string tA = (ran > 50) ? StaticStrings.damage1 : StaticStrings.damage2;
+                anim.Play(tA);
+            }
+
+            anim.SetBool(StaticStrings.onEmpty, false);
+            canMove = false;
+            onEmpty = false;
+            inAction = true;
+            isInvicible = true;
+            anim.applyRootMotion = true;
         }
 
         #endregion

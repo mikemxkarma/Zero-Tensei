@@ -7,13 +7,31 @@ namespace GameControll
 {
     public class EnemyStates : MonoBehaviour
     {
-
+        [Header("Stats")]
         public int health;
+        public float airTimer;
         public CharacterStats characterStats;
 
-        public float moveAmount;
-        public float rotateSpeed;
+        [Header("Values")]
+        public float delta;
+        public float horizontal;
+        public float vertical;
 
+        AIAttacks curAttack;
+        public void SetCurAttack(AIAttacks a)
+        {
+            curAttack = a;
+        }
+
+        public AIAttacks GetCurAttack()
+        {
+            return curAttack;
+        }
+
+        public GameObject[] defaultDamageColliders;
+
+
+        [Header("States")]
         public bool canBeParried = true;
         public bool parryIsOn = true;
         //    public bool doParry = false;
@@ -21,6 +39,10 @@ namespace GameControll
         public bool dontDoAnything;
         public bool canMove;
         public bool isDead;
+        public bool hasDestination;
+        public Vector3 targetDestination;
+        public Vector3 dirToTarget;
+        public bool rotateToTarget;
 
         Vector3 moveDirection;
         Vector3 targetDirection;
@@ -38,10 +60,9 @@ namespace GameControll
         EnemyTarget enTarget;
         public EnemyTarget playerTarget;
         AnimatorHook a_hook;
-        NavMeshAgent navAgent;
+        public NavMeshAgent navAgent;
+        public LayerMask ignoreLayers;
         public Rigidbody rigid;
-        public float delta;
-        public float poiseDegradeRate = 2;
 
         List<Rigidbody> ragdollRigids = new List<Rigidbody>();
         List<Collider> ragdollColliders = new List<Collider>();
@@ -55,16 +76,18 @@ namespace GameControll
         float cooldown = 1.5f;
         float combatRotationCooldown = 0.5f;
 
-        void Start()
+        public void Init()
         {
-            health = 10000;
+            health = 100;
             anim = GetComponentInChildren<Animator>();
             enTarget = GetComponent<EnemyTarget>();
             enTarget.Init(this);
 
-            navAgent = this.GetComponent<NavMeshAgent>();
-
             rigid = GetComponent<Rigidbody>();
+            navAgent = this.GetComponent<NavMeshAgent>();
+            rigid.isKinematic = true;
+
+
 
             a_hook = anim.GetComponent<AnimatorHook>();
             if (a_hook == null)
@@ -73,6 +96,7 @@ namespace GameControll
 
             InitRagdoll();
             parryIsOn = false;
+            ignoreLayers = ~(1 << 9);
 
             firstTimer = 2f;
         }
@@ -118,21 +142,22 @@ namespace GameControll
             this.enabled = false;
         }
 
-        void Update()
+        public void Tick(float d)
         {
-            delta = Time.deltaTime;
-            firstTimer += Time.deltaTime;
-            canMove = anim.GetBool(StaticStrings.canMove);
+            delta = d;
+            canMove = anim.GetBool(StaticStrings.onEmpty);
 
             if (spellEffect_loop != null)
                 spellEffect_loop();
             if (dontDoAnything)
             {
                 dontDoAnything = !canMove;
-
                 return;
             }
-
+            if (rotateToTarget)
+            {
+                LookTowardsTarget();
+            }
             if (health <= 0)
             {
                 if (!isDead)
@@ -153,83 +178,30 @@ namespace GameControll
                 parriedBy = null;
             }
 
-
-            
+            if (canMove)
+            {
                 parryIsOn = false;
                 anim.applyRootMotion = false;
 
-                if ((player.transform.position - this.transform.position).magnitude < 2f)
-                {
-                    navAgent.isStopped = true;
-                    fight = true;
-
-                }
-                else if ((player.transform.position - this.transform.position).magnitude < 20f)
-                {
-                    fight = false;
-                    if (firstTimer > cooldown) first = true;
-
-                    navAgent.isStopped = false;
-
-                    navAgent.SetDestination(player.position);
-                    
-                }
-                else
-                {
-                    first = true;
-                    fight = false;
-                    navAgent.isStopped = true;
-                }
-
-                //Debug
-                /*
-                timer += Time.deltaTime;
-                if (timer > 3)
-                {
-                    DoAction();
-                    timer = 0;
-                }
-                */
-
-            if (navAgent.isStopped) run = false;
-            else run = true;
-
-            if (fight)
+                HandleMovementAnimations();
+            }
+            else
             {
-                timer += Time.deltaTime;
-
-                if (first)
-                {
-
-                    DoAction();
-                    first = false;
-                    timer = 0;
-                    firstTimer = 0;
-
-                }
-
-
-                if (timer < cooldown && timer > combatRotationCooldown)
-                {
-                    HandleRotation();
-                }
-                else if (timer > cooldown)
-                {
-
-                    DoAction();
-                    timer = 0;
-                }
-
-
+                if (anim.applyRootMotion == false)
+                    anim.applyRootMotion = true;
             }
 
+        }
 
+        void LookTowardsTarget()
+        {
+            Vector3 dir = dirToTarget;
+            dir.y = 0;
+            if (dir == Vector3.zero)
+                dir = transform.forward;
 
-            characterStats.poise -= delta * poiseDegradeRate; // lower poise gradually
-            if (characterStats.poise < 0)
-                characterStats.poise = 0;
-
-            HandleMovementAnimations();
+            Quaternion targetRotation = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, delta * 5);
         }
 
         void DoAction()
@@ -249,7 +221,7 @@ namespace GameControll
             //characterStats.poise += damage;
             health -= damage;
 
-            if (canMove || characterStats.poise > 100)
+            if (canMove)
             {
                 if (action.overrideDamageAnim)
                     anim.Play(action.damageAnim);
@@ -260,12 +232,23 @@ namespace GameControll
                     anim.Play(tempAnim);
                 }
             }
-            Debug.Log("Damage is " + damage + "Poise is " + characterStats.poise);
+            Debug.Log("Damage is " + damage);
 
             isInvicible = true;
-            //anim.Play("damage_2");
+            // anim.Play("damage_2");
             anim.applyRootMotion = true;
             anim.SetBool(StaticStrings.canMove, false);
+        }
+
+        public void SetDestination(Vector3 d)
+        {
+            if (!hasDestination)
+            {
+                hasDestination = true;
+                navAgent.isStopped = false;
+                navAgent.SetDestination(d);
+                targetDestination = d;
+            }
         }
 
         public void DoDamage2()
@@ -335,22 +318,52 @@ namespace GameControll
             }
         }
 
-        void HandleMovementAnimations()
+        public void OpenDamageColliders()
         {
-            anim.SetBool(StaticStrings.run, run);
-            anim.SetFloat(StaticStrings.vertical, moveAmount, 0.4f, delta);
+            if (curAttack == null)
+                return;
+
+            if (curAttack.isDefaultDamageCollider || curAttack.damageCollider.Length == 0)
+            {
+                ObjectListStatus(defaultDamageColliders, true);
+            }
+            else
+            {
+                ObjectListStatus(curAttack.damageCollider, true);
+            }
         }
 
-
-
-        void HandleRotation()
+        public void CloseDamageColliders()
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.position - this.transform.position), rotateSpeed * Time.deltaTime);
+            if (curAttack == null)
+                return;
 
+            if (curAttack.isDefaultDamageCollider || curAttack.damageCollider.Length == 0)
+            {
+                ObjectListStatus(defaultDamageColliders, false);
+            }
+            else
+            {
+                ObjectListStatus(curAttack.damageCollider, false);
+            }
+        }
+
+        void ObjectListStatus(GameObject[] l, bool status)
+        {
+            for (int i = 0; i < l.Length; i++)
+            {
+                l[i].SetActive(status);
+            }
+        }
+
+        void HandleMovementAnimations()
+        {
+            //anim.SetBool(StaticStrings.run, run);
+            //anim.SetFloat(StaticStrings.vertical, moveAmount, 0.4f, delta);
+            float square = navAgent.desiredVelocity.sqrMagnitude;
+            float v = Mathf.Clamp(square, 0, .5f);
+
+            anim.SetFloat(StaticStrings.vertical, v, 0.2f, delta);
         }
     }
 }
-
-
-
-
