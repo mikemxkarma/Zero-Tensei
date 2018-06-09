@@ -55,7 +55,7 @@ namespace GameControll
                 states = GetComponent<EnemyStates>();
 
             states.Init();
-            InitDamageColliders();
+            //InitDamageColliders();
         }
 
         void InitDamageColliders()

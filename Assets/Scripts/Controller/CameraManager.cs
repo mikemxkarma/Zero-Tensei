@@ -34,7 +34,9 @@ namespace GameControll
         public float maxAngle = 35;
         public float lookAngle;
         public float tiltAngle;
-
+        public float defZ;
+        float curZ;
+        public float zSpeed = 19;
         float smoothX;
         float smoothY;
         float smoothXvelocity;
@@ -52,6 +54,7 @@ namespace GameControll
             target = st.transform;
             camTransform = Camera.main.transform;
             pivot = camTransform.parent;
+            curZ = defZ;
         }
 
         public void Tick(float d)
@@ -109,6 +112,7 @@ namespace GameControll
             }
             FollowTarget(d);
             HandleRotations(d, v, h, targetSpeed);
+            HandlePivotPosition();
         }
 
         void FollowTarget(float d)
@@ -153,6 +157,75 @@ namespace GameControll
             lookAngle += smoothX * targetSpeed;
             transform.rotation = Quaternion.Euler(0, lookAngle, 0);//rotate camara Yaxis
 
+        }
+        void HandlePivotPosition()
+        {
+            float targetZ = defZ;
+            CameraCollision(defZ, ref targetZ);
+
+            curZ = Mathf.Lerp(curZ, targetZ, states.delta * zSpeed);
+            Vector3 tp = Vector3.zero;
+            tp.z = curZ;
+            camTransform.localPosition = tp;
+        }
+
+        void CameraCollision(float targetZ, ref float actualZ)
+        {
+            float step = Mathf.Abs(targetZ);
+            int stepCount = 2;
+            float stepIncrement = step / stepCount;
+
+            RaycastHit hit;
+            Vector3 origin = pivot.position;
+            Vector3 direction = -pivot.forward;
+
+            //Debug.DrawRay(origin, direction * step, Color.blue);
+            if (Physics.Raycast(origin, direction, out hit, step, states.ignoreLayers))
+            {
+                float distance = Vector3.Distance(hit.point, origin);
+                actualZ = -(distance / 2);
+
+                //   Debug.Log(hit.transform.root.name);
+            }
+            else
+            {
+                for (int s = 0; s < stepCount + 1; s++)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Vector3 dir = Vector3.zero;
+                        Vector3 secondOrigin = origin + (direction * s) * stepIncrement;
+
+                        switch (i)
+                        {
+                            case 0:
+                                dir = camTransform.right;
+                                break;
+                            case 1:
+                                dir = -camTransform.right;
+                                break;
+                            case 2:
+                                dir = camTransform.up;
+                                break;
+                            case 3:
+                                dir = -camTransform.up;
+                                break;
+                        }
+
+                        // Debug.DrawRay(secondOrigin, dir * 0.2f, Color.red);
+                        if (Physics.Raycast(secondOrigin, dir, out hit, 0.2f, states.ignoreLayers))
+                        {
+                            //  Debug.Log(hit.transform.root.name);
+                            float distance = Vector3.Distance(secondOrigin, origin);
+                            actualZ = -(distance / 2);
+                            if (actualZ < 0.2f)
+                                actualZ = 0;
+
+                            return;
+                        }
+                    }
+                }
+            }
         }
 
 
