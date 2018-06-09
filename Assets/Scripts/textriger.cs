@@ -14,15 +14,19 @@ public class textriger : MonoBehaviour {
 
     }
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider playr)
     {
-        UInfoDisplay.SetActive(true);
+
+            UInfoDisplay.SetActive(true);
+
     }
-    void OnTriggerExit()
+    void OnTriggerExit(Collider playr)
     {
-        UInfoDisplay.SetActive(false);
-        Destroy(UInfoDisplay);
-        Destroy(gameObject);
+
+            UInfoDisplay.SetActive(false);
+
+        // Destroy(UInfoDisplay);
+        // Destroy(gameObject);
     }
 }
 
