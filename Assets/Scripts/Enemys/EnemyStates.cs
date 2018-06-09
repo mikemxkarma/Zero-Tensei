@@ -216,7 +216,8 @@ namespace GameControll
             if (isInvicible)
                 return;
 
-            int damage = StatsCalculations.CalculateBaseDamage(curWeapon.weaponStats, characterStats);
+            //int damage = StatsCalculations.CalculateBaseDamage(curWeapon.weaponStats, characterStats);
+            int damage = 5;
 
             //characterStats.poise += damage;
             health -= damage;
@@ -360,8 +361,8 @@ namespace GameControll
         {
             //anim.SetBool(StaticStrings.run, run);
             //anim.SetFloat(StaticStrings.vertical, moveAmount, 0.4f, delta);
-            float square = navAgent.desiredVelocity.sqrMagnitude;
-            float v = Mathf.Clamp(square, 0, .5f);
+            float velocitySquared = navAgent.desiredVelocity.sqrMagnitude;
+            float v = Mathf.Clamp(velocitySquared, 0, .5f);
 
             anim.SetFloat(StaticStrings.vertical, v, 0.2f, delta);
         }

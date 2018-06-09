@@ -35939,6 +35939,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.46666667
+    functionName: OpenRotationControl
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.9
     functionName: SwordSwing
     data: 
@@ -35946,7 +35953,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1
+  - time: 0.93333334
+    functionName: CloseRotationControl
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.96666664
     functionName: OpenDamageColliders
     data: 
     objectReferenceParameter: {fileID: 0}
