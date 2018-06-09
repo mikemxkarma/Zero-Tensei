@@ -257,6 +257,7 @@ namespace GameControll
             HandleRolls();
         }
 
+        float i_timer;
         public void Tick(float d)
         {
             delta = d;
@@ -267,16 +268,30 @@ namespace GameControll
                 airTimer += delta;
             else
                 airTimer = 0;
+
+            if (isInvicible)
+            {
+                i_timer += delta;
+                if (i_timer > 1f)
+                {
+                    i_timer = 0;
+                    isInvicible = false;
+                }
+            }
+            if(characterStats._health < 10)
+            {
+                // Insert joint here
+                Debug.Log("You should be dead faggot!");
+                characterStats._health = characterStats.hp;
+            }
         }
 
         public bool IsInput()
         {
             if (rt || rb || lt || lb || rollInput)
                 return true;
-
             return false;
         }
-
         void HandleRotation()
         {
             Vector3 targetDirection = (lockOn == false) ? moveDirection :

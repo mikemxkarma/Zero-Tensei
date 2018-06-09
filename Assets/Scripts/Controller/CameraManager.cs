@@ -179,13 +179,13 @@ namespace GameControll
             Vector3 origin = pivot.position;
             Vector3 direction = -pivot.forward;
 
-            Debug.DrawRay(origin, direction * step, Color.blue);
+            //Debug.DrawRay(origin, direction * step, Color.blue);
             if (Physics.Raycast(origin, direction, out hit, step, states.ignoreLayers))
             {
                 float distance = Vector3.Distance(hit.point, origin);
                 actualZ = -(distance / 2);
 
-                   Debug.Log(hit.transform.root.name);
+                   //Debug.Log(hit.transform.root.name);
             }
             else
             {
@@ -212,10 +212,10 @@ namespace GameControll
                                 break;
                         }
 
-                         Debug.DrawRay(secondOrigin, dir * 0.2f, Color.red);
+                         //Debug.DrawRay(secondOrigin, dir * 0.2f, Color.red);
                         if (Physics.Raycast(secondOrigin, dir, out hit, 0.2f, states.ignoreLayers))
                         {
-                              Debug.Log(hit.transform.root.name);
+                             // Debug.Log(hit.transform.root.name);
                             float distance = Vector3.Distance(secondOrigin, origin);
                             actualZ = -(distance / 2);
                             if (actualZ < 0.2f)

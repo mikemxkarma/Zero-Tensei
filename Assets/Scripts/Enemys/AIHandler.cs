@@ -55,7 +55,7 @@ namespace GameControll
                 states = GetComponent<EnemyStates>();
 
             states.Init();
-            //InitDamageColliders();
+            InitDamageColliders();
         }
 
         void InitDamageColliders()
@@ -65,14 +65,14 @@ namespace GameControll
                 for (int c = 0; c < ai_attacks[i].damageCollider.Length; c++)
                 {
                     DamageCollider d = ai_attacks[i].damageCollider[c].GetComponent<DamageCollider>();
-                    //d.InitEnemy(states);
+                    d.InitEnemy(states);
                 }
             }
 
             for (int i = 0; i < states.defaultDamageColliders.Length; i++)
             {
                 DamageCollider d = states.defaultDamageColliders[i].GetComponent<DamageCollider>();
-               //d.InitEnemy(states);
+               d.InitEnemy(states);
             }
         }
 

@@ -118,7 +118,22 @@ namespace GameControll
                 Vector3 v = (delta2 * rm_multi) / delta;
                 //v += Physics.gravity;
 
-                rigid.velocity = v;
+                if (states)
+                {
+                    if (!states.onGround)
+                        // v += Physics.gravity;
+                        v.y = rigid.velocity.y;
+                }
+
+                if (eStates)
+                {
+                    //Debug.Log("v");
+                    eStates.navAgent.velocity = v;
+                }
+                else
+                {
+                    rigid.velocity = v;
+                }
             }
             else
             {
@@ -136,6 +151,10 @@ namespace GameControll
                 Vector3 v1 = Vector3.forward * zValue;
                 Vector3 relative = transform.TransformDirection(v1);
                 Vector3 v2 = (relative * rm_multi);
+
+                if (!states.onGround)
+                    // v2 += Physics.gravity;
+                    v2.y = rigid.velocity.y;
 
                 rigid.velocity = v2;
             }
@@ -186,7 +205,7 @@ namespace GameControll
                 states.canMove = true;
             }
 
-           // Debug.Log("can move");
+            // Debug.Log("can move");
         }
 
         public void OpenDamageColliders()
@@ -196,7 +215,10 @@ namespace GameControll
                 states.damageIsOn = true;
                 states.inventoryManager.OpenAllDamageColliders();
             }
-
+            if (eStates)
+            {
+                eStates.OpenDamageColliders();
+            }
             OpenParryFlag();
         }
 
@@ -207,7 +229,10 @@ namespace GameControll
                 states.damageIsOn = false;
                 states.inventoryManager.CloseAllDamageColliders();
             }
-
+            if (eStates)
+            {
+                eStates.CloseDamageColliders();
+            }
             CloseParryFlag();
         }
 

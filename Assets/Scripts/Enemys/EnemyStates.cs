@@ -71,7 +71,6 @@ namespace GameControll
         public SpellEffect_Loop spellEffect_loop;
 
         float timer;
-        float firstTimer;
 
         float cooldown = 1.5f;
         float combatRotationCooldown = 0.5f;
@@ -97,8 +96,6 @@ namespace GameControll
             InitRagdoll();
             parryIsOn = false;
             ignoreLayers = ~(1 << 9);
-
-            firstTimer = 2f;
         }
 
         void InitRagdoll()
@@ -238,7 +235,7 @@ namespace GameControll
             isInvicible = true;
             // anim.Play("damage_2");
             anim.applyRootMotion = true;
-            anim.SetBool(StaticStrings.canMove, false);
+            //anim.SetBool(StaticStrings.canMove, false);
         }
 
         public void SetDestination(Vector3 d)
@@ -277,12 +274,12 @@ namespace GameControll
             anim.SetBool(StaticStrings.canMove, false);
             //states.parryTarget = this;
             parriedBy = states;
-            return;
         }
 
         public void IsGettingParried(Action action, Weapon curWeapon)
         {
-            int damage = StatsCalculations.CalculateBaseDamage(curWeapon.weaponStats, characterStats, action.parryMultiplier);
+            //int damage = StatsCalculations.CalculateBaseDamage(curWeapon.weaponStats, characterStats, action.parryMultiplier);
+            int damage = 5;
             Debug.Log(damage);
 
             health -= damage;
@@ -293,13 +290,15 @@ namespace GameControll
 
         public void IsGettingBackstabbed(Action action, Weapon curWeapon)
         {
-            int damage = StatsCalculations.CalculateBaseDamage(curWeapon.weaponStats, characterStats, action.backstabMultiplier);
+            // int damage = StatsCalculations.CalculateBaseDamage(curWeapon.weaponStats, characterStats, action.backstabMultiplier);
+
+            int damage = 5;
             Debug.Log(damage);
 
             health -= damage;
             dontDoAnything = true;
             anim.SetBool(StaticStrings.canMove, false);
-            anim.Play(StaticStrings.backstabbed);
+            anim.Play(StaticStrings.backstabbed); 
         }
 
         public ParticleSystem fireParticle;
