@@ -117,6 +117,29 @@ namespace GameControll
             states.Tick(delta);
         }
 
+        void HandleCloseSight()
+        {
+            _close++;
+            if (_close > closeCount)
+            {
+                _close = 0;
+
+                if (dis > sight || angle > fov_angle)
+                {
+                    aiState = AIstate.far;
+                    return;
+                }
+            }
+
+            RaycastToTarget();
+        }
+
+        void GoToTarget()
+        {
+            states.hasDestination = false;
+            states.SetDestination(target.position);
+        }
+
         void InSight()
         {
             HandleCooldowns();
@@ -153,49 +176,6 @@ namespace GameControll
 
         }
 
-        void HandleCloseSight()
-        {
-            _close++;
-            if (_close > closeCount)
-            {
-                _close = 0;
-
-                if (dis > sight || angle > fov_angle)
-                {
-                    aiState = AIstate.far;
-                    return;
-                }
-            }
-
-            RaycastToTarget();
-        }
-
-        void HandleFarSight()
-        {
-            if (target == null)
-                return;
-
-            _frame++;
-            if (_frame > frameCount)
-            {
-                _frame = 0;
-
-                if (dis < sight)
-                {
-                    if (angle < fov_angle)
-                    {
-                        aiState = AIstate.close;
-                    }
-                }
-            }
-        }
-
-        void GoToTarget()
-        {
-            states.hasDestination = false;
-            states.SetDestination(target.position);
-        }
-
         void HandleCooldowns()
         {
             for (int i = 0; i < ai_attacks.Length; i++)
@@ -209,6 +189,7 @@ namespace GameControll
                 }
             }
         }
+
 
         public AIAttacks WillAttack()
         {
@@ -271,7 +252,25 @@ namespace GameControll
             }
         }
 
+        void HandleFarSight()
+        {
+            if (target == null)
+                return;
 
+            _frame++;
+            if (_frame > frameCount)
+            {
+                _frame = 0;
+
+                if (dis < sight)
+                {
+                    if (angle < fov_angle)
+                    {
+                        aiState = AIstate.close;
+                    }
+                }
+            }
+        }
 
 
 

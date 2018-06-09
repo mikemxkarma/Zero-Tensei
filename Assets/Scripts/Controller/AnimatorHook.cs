@@ -252,7 +252,6 @@ namespace GameControll
                 eStates.parryIsOn = false;
             }
         }
-
         public void OpenRotationControl()
         {
             if (states)
@@ -295,5 +294,6 @@ namespace GameControll
         {
             ik_handler.UpdateIKTargets(IKSnapshotType.breath, isLeft);
         }
+
     }
 }
