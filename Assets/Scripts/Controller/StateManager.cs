@@ -27,6 +27,7 @@ namespace GameControll
         public bool rt, rb, lt, lb;
         public bool rollInput;
         public bool itemInput;
+        
 
 
         [Header("Stats")]
@@ -45,6 +46,7 @@ namespace GameControll
         public Transform lockOnTransform;
         public AnimationCurve roll_curve;
         //public EnemyStates parryTarget;
+        public Savepoint savepoint;
 
 
         [Header("States")]
@@ -278,10 +280,12 @@ namespace GameControll
                     isInvicible = false;
                 }
             }
-            if(characterStats._health < 10)
+            if(characterStats._health <= 0)
             {
                 // Insert joint here
-                Debug.Log("You should be dead faggot!");
+                Debug.Log("You should be dead faggot!");   
+                transform.position = savepoint.transform.position;
+                transform.rotation = savepoint.transform.rotation;               
                 characterStats._health = characterStats.hp;
             }
         }

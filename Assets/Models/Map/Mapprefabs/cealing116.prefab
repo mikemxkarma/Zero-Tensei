@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4186004393935552}
   - component: {fileID: 33616596157766804}
   - component: {fileID: 23312302351782944}
+  - component: {fileID: 65361162175265782}
   m_Layer: 0
   m_Name: cealing116
   m_TagString: Untagged
@@ -82,3 +83,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1959544929085128}
   m_Mesh: {fileID: 4300046, guid: 40c5bb99345589147951fc31df87ddbf, type: 3}
+--- !u!65 &65361162175265782
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1959544929085128}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 497.32422, y: 0.00006103516, z: 497.32422}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4416137092546260}
   - component: {fileID: 33625927790764168}
   - component: {fileID: 23055137592136116}
+  - component: {fileID: 65382366123789588}
   m_Layer: 0
   m_Name: cellroom_top109
   m_TagString: Untagged
@@ -82,3 +83,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1170608846420528}
   m_Mesh: {fileID: 4300014, guid: ca04fadcc3189084e9216439b36e5d49, type: 3}
+--- !u!65 &65382366123789588
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1170608846420528}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 248.66217, y: 1.0958033e-13, z: 348.12695}
+  m_Center: {x: 0, y: -7.872324e-18, z: -0.0000076293945}

@@ -12,18 +12,13 @@ namespace GameControll
       // Use this for initialization
 
       void Start() {
-
+          
         }
 
-        private void OnTriggerEnter(Collider other)
+        public void OnTriggerEnter(Collider other)
         {
-            if (pllr.characterStats.hp == 0)
-            {
-                player.transform.position = savePoint.transform.position;
-                player.transform.rotation = savePoint.transform.rotation;
-            }
-            
+            pllr.lockOn = false;
+            pllr.savepoint = this;
         }
-
     }
 }

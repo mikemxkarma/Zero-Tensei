@@ -12,9 +12,9 @@ namespace GameControll
         public float _mana;
         public float _stamina;
         [Header("Base Power")]
-        public int hp = 100;
+        public int hp = 20;
         public int fp = 100;
-        public int stamina = 100;
+        public int stamina = 30;
         public float equipLoad = 20;
         public float poise = 20;
         public int itemDiscover = 111;
@@ -74,7 +74,7 @@ namespace GameControll
     public class Atributes
     {
         public int level = 1;
-        public int souls = 0;
+        public int cells = 0;
         public int vigor = 11;
         public int attunemnt = 11;
         public int vitality = 11;

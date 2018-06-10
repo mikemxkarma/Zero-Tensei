@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4862039991394378}
   - component: {fileID: 33521072221104434}
   - component: {fileID: 23887429509234052}
+  - component: {fileID: 65900596114338204}
   m_Layer: 0
   m_Name: corridor_topcornerconector24
   m_TagString: Untagged
@@ -82,3 +83,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1245624943011940}
   m_Mesh: {fileID: 4300034, guid: 40c5bb99345589147951fc31df87ddbf, type: 3}
+--- !u!65 &65900596114338204
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1245624943011940}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 21.543259, y: 38.1604, z: 21.542969}
+  m_Center: {x: 0, y: 0, z: 0}
