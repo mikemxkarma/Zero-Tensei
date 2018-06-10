@@ -1,0 +1,486 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16e1eecd6846bf43a9d1870f3e36727, type: 3}
+  m_Name: GameControll.WeaponScriptableObject
+  m_EditorClassIdentifier: 
+  wepons_all:
+  - itemName: sword
+    itemDescription: basic sword
+    icon: {fileID: 21300000, guid: 3196ee561a82aa94d80b633d132714bd, type: 3}
+    oh_idle: oh_idle
+    th_idle: th_idle
+    actions:
+    - input: 0
+      type: 0
+      spellClass: 0
+      targetAnimation: oh_attack_1
+      steps: []
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 1
+      canBackstab: 1
+      staminaCost: 20
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    - input: 2
+      type: 0
+      spellClass: 0
+      targetAnimation: oh_attack_2
+      steps: []
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 1
+      canBackstab: 0
+      staminaCost: 30
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 1
+      damageAnim: damage_3
+    two_handedActions:
+    - input: 0
+      type: 0
+      spellClass: 0
+      targetAnimation: oh_attack_1
+      steps: []
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 1
+      canParry: 0
+      canBackstab: 1
+      staminaCost: 30
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    - input: 2
+      type: 0
+      spellClass: 0
+      targetAnimation: oh_attack_2
+      steps: []
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 1
+      canParry: 0
+      canBackstab: 0
+      staminaCost: 40
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 1
+      damageAnim: damage_3
+    parryMultiplier: 2
+    backstabMultiplier: 2
+    LeftHandMirror: 1
+    modelPrefab: {fileID: 1761767580271928, guid: 7b0e79656d7e9b049bc3abf54431db25,
+      type: 2}
+    weaponStats:
+      physical: 40
+      strike: 0
+      slash: 0
+      thrust: 0
+      magic: 0
+      fire: 0
+      lighting: 0
+      dark: 0
+    r_model_pos: {x: -0.039, y: -0.023, z: -0.013}
+    l_model_pos: {x: -0.041, y: -0.02, z: -0.003}
+    r_model_eulers: {x: -135.985, y: -218.351, z: -239.112}
+    l_model_eulers: {x: -226.057, y: -153.184, z: -230.293}
+    model_scale: {x: 1, y: 1, z: 1}
+  - itemName: shield
+    itemDescription: basic shield
+    icon: {fileID: 21300000, guid: 8070ce1aa0bca154d86d5dd9f52094df, type: 3}
+    oh_idle: oh_idle
+    th_idle: th_idle
+    actions:
+    - input: 0
+      type: 1
+      spellClass: 0
+      targetAnimation: shield
+      steps: []
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 1
+      canParry: 0
+      canBackstab: 0
+      staminaCost: 5
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    - input: 2
+      type: 3
+      spellClass: 0
+      targetAnimation: parry
+      steps: []
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 1
+      canBackstab: 0
+      staminaCost: 5
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    two_handedActions:
+    - input: 0
+      type: 1
+      spellClass: 0
+      targetAnimation: shield
+      steps: []
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 1
+      staminaCost: 5
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    - input: 2
+      type: 0
+      spellClass: 0
+      targetAnimation: parry
+      steps: []
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 0
+      staminaCost: 5
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: damage_3
+    parryMultiplier: 1
+    backstabMultiplier: 1
+    LeftHandMirror: 0
+    modelPrefab: {fileID: 1221947274310874, guid: 5caf8bea08fd98042a42b4e38dfa1c23,
+      type: 2}
+    weaponStats:
+      physical: 20
+      strike: 0
+      slash: 0
+      thrust: 0
+      magic: 20
+      fire: 20
+      lighting: 20
+      dark: 20
+    r_model_pos: {x: 0, y: 0, z: 0}
+    l_model_pos: {x: 0, y: 0, z: 0}
+    r_model_eulers: {x: -50.08, y: -35.262, z: -0.8}
+    l_model_eulers: {x: -124.928, y: 29.60599, z: -12.22498}
+    model_scale: {x: 0.5, y: 0.5, z: 0.5}
+  - itemName: pyromancy
+    itemDescription: 
+    icon: {fileID: 21300000, guid: 76c1ed0a9ba8b0e4593ec4e5687789dc, type: 3}
+    oh_idle: oh_idle
+    th_idle: th_idle
+    actions:
+    - input: 0
+      type: 2
+      spellClass: 0
+      targetAnimation: throw
+      steps: []
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 1
+      canParry: 0
+      canBackstab: 0
+      staminaCost: 5
+      manaCost: 30
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    two_handedActions:
+    - input: 0
+      type: 1
+      spellClass: 0
+      targetAnimation: 
+      steps: []
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 0
+      staminaCost: 5
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    - input: 2
+      type: 0
+      spellClass: 0
+      targetAnimation: 
+      steps: []
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 0
+      staminaCost: 5
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: damage_3
+    parryMultiplier: 1
+    backstabMultiplier: 1
+    LeftHandMirror: 1
+    modelPrefab: {fileID: 1989430885407142, guid: c5e327c0d2fd7794bad2ecddf378767a,
+      type: 2}
+    weaponStats:
+      physical: 0
+      strike: 0
+      slash: 0
+      thrust: 0
+      magic: 0
+      fire: 0
+      lighting: 0
+      dark: 0
+    r_model_pos: {x: 0, y: 0, z: 0}
+    l_model_pos: {x: -0.084, y: -0.03, z: -0.001}
+    r_model_eulers: {x: -0.000011099056, y: -0.000010245283, z: -0.0000012806594}
+    l_model_eulers: {x: 0.0000064033, y: -0.00000085377343, z: -0.0000014407425}
+    model_scale: {x: 1, y: 1, z: 1}
+  - itemName: twoHandedSword
+    itemDescription: big sword
+    icon: {fileID: 21300000, guid: 7cf9b1e5e992e4e49acdce20e5a865db, type: 3}
+    oh_idle: gs_oh_idle
+    th_idle: gs_th_idle
+    actions:
+    - input: 0
+      type: 0
+      spellClass: 0
+      targetAnimation: gs_oh_attack_1
+      steps: []
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 1
+      canParry: 1
+      canBackstab: 1
+      staminaCost: 30
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    - input: 2
+      type: 0
+      spellClass: 0
+      targetAnimation: 
+      steps:
+      - branches:
+        - input: 2
+          targetAnim: gs_th_to_pose
+        - input: 0
+          targetAnim: gs_attack_from_pose
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 1
+      canParry: 1
+      canBackstab: 1
+      staminaCost: 5
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: damage_3
+    two_handedActions:
+    - input: 0
+      type: 0
+      spellClass: 0
+      targetAnimation: gs_th_attack_1
+      steps: []
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 1
+      staminaCost: 40
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    - input: 2
+      type: 0
+      spellClass: 0
+      targetAnimation: gs_th_attack_1
+      steps: []
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 0
+      staminaCost: 50
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 1
+      damageAnim: damage_3
+    parryMultiplier: 1
+    backstabMultiplier: 1
+    LeftHandMirror: 1
+    modelPrefab: {fileID: 1801723532985550, guid: 4dbb02b5a9fee384c935d161c48239bf,
+      type: 2}
+    weaponStats:
+      physical: 40
+      strike: 30
+      slash: 20
+      thrust: 20
+      magic: 0
+      fire: 0
+      lighting: 0
+      dark: 0
+    r_model_pos: {x: 0.021, y: -0.281, z: 0.298}
+    l_model_pos: {x: 0.271, y: -0.195, z: -0.381}
+    r_model_eulers: {x: -155.853, y: -100.391, z: 44.735}
+    l_model_eulers: {x: -30.616, y: 63.276, z: -22.599}
+    model_scale: {x: 0.75, y: 0.75, z: 0.75}
+  - itemName: dagger
+    itemDescription: stabby stab
+    icon: {fileID: 21300000, guid: 2a5f23f43db7d574b997012b696cb1b6, type: 3}
+    oh_idle: oh_idle
+    th_idle: th_idle
+    actions:
+    - input: 0
+      type: 0
+      spellClass: 0
+      targetAnimation: 
+      steps:
+      - branches:
+        - input: 0
+          targetAnim: rap_oh_attack_1
+      - branches:
+        - input: 0
+          targetAnim: rap_oh_attack_2
+        - input: 2
+          targetAnim: rap_oh_attack_3
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 1
+      canParry: 1
+      canBackstab: 1
+      staminaCost: 10
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    - input: 2
+      type: 0
+      spellClass: 0
+      targetAnimation: 
+      steps: []
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 1
+      canParry: 1
+      canBackstab: 1
+      staminaCost: 10
+      manaCost: 5
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    two_handedActions:
+    - input: 0
+      type: 0
+      spellClass: 0
+      targetAnimation: 
+      steps:
+      - branches:
+        - input: 0
+          targetAnim: rap_oh_attack_1
+      - branches:
+        - input: 0
+          targetAnim: rap_oh_attack_2
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 1
+      staminaCost: 20
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    - input: 2
+      type: 0
+      spellClass: 0
+      targetAnimation: 
+      steps: []
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 1
+      staminaCost: 20
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    parryMultiplier: 1
+    backstabMultiplier: 1
+    LeftHandMirror: 1
+    modelPrefab: {fileID: 1433591524128976, guid: 4b6ac0d01f1b43e43a53dd257c5d01ce,
+      type: 2}
+    weaponStats:
+      physical: 0
+      strike: 0
+      slash: 0
+      thrust: 0
+      magic: 0
+      fire: 0
+      lighting: 0
+      dark: 0
+    r_model_pos: {x: -0.195, y: 0.106, z: -0.279}
+    l_model_pos: {x: -0.363, y: 0.077, z: 0.104}
+    r_model_eulers: {x: 44.084, y: -13.042, z: -70.16901}
+    l_model_eulers: {x: 142.44, y: -31.724, z: -104.924}
+    model_scale: {x: 1, y: 1, z: 1}

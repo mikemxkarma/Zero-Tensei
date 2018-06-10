@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1243019806144640}
+  m_IsPrefabParent: 1
+--- !u!1 &1243019806144640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4235328887713250}
+  - component: {fileID: 23595395481277770}
+  - component: {fileID: 102475549453899636}
+  - component: {fileID: 114125160088873762}
+  m_Layer: 0
+  m_Name: GameStory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4235328887713250
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243019806144640}
+  m_LocalRotation: {x: 0.043619405, y: 0, z: 0, w: 0.9990483}
+  m_LocalPosition: {x: 0, y: -488, z: -52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 5, y: 0, z: 0}
+--- !u!23 &23595395481277770
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243019806144640}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!102 &102475549453899636
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243019806144640}
+  m_Text: "In 2050, the HEP (Human Enhancement Program) is created. \r\nA substance
+    is developed within the utmost confidentiality \r\nwith the support of the Japanese
+    government. \r\nThis substance, S95, changes the genetic code, \r\nallowing the
+    subject supernatural resistance, strength\r\n and speed. An S95 enhanced human
+    is created, Zero.\r\n\r\n\r\n5 years later, the program behind S95 was discontinued
+    \r\nafter several failed tests on human subjects. \r\nBionic members and organs
+    have since been made \r\navailable to the public and have gained popularity. \r\nDue
+    to the popularity of bionic organs and their increased\r\n resistance to injury,
+    firearms become ineffective. The police \r\nbegin adapting bionic alterations,
+    and turn to technologically\r\n improved melee weapons to damage any bionic enhancement\r\n
+    with greater accuracy and damage. At this point arise several\r\n gangs that traffic
+    and use bionic alterations.\r\n\r\n\r\nIn 2057, an organization called GreyTek
+    captures Zero, in order\r\n to replicate S95. Zero is held in a laboratory in
+    Kyoto and put on\r\n cryogenic sleep. In 2069, results are produced and the second
+    \r\nspecimen, called One, is created.\r\n\r\n\r\nThe mindRays appear, mental chips
+    that allow human-machine\r\n connection, giving people the ability to connect
+    to the web all\r\n the time. In the course of 5 years, mindRay is made available
+    \r\nto and used by a large part of the population.\r\n\r\nIn 2075, a hacker, known
+    as Satoshi, gained control \r\nand influence over much of Japan's population by
+    \r\ndiscovering a flaw in mindRays. They are discontinued\r\n worldwide, but Satoshi
+    controls a large part of the\r\n population of Japan. He immediately protects
+    critical\r\n points for the subsistence of mindRays, taking control \r\nof several
+    people, and creates a rudimentary, though \r\nchaotic, system of organization,
+    to manage the population\r\n he controls. Obsessed with his power, Satoshi sees
+    himself\r\n as a god, and creates and forces a religion on his followers,\r\n
+    securing common moral values, which benefit his controlling power. \r\n\r\n\r\nSome
+    of the people who oppose Satoshi organize themselves to fight\r\n him, creating
+    the Resistance. About Satoshi's leadership, more S95 \r\nenhanced specimens, Two,
+    Three and Four are created.\r\n In 2080, The Resistance implements a plan to get
+    Zero, \r\nbacked by the CIA, the MI6 and the European secret services,\r\n attacking
+    the laboratory where it was being held. It is seen as the\r\n last hope of Japan.
+    A soldier known as L, the best of the American army,\r\n is sent to extract Zero.\r\n"
+  m_OffsetZ: 3
+  m_CharacterSize: 1
+  m_LineSpacing: 2
+  m_Anchor: 4
+  m_Alignment: 1
+  m_TabSize: 1
+  m_FontSize: 65
+  m_FontStyle: 1
+  m_RichText: 0
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+--- !u!114 &114125160088873762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243019806144640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fdb45d1d620b414b9f2484a98ab9f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 8
+  screen: 5
