@@ -108,7 +108,9 @@ namespace GameControll
             {
                 if (leftHandWeapon != null)
                 {
-                    leftHandWeapon.weapon_Model.SetActive(false);
+                   leftHandWeapon.weapon_Model.SetActive(false);
+                  //  leftHandWeapon.weapon_Model.transform.localPosition = leftHandWeapon.instance.l_model_unequiped_pos;
+                   // leftHandWeapon.weapon_Model.transform.localEulerAngles = leftHandWeapon.instance.l_model_unequiped_eulers;
                 }
                 leftHandWeapon = w;
             }
@@ -117,6 +119,8 @@ namespace GameControll
                 if (rightHandWeapon != null)
                 {
                     rightHandWeapon.weapon_Model.SetActive(false);
+                  //  rightHandWeapon.weapon_Model.transform.localPosition = rightHandWeapon.instance.r_model_unequiped_pos;
+                   // rightHandWeapon.weapon_Model.transform.localEulerAngles = rightHandWeapon.instance.r_model_unequiped_eulers;
                 }
                 rightHandWeapon = w;
             }
@@ -240,9 +244,14 @@ namespace GameControll
             inst.weapon_Model.transform.parent = p;
 
             inst.weapon_Model.transform.localPosition =
-                (isLeft) ? inst.instance.l_model_pos : inst.instance.r_model_pos;
+                (isLeft) ? inst.instance.l_model_equiped_pos : inst.instance.r_model_equiped_pos;
             inst.weapon_Model.transform.localEulerAngles =
-                (isLeft) ? inst.instance.l_model_eulers : inst.instance.r_model_eulers;
+                (isLeft) ? inst.instance.l_model_equiped_eulers : inst.instance.r_model_equiped_eulers;
+
+            inst.weapon_Model.transform.localPosition =
+                (isLeft) ? inst.instance.l_model_unequiped_pos : inst.instance.r_model_unequiped_pos;
+            inst.weapon_Model.transform.localEulerAngles =
+                (isLeft) ? inst.instance.l_model_unequiped_eulers : inst.instance.r_model_unequiped_eulers;
             inst.weapon_Model.transform.localScale = inst.instance.model_scale;
 
             inst.weapon_Hook = inst.weapon_Model.GetComponentInChildren<WeaponHook>();
@@ -365,10 +374,14 @@ namespace GameControll
         public GameObject modelPrefab;
         public WeaponStats weaponStats;
 
-        public Vector3 r_model_pos;
-        public Vector3 l_model_pos;
-        public Vector3 r_model_eulers;
-        public Vector3 l_model_eulers;
+        public Vector3 r_model_equiped_pos;
+        public Vector3 l_model_equiped_pos;
+        public Vector3 r_model_equiped_eulers;
+        public Vector3 l_model_equiped_eulers;
+        public Vector3 r_model_unequiped_pos;
+        public Vector3 l_model_unequiped_pos;
+        public Vector3 r_model_unequiped_eulers;
+        public Vector3 l_model_unequiped_eulers;
         public Vector3 model_scale;
     }
 

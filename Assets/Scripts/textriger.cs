@@ -2,27 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class textriger : MonoBehaviour {
+namespace GameControll
+{
+    public class Textriger : MonoBehaviour {
 
 
 
-    public GameObject UInfoDisplay;
+        public GameObject UInfoDisplay;
+        public bool savepoint;
 
 
-    private void Start()
-    {
-        UInfoDisplay.SetActive(false);
-    }
+        private void Start()
+        {
+            savepoint = false;
+            UInfoDisplay.SetActive(false);
+        }
 
-    void OnTriggerEnter(Collider playr)
-    {
+        void OnTriggerEnter(Collider playr)
+        {
 
             UInfoDisplay.SetActive(true);
 
-    }
-    void OnTriggerExit(Collider playr)
-    {
-            UInfoDisplay.SetActive(false);  
+        }
+        void OnTriggerExit(Collider playr)
+        {
+            if (savepoint == true)
+                Destroy(UInfoDisplay);
+
+            else
+                UInfoDisplay.SetActive(false);
+        }
     }
 }
 

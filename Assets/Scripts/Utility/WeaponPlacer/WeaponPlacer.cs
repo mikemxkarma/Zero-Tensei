@@ -38,13 +38,13 @@ namespace GameControll
 
                     if (leftHand)
                     {
-                        w.l_model_eulers = weaponModel.transform.localEulerAngles;
-                        w.l_model_pos = weaponModel.transform.localPosition;
+                        w.l_model_equiped_eulers = weaponModel.transform.localEulerAngles;
+                        w.l_model_equiped_pos = weaponModel.transform.localPosition;
                     }
                     else
                     {
-                        w.r_model_eulers = weaponModel.transform.localEulerAngles;
-                        w.r_model_pos = weaponModel.transform.localPosition;
+                        w.r_model_equiped_eulers = weaponModel.transform.localEulerAngles;
+                        w.r_model_equiped_pos = weaponModel.transform.localPosition;
                     }
 
                     w.model_scale = weaponModel.transform.localScale;
