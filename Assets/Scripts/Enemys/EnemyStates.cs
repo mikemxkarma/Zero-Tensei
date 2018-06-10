@@ -76,8 +76,7 @@ namespace GameControll
         float combatRotationCooldown = 0.5f;
 
         public void Init()
-        {
-            health = 100;
+        {            
             anim = GetComponentInChildren<Animator>();
             enTarget = GetComponent<EnemyTarget>();
             enTarget.Init(this);
