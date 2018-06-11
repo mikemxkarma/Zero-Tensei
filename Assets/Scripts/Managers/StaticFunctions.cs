@@ -35,11 +35,6 @@ namespace GameControll
             to.r_model_equiped_eulers = from.r_model_equiped_eulers;
             to.l_model_equiped_eulers = from.l_model_equiped_eulers;
 
-            to.r_model_unequiped_pos = from.r_model_unequiped_pos;
-            to.l_model_unequiped_pos = from.l_model_unequiped_pos;
-            to.r_model_unequiped_eulers = from.r_model_unequiped_eulers;
-            to.l_model_unequiped_eulers = from.l_model_unequiped_eulers;
-
             to.model_scale = from.model_scale;
 
             to.weaponStats = new WeaponStats();

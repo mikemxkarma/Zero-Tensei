@@ -90,7 +90,7 @@ MonoBehaviour:
     parryMultiplier: 2
     backstabMultiplier: 2
     LeftHandMirror: 1
-    modelPrefab: {fileID: 1761767580271928, guid: 7b0e79656d7e9b049bc3abf54431db25,
+    modelPrefab: {fileID: 1994361600436158, guid: 7e9de37ace15c1c4299d6c60c9e21c17,
       type: 2}
     weaponStats:
       physical: 40
@@ -101,15 +101,11 @@ MonoBehaviour:
       fire: 0
       lighting: 0
       dark: 0
-    r_model_equiped_pos: {x: 0, y: 0, z: 0}
-    l_model_equiped_pos: {x: 0, y: 0, z: 0}
-    r_model_equiped_eulers: {x: 0, y: 0, z: 0}
+    r_model_equiped_pos: {x: 0.1514, y: 1.0452, z: 0.4984}
+    l_model_equiped_pos: {x: 192.015, y: 3.136993, z: 95.795}
+    r_model_equiped_eulers: {x: 192.015, y: 3.136993, z: 95.795}
     l_model_equiped_eulers: {x: 0, y: 0, z: 0}
-    r_model_unequiped_pos: {x: 4.92, y: 0, z: 0}
-    l_model_unequiped_pos: {x: 3.68, y: 0.7, z: 0.73}
-    r_model_unequiped_eulers: {x: 3.09, y: 0.63, z: 0.63}
-    l_model_unequiped_eulers: {x: 2.34, y: 1.32, z: 1.14}
-    model_scale: {x: 1, y: 1, z: 1}
+    model_scale: {x: 1.735748, y: 1.735748, z: 1.735748}
   - itemName: shield
     itemDescription: basic shield
     icon: {fileID: 21300000, guid: 8070ce1aa0bca154d86d5dd9f52094df, type: 3}
@@ -203,10 +199,6 @@ MonoBehaviour:
     l_model_equiped_pos: {x: 0, y: 0, z: 0}
     r_model_equiped_eulers: {x: 0, y: 0, z: 0}
     l_model_equiped_eulers: {x: 0, y: 0, z: 0}
-    r_model_unequiped_pos: {x: 0, y: 0, z: 0}
-    l_model_unequiped_pos: {x: 0, y: 0, z: 0}
-    r_model_unequiped_eulers: {x: 0, y: 0, z: 0}
-    l_model_unequiped_eulers: {x: 0, y: 0, z: 0}
     model_scale: {x: 0.5, y: 0.5, z: 0.5}
   - itemName: pyromancy
     itemDescription: 
@@ -284,10 +276,6 @@ MonoBehaviour:
     l_model_equiped_pos: {x: 0, y: 0, z: 0}
     r_model_equiped_eulers: {x: 0, y: 0, z: 0}
     l_model_equiped_eulers: {x: 0, y: 0, z: 0}
-    r_model_unequiped_pos: {x: 0, y: 0, z: 0}
-    l_model_unequiped_pos: {x: 0, y: 0, z: 0}
-    r_model_unequiped_eulers: {x: 0, y: 0, z: 0}
-    l_model_unequiped_eulers: {x: 0, y: 0, z: 0}
     model_scale: {x: 1, y: 1, z: 1}
   - itemName: twoHandedSword
     itemDescription: big sword
@@ -372,7 +360,7 @@ MonoBehaviour:
     parryMultiplier: 1
     backstabMultiplier: 1
     LeftHandMirror: 1
-    modelPrefab: {fileID: 1801723532985550, guid: 4dbb02b5a9fee384c935d161c48239bf,
+    modelPrefab: {fileID: 1994361600436158, guid: 7e9de37ace15c1c4299d6c60c9e21c17,
       type: 2}
     weaponStats:
       physical: 40
@@ -383,15 +371,11 @@ MonoBehaviour:
       fire: 0
       lighting: 0
       dark: 0
-    r_model_equiped_pos: {x: 0, y: 0, z: 0}
+    r_model_equiped_pos: {x: 0.1738, y: 1.0525, z: 0.5052}
     l_model_equiped_pos: {x: 0, y: 0, z: 0}
-    r_model_equiped_eulers: {x: 0, y: 0, z: 0}
+    r_model_equiped_eulers: {x: -1.428, y: -170.321, z: -85.72}
     l_model_equiped_eulers: {x: 0, y: 0, z: 0}
-    r_model_unequiped_pos: {x: 0, y: 0, z: 0}
-    l_model_unequiped_pos: {x: 0, y: 0, z: 0}
-    r_model_unequiped_eulers: {x: 0, y: 0, z: 0}
-    l_model_unequiped_eulers: {x: 0, y: 0, z: 0}
-    model_scale: {x: 0.75, y: 0.75, z: 0.75}
+    model_scale: {x: 1.331186, y: 1.331186, z: 0}
   - itemName: dagger
     itemDescription: stabby stab
     icon: {fileID: 21300000, guid: 2a5f23f43db7d574b997012b696cb1b6, type: 3}
@@ -499,8 +483,4 @@ MonoBehaviour:
     l_model_equiped_pos: {x: 0, y: 0, z: 0}
     r_model_equiped_eulers: {x: 0, y: 0, z: 0}
     l_model_equiped_eulers: {x: 0, y: 0, z: 0}
-    r_model_unequiped_pos: {x: 0, y: 0, z: 0}
-    l_model_unequiped_pos: {x: 0, y: 0, z: 0}
-    r_model_unequiped_eulers: {x: 0, y: 0, z: 0}
-    l_model_unequiped_eulers: {x: 0, y: 0, z: 0}
     model_scale: {x: 1, y: 1, z: 1}
