@@ -14,7 +14,7 @@ MonoBehaviour:
   wepons_all:
   - itemName: sword
     itemDescription: basic sword
-    icon: {fileID: 21300000, guid: 3196ee561a82aa94d80b633d132714bd, type: 3}
+    icon: {fileID: 21300000, guid: 54a6a043f2fb6ab48ae84d73754fbefc, type: 3}
     oh_idle: oh_idle
     th_idle: th_idle
     actions:
@@ -101,14 +101,14 @@ MonoBehaviour:
       fire: 0
       lighting: 0
       dark: 0
-    r_model_equiped_pos: {x: 0.1514, y: 1.0452, z: 0.4984}
-    l_model_equiped_pos: {x: 192.015, y: 3.136993, z: 95.795}
-    r_model_equiped_eulers: {x: 192.015, y: 3.136993, z: 95.795}
-    l_model_equiped_eulers: {x: 0, y: 0, z: 0}
+    r_model_equiped_pos: {x: -0.061, y: 0.018, z: -0.056}
+    l_model_equiped_pos: {x: -0.078, y: 0.007, z: 0.065}
+    r_model_equiped_eulers: {x: 180.145, y: -82.35001, z: 129.621}
+    l_model_equiped_eulers: {x: 323.487, y: 92.22601, z: 46.409}
     model_scale: {x: 1.735748, y: 1.735748, z: 1.735748}
   - itemName: shield
     itemDescription: basic shield
-    icon: {fileID: 21300000, guid: 8070ce1aa0bca154d86d5dd9f52094df, type: 3}
+    icon: {fileID: 21300000, guid: bdd80316b355a674ca367229525aa7d1, type: 3}
     oh_idle: oh_idle
     th_idle: th_idle
     actions:
@@ -279,7 +279,7 @@ MonoBehaviour:
     model_scale: {x: 1, y: 1, z: 1}
   - itemName: twoHandedSword
     itemDescription: big sword
-    icon: {fileID: 21300000, guid: 7cf9b1e5e992e4e49acdce20e5a865db, type: 3}
+    icon: {fileID: 21300000, guid: 72c5f758c3015d3429eaecb5c3886fe9, type: 3}
     oh_idle: gs_oh_idle
     th_idle: gs_th_idle
     actions:
@@ -360,7 +360,7 @@ MonoBehaviour:
     parryMultiplier: 1
     backstabMultiplier: 1
     LeftHandMirror: 1
-    modelPrefab: {fileID: 1994361600436158, guid: 7e9de37ace15c1c4299d6c60c9e21c17,
+    modelPrefab: {fileID: 1567186859542046, guid: aaac6a3b09613fd4ab644dbb0a3f80a9,
       type: 2}
     weaponStats:
       physical: 40
@@ -371,11 +371,119 @@ MonoBehaviour:
       fire: 0
       lighting: 0
       dark: 0
-    r_model_equiped_pos: {x: 0.1738, y: 1.0525, z: 0.5052}
-    l_model_equiped_pos: {x: 0, y: 0, z: 0}
-    r_model_equiped_eulers: {x: -1.428, y: -170.321, z: -85.72}
+    r_model_equiped_pos: {x: -0.073, y: -0.133, z: 0.109}
+    l_model_equiped_pos: {x: 0.022, y: -0.216, z: -0.167}
+    r_model_equiped_eulers: {x: -201.972, y: 56.604, z: 129.248}
+    l_model_equiped_eulers: {x: -390.433, y: 100.49, z: -51.944}
+    model_scale: {x: 16.73252, y: 16.73252, z: 16.73252}
+  - itemName: dagger
+    itemDescription: dagger
+    icon: {fileID: 21300000, guid: 50eea626892c0c34582c8ea9a5b4d996, type: 3}
+    oh_idle: oh_idle
+    th_idle: th_idle
+    actions:
+    - input: 0
+      type: 0
+      spellClass: 0
+      targetAnimation: 
+      steps:
+      - branches:
+        - input: 0
+          targetAnim: rap_oh_attack_1
+      - branches:
+        - input: 0
+          targetAnim: rap_oh_attack_2
+        - input: 2
+          targetAnim: rap_oh_attack_3
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 1
+      canParry: 1
+      canBackstab: 1
+      staminaCost: 10
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    - input: 2
+      type: 0
+      spellClass: 0
+      targetAnimation: 
+      steps: []
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 1
+      canParry: 1
+      canBackstab: 1
+      staminaCost: 10
+      manaCost: 5
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    two_handedActions:
+    - input: 0
+      type: 0
+      spellClass: 0
+      targetAnimation: 
+      steps:
+      - branches:
+        - input: 0
+          targetAnim: rap_oh_attack_1
+      - branches:
+        - input: 0
+          targetAnim: rap_oh_attack_2
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 1
+      staminaCost: 20
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    - input: 2
+      type: 0
+      spellClass: 0
+      targetAnimation: 
+      steps: []
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 1
+      staminaCost: 20
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    parryMultiplier: 1
+    backstabMultiplier: 1
+    LeftHandMirror: 1
+    modelPrefab: {fileID: 1740006022967212, guid: 00805e43e1b1ef04d95d7185e8882f0f,
+      type: 2}
+    weaponStats:
+      physical: 0
+      strike: 0
+      slash: 0
+      thrust: 0
+      magic: 0
+      fire: 0
+      lighting: 0
+      dark: 0
+    r_model_equiped_pos: {x: -0.0674, y: 0.0556, z: -0.0934}
+    l_model_equiped_pos: {x: 0, y: 0, z: -0.517}
+    r_model_equiped_eulers: {x: -15.464, y: -117.769, z: 231.964}
     l_model_equiped_eulers: {x: 0, y: 0, z: 0}
-    model_scale: {x: 1.331186, y: 1.331186, z: 0}
+    model_scale: {x: 0.7013404, y: 0.7013404, z: 0.7013404}
   - itemName: dagger
     itemDescription: stabby stab
     icon: {fileID: 21300000, guid: 2a5f23f43db7d574b997012b696cb1b6, type: 3}

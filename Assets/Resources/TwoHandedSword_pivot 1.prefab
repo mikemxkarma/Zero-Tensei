@@ -9,50 +9,36 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1290208978193610}
+  m_RootGameObject: {fileID: 1567186859542046}
   m_IsPrefabParent: 1
---- !u!1 &1290208978193610
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4884713919770730}
-  m_Layer: 0
-  m_Name: TwoHandedSword_pivot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1445397891174594
+--- !u!1 &1214528656408844
 GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4626933509540416}
-  - component: {fileID: 65291154011233414}
+  - component: {fileID: 4990959312930050}
+  - component: {fileID: 114984888661676894}
+  - component: {fileID: 65774718634817174}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DamageCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1854985411927434
+--- !u!1 &1510675312603404
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4499781500924682}
-  - component: {fileID: 33371230210977912}
-  - component: {fileID: 23782916931823062}
-  - component: {fileID: 114550212619924344}
+  - component: {fileID: 4913583303657190}
+  - component: {fileID: 33851848735353532}
+  - component: {fileID: 23098122783893904}
+  - component: {fileID: 114397541439966430}
   m_Layer: 0
   m_Name: SlabBlade
   m_TagString: Untagged
@@ -60,53 +46,68 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4499781500924682
+--- !u!1 &1567186859542046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4721883926674960}
+  m_Layer: 0
+  m_Name: TwoHandedSword_pivot 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4721883926674960
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1854985411927434}
+  m_GameObject: {fileID: 1567186859542046}
+  m_LocalRotation: {x: -0.9948688, y: 0.07123299, z: 0.070278354, w: -0.014926824}
+  m_LocalPosition: {x: 0.379, y: 1.0073, z: 0.4561}
+  m_LocalScale: {x: 23.222881, y: 23.222923, z: 23.222923}
+  m_Children:
+  - {fileID: 4913583303657190}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -181.128, y: 8.162994, z: 8.270996}
+--- !u!4 &4913583303657190
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1510675312603404}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4626933509540416}
-  m_Father: {fileID: 4884713919770730}
+  - {fileID: 4990959312930050}
+  m_Father: {fileID: 4721883926674960}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4626933509540416
+--- !u!4 &4990959312930050
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1445397891174594}
+  m_GameObject: {fileID: 1214528656408844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4499781500924682}
+  m_Father: {fileID: 4913583303657190}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4884713919770730
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1290208978193610}
-  m_LocalRotation: {x: -0.99156815, y: 0.070628755, z: 0.10721785, w: -0.01756486}
-  m_LocalPosition: {x: 0.403, y: 1.011, z: 0.451}
-  m_LocalScale: {x: 23.222881, y: 23.222923, z: 23.222923}
-  m_Children:
-  - {fileID: 4499781500924682}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -181.128, y: 12.423996, z: 8.270996}
---- !u!23 &23782916931823062
+--- !u!23 &23098122783893904
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1854985411927434}
+  m_GameObject: {fileID: 1510675312603404}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -135,35 +136,46 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33371230210977912
+--- !u!33 &33851848735353532
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1854985411927434}
+  m_GameObject: {fileID: 1510675312603404}
   m_Mesh: {fileID: 4300000, guid: 49a92e6d739c0094d859af3667f55947, type: 3}
---- !u!65 &65291154011233414
+--- !u!65 &65774718634817174
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1445397891174594}
+  m_GameObject: {fileID: 1214528656408844}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.14738144, y: 0.0087766675, z: 0.07699466}
-  m_Center: {x: -0.015109291, y: 0.012403666, z: 0.033323873}
---- !u!114 &114550212619924344
+  m_Size: {x: 0.043598887, y: 0.0046919505, z: 0.013629905}
+  m_Center: {x: -0.0441428, y: -0.0000097290695, z: 0.00038750775}
+--- !u!114 &114397541439966430
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1854985411927434}
+  m_GameObject: {fileID: 1510675312603404}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfbf1790b5159f049980ef28ee3cae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageCollider:
-  - {fileID: 0}
+  - {fileID: 1214528656408844}
+--- !u!114 &114984888661676894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214528656408844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da653909e3cbfcf46898fa01f97c509e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
