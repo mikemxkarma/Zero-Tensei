@@ -10,6 +10,7 @@ namespace GameControll
         public List<string> rh_weapons;
         public List<string> lh_weapons;
         public List<string> spell_items;
+        public WeaponHider UnequipedWeapons;
 
         public int r_index;
         public int l_index;
