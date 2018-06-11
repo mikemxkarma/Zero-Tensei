@@ -29,6 +29,9 @@ namespace GameControll
         float delta;
         Vector3 dirToTarget;
 
+        public Transform[] points;
+        private int destPoint = 0;
+
         float distanceFromTarget()
         {
             if (target == null)
@@ -55,9 +58,24 @@ namespace GameControll
                 states = GetComponent<EnemyStates>();
 
             states.Init();
+            states.navAgent.autoBraking = false;
+            // Start patrol
+            GotoNextPoint();
             InitDamageColliders();
         }
+        void GotoNextPoint()
+        {
+            // Returns if no points have been set up
+            if (points.Length == 0)
+                return;
 
+            // Set the agent to go to the currently selected destination.
+            states.navAgent.destination = points[destPoint].position;
+
+            // Choose the next point in the array as the destination,
+            // cycling to the start if necessary.
+            destPoint = (destPoint + 1) % points.Length;
+        }
         void InitDamageColliders()
         {
             for (int i = 0; i < ai_attacks.Length; i++)
@@ -186,6 +204,11 @@ namespace GameControll
                     {
                         aiState = AIstate.close;
                     }
+                }
+                else
+                {
+                    if (!states.navAgent.pathPending && states.navAgent.remainingDistance < 0.5f)
+                        GotoNextPoint();
                 }
             }
         }
