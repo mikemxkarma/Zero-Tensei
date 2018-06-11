@@ -90,7 +90,7 @@ MonoBehaviour:
     parryMultiplier: 2
     backstabMultiplier: 2
     LeftHandMirror: 1
-    modelPrefab: {fileID: 1994361600436158, guid: 7e9de37ace15c1c4299d6c60c9e21c17,
+    modelPrefab: {fileID: 1235637399240190, guid: 239e10bc07707da4090153ed930b9861,
       type: 2}
     weaponStats:
       physical: 40
@@ -360,7 +360,7 @@ MonoBehaviour:
     parryMultiplier: 1
     backstabMultiplier: 1
     LeftHandMirror: 1
-    modelPrefab: {fileID: 1567186859542046, guid: aaac6a3b09613fd4ab644dbb0a3f80a9,
+    modelPrefab: {fileID: 1535703425497528, guid: 712b3a72db1fdd94fac035dec94bddb4,
       type: 2}
     weaponStats:
       physical: 40
@@ -468,7 +468,7 @@ MonoBehaviour:
     parryMultiplier: 1
     backstabMultiplier: 1
     LeftHandMirror: 1
-    modelPrefab: {fileID: 1740006022967212, guid: 00805e43e1b1ef04d95d7185e8882f0f,
+    modelPrefab: {fileID: 1744392677810390, guid: 00805e43e1b1ef04d95d7185e8882f0f,
       type: 2}
     weaponStats:
       physical: 0
