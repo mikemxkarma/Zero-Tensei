@@ -27,7 +27,7 @@ namespace GameControll
         public bool rt, rb, lt, lb;
         public bool rollInput;
         public bool itemInput;
-        
+
 
 
         [Header("Stats")]
@@ -280,12 +280,12 @@ namespace GameControll
                     isInvicible = false;
                 }
             }
-            if(characterStats._health <= 0)
+            if (characterStats._health <= 0)
             {
                 // Insert joint here
-                Debug.Log("You should be dead faggot!");   
+                Debug.Log("You should be dead faggot!");
                 transform.position = savepoint.transform.position;
-                transform.rotation = savepoint.transform.rotation;               
+                transform.rotation = savepoint.transform.rotation;
                 characterStats._health = characterStats.hp;
             }
         }
@@ -494,6 +494,13 @@ namespace GameControll
         public SpellCast_Loop spellCast_loop;
         public SpellCast_Stop spellCast_stop;
 
+        void EmptySpellCastDelegates()
+        {
+            spellCast_start = null;
+            spellCast_loop = null;
+            spellCast_stop = null;
+
+        }
         void HandleSpellcasting()
         {
             if (curSpellType == SpellType.looping)
@@ -514,6 +521,8 @@ namespace GameControll
 
                     if (spellCast_stop != null)
                         spellCast_stop();
+
+                    EmptySpellCastDelegates();
 
                     return;
                 }
@@ -859,7 +868,7 @@ namespace GameControll
             {
                 string targetAnim = w.oh_idle;
                 targetAnim += (isRight) ? StaticStrings._r : StaticStrings._l;
-                anim.Play(StaticStrings.equipWeapon_oh);
+                anim.CrossFade(targetAnim, 0.2f);
                 //anim.Play(StaticStrings.emptyBoth);
                 actionManager.UpdateActionsOneHanded();
 

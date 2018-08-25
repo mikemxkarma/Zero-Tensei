@@ -8,7 +8,7 @@ namespace GameControll
 
     public class ActionManager : MonoBehaviour
     {
-        
+
         public List<Action> actionSlot = new List<Action>();
         public int actionIndex;
         public ItemAction consumableItem;
@@ -47,7 +47,8 @@ namespace GameControll
             for (int i = 0; i < w.two_handedActions.Count; i++)
             {
                 Action a = StaticFunctions.GetAction(w.two_handedActions[i].input, actionSlot);
-                a.steps = w.two_handedActions[i].steps;
+                a.targetAnimation = w.two_handedActions[i].targetAnimation;
+                StaticFunctions.DeepCopyStepsList(w.two_handedActions[i], a);
                 a.type = w.two_handedActions[i].type;
             }
         }
@@ -141,17 +142,17 @@ namespace GameControll
         {
             if (steps == null || steps.Count == 0)
             {
-                if (defaultStep == null)
-                {
-                    defaultStep = new ActionSteps();
-                    defaultStep.branches = new List<ActionAnim>();
-                    ActionAnim aa = new ActionAnim();
-                    aa.input = input;
-                    aa.targetAnim = targetAnimation;
-                    defaultStep.branches.Add(aa);
-                }
+
+                defaultStep = new ActionSteps();
+                defaultStep.branches = new List<ActionAnim>();
+                ActionAnim aa = new ActionAnim();
+                aa.input = input;
+                aa.targetAnim = targetAnimation;
+                defaultStep.branches.Add(aa);
+
                 return defaultStep;
             }
+
 
             if (index > steps.Count - 1)
                 index = 0;

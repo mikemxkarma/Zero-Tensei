@@ -22,6 +22,8 @@ MonoBehaviour:
       targetAnimation: fireball_start
       throwAnimation: throw
       castTime: 1
+      manaCost: 5
+      staminaCost: 0
     projectile: {fileID: 1822851688747178, guid: 3a3012d0ee8c45842bde35f4ca3042c6,
       type: 2}
     particle_prefab: {fileID: 1819081214966656, guid: f336baebf7e9f714fbc11cc37ea792d3,
@@ -37,6 +39,8 @@ MonoBehaviour:
       targetAnimation: hold_spell_start
       throwAnimation: 
       castTime: 1
+      manaCost: 0
+      staminaCost: 0
     projectile: {fileID: 0}
     particle_prefab: {fileID: 1884404874469692, guid: eef60611cf317f64591f5fe81a3d9d73,
       type: 2}
@@ -51,6 +55,8 @@ MonoBehaviour:
       targetAnimation: hold_spell_start
       throwAnimation: 
       castTime: 1
+      manaCost: 0
+      staminaCost: 0
     projectile: {fileID: 0}
     particle_prefab: {fileID: 1497246781728562, guid: 688aaf1bb16db4e4d8297315f48df621,
       type: 2}

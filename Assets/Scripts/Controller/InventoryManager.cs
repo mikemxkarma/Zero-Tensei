@@ -273,6 +273,9 @@ namespace GameControll
         /// <param name="isLeft"> true :: left hand</param>
         public void ChangeToNextWeapon(bool isLeft)
         {
+            states.isTwoHanded = false;
+            states.HandlerTwoHanded();
+
             if (isLeft)
             {
                 if (l_index < r_lh_weapons.Count - 1)
