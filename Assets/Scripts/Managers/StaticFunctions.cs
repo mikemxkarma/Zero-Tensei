@@ -36,9 +36,6 @@ namespace GameControll
             to.l_model_equiped_eulers = from.l_model_equiped_eulers;
 
             to.model_scale = from.model_scale;
-
-            to.weaponStats = new WeaponStats();
-            DeepCopyWeaponStats(from.weaponStats, to.weaponStats);
         }
         public static void DeepCopyActionToAction(Action action, Action w_action)
         {

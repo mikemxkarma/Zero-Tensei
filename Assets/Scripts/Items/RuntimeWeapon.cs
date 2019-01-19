@@ -8,5 +8,6 @@ namespace GameControll
         public Weapon instance;
         public GameObject weapon_Model;
         public WeaponHook weapon_Hook;
+        public WeaponStats weapon_Stats;
     }
 }

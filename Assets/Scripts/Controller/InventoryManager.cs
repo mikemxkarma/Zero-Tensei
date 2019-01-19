@@ -239,6 +239,9 @@ namespace GameControll
 
             inst.instance = new Weapon();
             StaticFunctions.DeepCopyWeapon(w, inst.instance);
+            
+            inst.weapon_Stats = new WeaponStats();
+           // StaticFunctions.DeepCopyWeapon(w, inst.weapon_Stats);
 
             inst.weapon_Model = Instantiate(inst.instance.modelPrefab);
             Transform p = states.anim.GetBoneTransform((isLeft) ? HumanBodyBones.LeftHand : HumanBodyBones.RightHand);
@@ -372,7 +375,6 @@ namespace GameControll
         public bool LeftHandMirror;
 
         public GameObject modelPrefab;
-        public WeaponStats weaponStats;
 
         public Vector3 r_model_equiped_pos;
         public Vector3 l_model_equiped_pos;
@@ -406,6 +408,17 @@ namespace GameControll
 
             return null;
         }
+    }
+    [System.Serializable]
+    public class Consumable : Item
+    {
+        public string consumableEffect;
+        public string targetAnim;
+
+        public GameObject itemPrefab;
+        public Vector3 r_model_pos;
+        public Vector3 r_model_eulers;
+        public Vector3 model_scale;
     }
 
 }

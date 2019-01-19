@@ -8,6 +8,8 @@ namespace GameControll
     {
         Dictionary<string, int> spell_ids = new Dictionary<string, int>();
         Dictionary<string, int> item_ids = new Dictionary<string, int>();
+        Dictionary<string,int>weaponStats_ids = new Dictionary<string, int>();
+        Dictionary<string, int> consumables_ids = new Dictionary<string, int>(); 
         public static ResourcesManager singleton;
 
         private void Awake()
@@ -15,6 +17,7 @@ namespace GameControll
             singleton = this;
             LoadWeaponIds();
             LoadSpellIds();
+            //LoadConsumables();
         }
         void LoadSpellIds()
         {
@@ -57,6 +60,38 @@ namespace GameControll
                     item_ids.Add(obj.wepons_all[i].itemName, i);
                 }
             }
+            for (int i = 0; i < obj.wepon_Stats.Count; i++)
+            {
+                if (weaponStats_ids.ContainsKey(obj.wepon_Stats[i].weaponId))
+                {
+                    Debug.Log(obj.wepon_Stats[i].weaponId + " is a duplicate");
+                }
+                else
+                {
+                    weaponStats_ids.Add(obj.wepon_Stats[i].weaponId, i);
+                }
+            }
+        }
+        void LoadConsumables()
+        {
+            ConsumableScriptableObject obj = Resources.Load("GameControll.ConsumableScriptableObject") as ConsumableScriptableObject;
+            if (obj == null)
+            {
+                Debug.Log("GameControll.ConsumableScriptableObject couldnt be loaded!");
+                return;
+            }
+
+            for (int i = 0; i < obj.consumables.Count; i++)
+            {
+                if (consumables_ids.ContainsKey(obj.consumables[i].itemName))
+                {
+                    Debug.Log(obj.consumables[i].itemName + " item is a duplicate");
+                }
+                else
+                {
+                    consumables_ids.Add(obj.consumables[i].itemName, i);
+                }
+            }
         }
         int GetWeaponIdFromString(string id)
         {
@@ -79,6 +114,34 @@ namespace GameControll
                 return null;
 
             return obj.wepons_all[index];
+        }
+        int GetWeaponStatsIdFromString(string id)
+        {
+            int index = -1;
+            if (weaponStats_ids.TryGetValue(id, out index))
+            {
+                return index;
+            }
+
+            return -1;
+        }
+        
+        public WeaponStats GetWeaponStats(string id)
+        {
+            WeaponScriptableObject obj = Resources.Load("GameControll.WeaponScriptableObject") as WeaponScriptableObject;
+
+            if (obj == null)
+            {
+                Debug.Log("GameControll.WeaponScriptableObject cant be loaded!");
+                return null;
+            }
+
+            int index = GetWeaponStatsIdFromString(id);
+
+            if (index == -1)
+                return null;
+
+            return obj.wepon_Stats[index];
         }
         int GetSpellIdFromString(string id)
         {
@@ -104,6 +167,33 @@ namespace GameControll
                 return null;
 
             return obj.spellItems_List[index];
+        }
+        //Consumables
+        int GetConsumableIdFromString(string id)
+        {
+            int index = -1;
+            if (consumables_ids.TryGetValue(id, out index))
+            {
+                return index;
+            }
+
+            return index;
+        }
+        public Consumable GetConsumable(string id)
+        {
+            ConsumableScriptableObject obj = Resources.Load("GameControll.ConsumableScriptableObject") as ConsumableScriptableObject;
+
+            if (obj == null)
+            {
+                Debug.Log("GameControll.ConsumableScriptableObject cant be loaded!");
+                return null;
+            }
+
+            int index = GetConsumableIdFromString(id);
+            if (index == -1)
+                return null;
+
+            return obj.consumables[index];
         }
     }
 }
