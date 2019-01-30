@@ -15,8 +15,8 @@ public class BoolHelper : StateMachineBehaviour {
 	}
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(resetOnExit)
-        animator.SetBool(boolName, !status);
-       // base.OnStateExit(animator, stateInfo, layerIndex);
+	    if (resetOnExit)
+		    animator.SetBool(boolName, !status);
+	    // base.OnStateExit(animator, stateInfo, layerIndex);
     }
 }

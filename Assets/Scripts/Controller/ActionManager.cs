@@ -25,9 +25,15 @@ namespace GameControll
         {
             EmptyAllSlots();
 
-            StaticFunctions.DeepCopyAction(states.inventoryManager.rightHandWeapon.instance, ActionInput.rb, ActionInput.rb, actionSlot);
-            StaticFunctions.DeepCopyAction(states.inventoryManager.rightHandWeapon.instance, ActionInput.rt, ActionInput.rt, actionSlot);
+            if (states.inventoryManager.rightHandWeapon != null)
+            {
+                StaticFunctions.DeepCopyAction(states.inventoryManager.rightHandWeapon.instance, ActionInput.rb, ActionInput.rb, actionSlot);
+                StaticFunctions.DeepCopyAction(states.inventoryManager.rightHandWeapon.instance, ActionInput.rt, ActionInput.rt, actionSlot);
+            }
 
+            if (states.inventoryManager.leftHandWeapon == null)
+                return;
+            
             if (states.inventoryManager.hasLeftHandWeapon)
             {
                 StaticFunctions.DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.rb, ActionInput.lb, actionSlot, true);
@@ -35,19 +41,23 @@ namespace GameControll
             }
             else
             {
-                StaticFunctions.DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.lb, ActionInput.lb, actionSlot);
-                StaticFunctions.DeepCopyAction(states.inventoryManager.leftHandWeapon.instance, ActionInput.lt, ActionInput.lt, actionSlot);
+                StaticFunctions.DeepCopyAction(states.inventoryManager.rightHandWeapon.instance, ActionInput.lb, ActionInput.lb, actionSlot);
+                StaticFunctions.DeepCopyAction(states.inventoryManager.rightHandWeapon.instance, ActionInput.lt, ActionInput.lt, actionSlot);
             }
         }
 
         public void UpdateActionsTwoHanded()
         {
             EmptyAllSlots();
+            
+            if (states.inventoryManager.rightHandWeapon == null)
+                return;
             Weapon w = states.inventoryManager.rightHandWeapon.instance;
+            
             for (int i = 0; i < w.two_handedActions.Count; i++)
             {
-                Action a = StaticFunctions.GetAction(w.two_handedActions[i].input, actionSlot);
-                a.targetAnimation = w.two_handedActions[i].targetAnimation;
+                Action a = StaticFunctions.GetAction(w.two_handedActions[i].GetFirstInput(), actionSlot);
+                a.firstStep.targetAnim = w.two_handedActions[i].firstStep.targetAnim;
                 StaticFunctions.DeepCopyStepsList(w.two_handedActions[i], a);
                 a.type = w.two_handedActions[i].type;
             }
@@ -55,23 +65,29 @@ namespace GameControll
 
         void EmptyAllSlots()
         {
+            
             for (int i = 0; i < 4; i++)
             {
+                
+                            
+            
                 Action a = StaticFunctions.GetAction((ActionInput)i, actionSlot);
-                a.steps = null;
+                if (a == null)
+                {
+                    Debug.Log(((ActionInput)i).ToString());
+                    return;
+                }
+
+                //a.firstStep = null;
+                a.comboSteps = null;
                 a.mirror = false;
                 a.type = ActionType.attack;
             }
-        }
 
-        ActionManager()
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                Action a = new Action();
-                a.input = (ActionInput)i;
-                actionSlot.Add(a);
-            }
+            StaticFunctions.DeepCopyAction(states.inventoryManager.unarmedRuntime.instance, ActionInput.rb,ActionInput.rb, actionSlot);
+            StaticFunctions.DeepCopyAction(states.inventoryManager.unarmedRuntime.instance, ActionInput.rt, ActionInput.rt, actionSlot);
+            StaticFunctions.DeepCopyAction(states.inventoryManager.unarmedRuntime.instance, ActionInput.rb, ActionInput.lb, actionSlot, true);
+            StaticFunctions.DeepCopyAction(states.inventoryManager.unarmedRuntime.instance, ActionInput.rt,ActionInput.lt, actionSlot, true);
         }
 
         public Action GetActionSlot(StateManager st)
@@ -84,7 +100,10 @@ namespace GameControll
         {
             return StaticFunctions.GetAction(a_input, actionSlot);
         }
-
+        public bool IsLeftHandSlot(Action slot)
+        {
+            return (slot.GetFirstInput() == ActionInput.lb || slot.GetFirstInput() == ActionInput.lt);
+        }
         public ActionInput GetActionInput(StateManager st)
         {
 
@@ -122,11 +141,10 @@ namespace GameControll
     [System.Serializable]
     public class Action
     {
-        public ActionInput input;
         public ActionType type;
         public SpellClass spellClass;
-        public string targetAnimation;
-        public List<ActionSteps> steps;
+        public ActionAnim firstStep;
+        public List<ActionAnim> comboSteps;
         public bool mirror = false;
         public bool canBeParried = true;
         public bool changeSpeed = false;
@@ -136,33 +154,34 @@ namespace GameControll
         public float staminaCost = 5;
         public int manaCost = 0;
 
-        ActionSteps defaultStep;
-
-        public ActionSteps GetActionStep(ref int index)
+        public ActionInput GetFirstInput()
         {
-            if (steps == null || steps.Count == 0)
+            if (firstStep == null)
+                firstStep = new ActionAnim();
+
+            return firstStep.input;
+        }
+
+        public ActionAnim GetActionStep(ref int index)
+        {
+            if (index == 0)
             {
-
-                defaultStep = new ActionSteps();
-                defaultStep.branches = new List<ActionAnim>();
-                ActionAnim aa = new ActionAnim();
-                aa.input = input;
-                aa.targetAnim = targetAnimation;
-                defaultStep.branches.Add(aa);
-
-                return defaultStep;
+                if (comboSteps.Count == 0)
+                {
+                    index = 0;
+                }
+                else
+                {
+                    index++;
+                }
+                return firstStep;
             }
 
-
-            if (index > steps.Count - 1)
+            ActionAnim retVal = comboSteps[index-1];
+            index++;
+            if (index > comboSteps.Count - 1)
                 index = 0;
-            ActionSteps retVal = steps[index];
-
-            if (index > steps.Count - 1)
-                index = 0;
-            else
-                index++;
-
+            
             return retVal;
         }
 

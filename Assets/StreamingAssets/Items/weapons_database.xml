@@ -1,4 +1,4 @@
-<?xml version = "1.0" encoding = "UTF-8" ?><root><weapon>
+<?xml version = "1.0" encoding = "UTF-8" ?><root><weapon>
 <itemName>sword</itemName>
 <itemDescription>basic sword</itemDescription>
 <oh_idle>oh_idle</oh_idle>

@@ -17,7 +17,7 @@ namespace GameControll
             singleton = this;
             LoadWeaponIds();
             LoadSpellIds();
-            //LoadConsumables();
+            LoadConsumables();
         }
         void LoadSpellIds()
         {

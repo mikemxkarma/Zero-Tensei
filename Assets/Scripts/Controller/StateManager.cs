@@ -80,8 +80,8 @@ namespace GameControll
         public ActionManager actionManager;
         [HideInInspector]
         public InventoryManager inventoryManager;
-        //[HideInInspector]
-        //public BoneHelper boneHelper;
+        [HideInInspector]
+        public BoolHelper boolHelper;
 
         [HideInInspector]
         public float delta;
@@ -108,7 +108,7 @@ namespace GameControll
             rigidBody.drag = 4;
             rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
-            //boneHelper = gameObject.AddComponent<BoneHelper>();
+            //boolHelper = gameObject.AddComponent<BoolHelper>();
 
             inventoryManager = GetComponent<InventoryManager>();
             inventoryManager.Init(this);
@@ -384,7 +384,7 @@ namespace GameControll
             string targetAnimation = null;
             targetAnimation =
                 slot.GetActionStep(ref actionManager.actionIndex)
-                .GetBranch(storeActionInput).targetAnim;
+                .targetAnim;
 
             Debug.Log(storeActionInput);
 
@@ -415,7 +415,7 @@ namespace GameControll
 
         bool IsLeftHandSlot(Action slot)
         {
-            return (slot.input == ActionInput.lb || slot.input == ActionInput.lt);
+            return (slot.GetFirstInput() == ActionInput.lb || slot.GetFirstInput() == ActionInput.lt);
         }
 
         void SpellAction(Action slot)
@@ -715,7 +715,7 @@ namespace GameControll
 
                 block_idle_anim += (isLeftHand) ? "_l" : "_r";
 
-                string targetAnim = slot.targetAnimation;
+                string targetAnim = slot.firstStep.targetAnim;
                 targetAnim += (isLeftHand) ? "_l" : "_r";
                 anim.CrossFade(targetAnim, 0.1f);
                 blockAnim = true;
@@ -728,7 +728,7 @@ namespace GameControll
 
             targetAnimation =
                 slot.GetActionStep(ref actionManager.actionIndex)
-                .GetBranch(storeActionInput).targetAnim;
+                    .targetAnim;
 
             if (string.IsNullOrEmpty(targetAnimation))
                 return;
@@ -745,6 +745,7 @@ namespace GameControll
             canBeParried = slot.canBeParried;
             onEmpty = false;
             canMove = false;
+            canAttack = false;
             inAction = true;
             anim.SetBool(StaticStrings.mirror, slot.mirror);
             anim.CrossFade(targetAnimation, 0.2f);

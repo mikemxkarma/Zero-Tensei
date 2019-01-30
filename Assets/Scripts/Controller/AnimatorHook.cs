@@ -116,13 +116,13 @@ namespace GameControll
                 }
 
                 Vector3 v = (delta2 * rm_multi) / delta;
-                //v += Physics.gravity;
+                
 
                 if (states)
                 {
                     if (!states.onGround)
-                        // v += Physics.gravity;
-                        v.y = rigid.velocity.y;
+                        v += Physics.gravity;
+                        
                 }
 
                 if (eStates)
@@ -153,8 +153,8 @@ namespace GameControll
                 Vector3 v2 = (relative * rm_multi);
 
                 if (!states.onGround)
-                    // v2 += Physics.gravity;
-                    v2.y = rigid.velocity.y;
+                    v2 += Physics.gravity;
+                    
 
                 rigid.velocity = v2;
             }

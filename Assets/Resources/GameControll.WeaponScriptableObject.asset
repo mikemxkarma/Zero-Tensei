@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -18,11 +18,12 @@ MonoBehaviour:
     oh_idle: oh_idle
     th_idle: th_idle
     actions:
-    - input: 0
-      type: 0
+    - type: 0
       spellClass: 0
-      targetAnimation: oh_attack_1
-      steps: []
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -35,11 +36,12 @@ MonoBehaviour:
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-    - input: 2
-      type: 0
+    - type: 0
       spellClass: 0
-      targetAnimation: oh_attack_2
-      steps: []
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -53,11 +55,12 @@ MonoBehaviour:
       overrideDamageAnim: 1
       damageAnim: damage_3
     two_handedActions:
-    - input: 0
-      type: 0
+    - type: 0
       spellClass: 0
-      targetAnimation: oh_attack_1
-      steps: []
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -70,11 +73,12 @@ MonoBehaviour:
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-    - input: 2
-      type: 0
+    - type: 0
       spellClass: 0
-      targetAnimation: oh_attack_2
-      steps: []
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -92,15 +96,6 @@ MonoBehaviour:
     LeftHandMirror: 1
     modelPrefab: {fileID: 1235637399240190, guid: 239e10bc07707da4090153ed930b9861,
       type: 2}
-    weaponStats:
-      physical: 40
-      strike: 0
-      slash: 0
-      thrust: 0
-      magic: 0
-      fire: 0
-      lighting: 0
-      dark: 0
     r_model_equiped_pos: {x: -0.061, y: 0.018, z: -0.056}
     l_model_equiped_pos: {x: -0.078, y: 0.007, z: 0.065}
     r_model_equiped_eulers: {x: 180.145, y: -82.35001, z: 129.621}
@@ -112,11 +107,12 @@ MonoBehaviour:
     oh_idle: oh_idle
     th_idle: th_idle
     actions:
-    - input: 0
-      type: 1
+    - type: 1
       spellClass: 0
-      targetAnimation: shield
-      steps: []
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -129,11 +125,12 @@ MonoBehaviour:
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-    - input: 2
-      type: 3
+    - type: 3
       spellClass: 0
-      targetAnimation: parry
-      steps: []
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -147,11 +144,12 @@ MonoBehaviour:
       overrideDamageAnim: 0
       damageAnim: 
     two_handedActions:
-    - input: 0
-      type: 1
+    - type: 1
       spellClass: 0
-      targetAnimation: shield
-      steps: []
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -164,11 +162,12 @@ MonoBehaviour:
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-    - input: 2
-      type: 0
+    - type: 0
       spellClass: 0
-      targetAnimation: parry
-      steps: []
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -186,15 +185,6 @@ MonoBehaviour:
     LeftHandMirror: 0
     modelPrefab: {fileID: 1221947274310874, guid: 5caf8bea08fd98042a42b4e38dfa1c23,
       type: 2}
-    weaponStats:
-      physical: 20
-      strike: 0
-      slash: 0
-      thrust: 0
-      magic: 20
-      fire: 20
-      lighting: 20
-      dark: 20
     r_model_equiped_pos: {x: 0, y: 0, z: 0}
     l_model_equiped_pos: {x: 0, y: 0, z: 0}
     r_model_equiped_eulers: {x: 0, y: 0, z: 0}
@@ -206,11 +196,12 @@ MonoBehaviour:
     oh_idle: oh_idle
     th_idle: th_idle
     actions:
-    - input: 0
-      type: 2
+    - type: 2
       spellClass: 0
-      targetAnimation: throw
-      steps: []
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -224,11 +215,12 @@ MonoBehaviour:
       overrideDamageAnim: 0
       damageAnim: 
     two_handedActions:
-    - input: 0
-      type: 1
+    - type: 1
       spellClass: 0
-      targetAnimation: 
-      steps: []
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -241,11 +233,12 @@ MonoBehaviour:
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-    - input: 2
-      type: 0
+    - type: 0
       spellClass: 0
-      targetAnimation: 
-      steps: []
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 0
       changeSpeed: 0
@@ -263,15 +256,6 @@ MonoBehaviour:
     LeftHandMirror: 1
     modelPrefab: {fileID: 1989430885407142, guid: c5e327c0d2fd7794bad2ecddf378767a,
       type: 2}
-    weaponStats:
-      physical: 0
-      strike: 0
-      slash: 0
-      thrust: 0
-      magic: 0
-      fire: 0
-      lighting: 0
-      dark: 0
     r_model_equiped_pos: {x: 0, y: 0, z: 0}
     l_model_equiped_pos: {x: 0, y: 0, z: 0}
     r_model_equiped_eulers: {x: 0, y: 0, z: 0}
@@ -283,11 +267,12 @@ MonoBehaviour:
     oh_idle: gs_oh_idle
     th_idle: gs_th_idle
     actions:
-    - input: 0
-      type: 0
+    - type: 0
       spellClass: 0
-      targetAnimation: gs_oh_attack_1
-      steps: []
+      firstStep:
+        input: 0
+        targetAnim: gs_oh_attack_1
+      comboSteps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -300,77 +285,12 @@ MonoBehaviour:
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-    - input: 2
-      type: 0
-      spellClass: 0
-      targetAnimation: 
-      steps:
-      - branches:
-        - input: 2
-          targetAnim: gs_th_to_pose
-        - input: 0
-          targetAnim: gs_attack_from_pose
-      mirror: 0
-      canBeParried: 1
-      changeSpeed: 0
-      animSpeed: 1
-      canParry: 1
-      canBackstab: 1
-      staminaCost: 5
-      manaCost: 0
-      parryMultiplier: 0
-      backstabMultiplier: 0
-      overrideDamageAnim: 0
-      damageAnim: damage_3
-    two_handedActions:
-    - input: 0
-      type: 0
-      spellClass: 0
-      targetAnimation: gs_th_attack_1
-      steps: []
-      mirror: 0
-      canBeParried: 1
-      changeSpeed: 0
-      animSpeed: 0
-      canParry: 0
-      canBackstab: 1
-      staminaCost: 40
-      manaCost: 0
-      parryMultiplier: 0
-      backstabMultiplier: 0
-      overrideDamageAnim: 0
-      damageAnim: 
-    - input: 2
-      type: 0
-      spellClass: 0
-      targetAnimation: gs_th_attack_1
-      steps: []
-      mirror: 0
-      canBeParried: 1
-      changeSpeed: 0
-      animSpeed: 0
-      canParry: 0
-      canBackstab: 0
-      staminaCost: 50
-      manaCost: 0
-      parryMultiplier: 0
-      backstabMultiplier: 0
-      overrideDamageAnim: 1
-      damageAnim: damage_3
+    two_handedActions: []
     parryMultiplier: 1
     backstabMultiplier: 1
     LeftHandMirror: 1
     modelPrefab: {fileID: 1535703425497528, guid: 712b3a72db1fdd94fac035dec94bddb4,
       type: 2}
-    weaponStats:
-      physical: 40
-      strike: 30
-      slash: 20
-      thrust: 20
-      magic: 0
-      fire: 0
-      lighting: 0
-      dark: 0
     r_model_equiped_pos: {x: -0.073, y: -0.133, z: 0.109}
     l_model_equiped_pos: {x: 0.022, y: -0.216, z: -0.167}
     r_model_equiped_eulers: {x: -201.972, y: 56.604, z: 129.248}
@@ -382,19 +302,12 @@ MonoBehaviour:
     oh_idle: oh_idle
     th_idle: th_idle
     actions:
-    - input: 0
-      type: 0
+    - type: 0
       spellClass: 0
-      targetAnimation: 
-      steps:
-      - branches:
-        - input: 0
-          targetAnim: rap_oh_attack_1
-      - branches:
-        - input: 0
-          targetAnim: rap_oh_attack_2
-        - input: 2
-          targetAnim: rap_oh_attack_3
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -407,11 +320,12 @@ MonoBehaviour:
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-    - input: 2
-      type: 0
+    - type: 0
       spellClass: 0
-      targetAnimation: 
-      steps: []
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -425,17 +339,12 @@ MonoBehaviour:
       overrideDamageAnim: 0
       damageAnim: 
     two_handedActions:
-    - input: 0
-      type: 0
+    - type: 0
       spellClass: 0
-      targetAnimation: 
-      steps:
-      - branches:
-        - input: 0
-          targetAnim: rap_oh_attack_1
-      - branches:
-        - input: 0
-          targetAnim: rap_oh_attack_2
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -448,11 +357,12 @@ MonoBehaviour:
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-    - input: 2
-      type: 0
+    - type: 0
       spellClass: 0
-      targetAnimation: 
-      steps: []
+      firstStep:
+        input: 0
+        targetAnim: 
+      comboSteps: []
       mirror: 0
       canBeParried: 1
       changeSpeed: 0
@@ -470,17 +380,98 @@ MonoBehaviour:
     LeftHandMirror: 1
     modelPrefab: {fileID: 1744392677810390, guid: 00805e43e1b1ef04d95d7185e8882f0f,
       type: 2}
-    weaponStats:
-      physical: 0
-      strike: 0
-      slash: 0
-      thrust: 0
-      magic: 0
-      fire: 0
-      lighting: 0
-      dark: 0
     r_model_equiped_pos: {x: -0.0674, y: 0.0556, z: -0.0934}
     l_model_equiped_pos: {x: -0.043, y: 0.061, z: 0.104}
     r_model_equiped_eulers: {x: -15.464, y: -117.769, z: 231.964}
     l_model_equiped_eulers: {x: -15.963, y: -63.398, z: 124.662}
     model_scale: {x: 0.7013404, y: 0.7013404, z: 0.7013404}
+  - itemName: unarmed
+    itemDescription: 
+    icon: {fileID: 21300000, guid: b2fbd13b4d1ea954382e6d021231bf04, type: 3}
+    oh_idle: empty
+    th_idle: Empty Both
+    actions:
+    - type: 0
+      spellClass: 0
+      firstStep:
+        input: 0
+        targetAnim: punch 1
+      comboSteps: []
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 1
+      canParry: 1
+      canBackstab: 0
+      staminaCost: 10
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    - type: 0
+      spellClass: 0
+      firstStep:
+        input: 2
+        targetAnim: kick 1
+      comboSteps: []
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 1
+      canParry: 1
+      canBackstab: 1
+      staminaCost: 10
+      manaCost: 5
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: attack_interrupt
+    two_handedActions:
+    - type: 0
+      spellClass: 0
+      firstStep:
+        input: 0
+        targetAnim: punch 1
+      comboSteps: []
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 0
+      staminaCost: 0
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    parryMultiplier: 1
+    backstabMultiplier: 1
+    LeftHandMirror: 1
+    modelPrefab: {fileID: 1761767580271928, guid: 0f849b64b6689f64e9ce7c8fb2c55290,
+      type: 2}
+    r_model_equiped_pos: {x: 0, y: 0, z: 0}
+    l_model_equiped_pos: {x: 0, y: 0, z: 0}
+    r_model_equiped_eulers: {x: -0, y: 0, z: 0}
+    l_model_equiped_eulers: {x: -0, y: 0, z: 0}
+    model_scale: {x: 1, y: 1, z: 1}
+  wepon_Stats:
+  - weaponId: unarmed
+    physical: 1
+    strike: 0
+    slash: 0
+    thrust: 0
+    magic: 0
+    fire: 0
+    lighting: 0
+    dark: 0
+  - weaponId: twoHandedSword
+    physical: 50
+    strike: 0
+    slash: 0
+    thrust: 0
+    magic: 0
+    fire: 0
+    lighting: 0
+    dark: 0

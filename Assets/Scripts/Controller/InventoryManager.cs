@@ -7,19 +7,25 @@ namespace GameControll
 
     public class InventoryManager : MonoBehaviour
     {
+        
+        public string unarmedId = "unarmed";
+        public RuntimeWeapon unarmedRuntime;
+        
         public List<string> rh_weapons;
         public List<string> lh_weapons;
         public List<string> spell_items;
-        public WeaponHider UnequipedWeapons;
+        public List<string> consumable_items;
 
         public int r_index;
         public int l_index;
         public int s_index;
+        public int c_index;
         List<RuntimeWeapon> r_rh_weapons = new List<RuntimeWeapon>();
         List<RuntimeWeapon> r_lh_weapons = new List<RuntimeWeapon>();
         List<RuntimeSpellItems> r_spells = new List<RuntimeSpellItems>();
+        List<RuntimeConsumable> r_consum = new List<RuntimeConsumable>();
 
-
+        public RuntimeConsumable currentConsumable;
         public RuntimeSpellItems currentSpell;
         public RuntimeWeapon rightHandWeapon;
         public bool hasLeftHandWeapon = true;
@@ -47,17 +53,23 @@ namespace GameControll
 
         public void LoadInventory()
         {
+            unarmedRuntime = WeaponToRuntimeWeapon(
+                ResourcesManager.singleton.GetWeapon(unarmedId), false);
+            
             for (int i = 0; i < rh_weapons.Count; i++)
             {
-                WeaponToRuntimeWeapon(
+                RuntimeWeapon rw =  WeaponToRuntimeWeapon(
                     ResourcesManager.singleton.GetWeapon(rh_weapons[i])
-                    );
+                );
+                r_rh_weapons.Add(rw);
             }
             for (int i = 0; i < lh_weapons.Count; i++)
             {
-                WeaponToRuntimeWeapon(
+                RuntimeWeapon rw = WeaponToRuntimeWeapon(
                     ResourcesManager.singleton.GetWeapon(lh_weapons[i])
                     , true);
+
+                r_lh_weapons.Add(rw);
             }
 
             if (r_rh_weapons.Count > 0)
@@ -98,6 +110,22 @@ namespace GameControll
 
                 EquipSpell(r_spells[s_index]);
             }
+            for (int i = 0; i < consumable_items.Count; i++)
+            {
+                RuntimeConsumable c = ConsumableToRuntime(
+                    ResourcesManager.singleton.GetConsumable(consumable_items[i])
+                );
+
+                r_consum.Add(c);
+            }
+
+            if(r_consum.Count > 0)
+            {
+                if (c_index > r_consum.Count - 1)
+                    c_index = 0;
+
+                EquipConsumable(r_consum[c_index]);
+            }
 
             InitAllDamageColliders(states);
             CloseAllDamageColliders();
@@ -110,8 +138,6 @@ namespace GameControll
                 if (leftHandWeapon != null)
                 {
                    leftHandWeapon.weapon_Model.SetActive(false);
-                  //  leftHandWeapon.weapon_Model.transform.localPosition = leftHandWeapon.instance.l_model_unequiped_pos;
-                   // leftHandWeapon.weapon_Model.transform.localEulerAngles = leftHandWeapon.instance.l_model_unequiped_eulers;
                 }
                 leftHandWeapon = w;
             }
@@ -120,8 +146,6 @@ namespace GameControll
                 if (rightHandWeapon != null)
                 {
                     rightHandWeapon.weapon_Model.SetActive(false);
-                  //  rightHandWeapon.weapon_Model.transform.localPosition = rightHandWeapon.instance.r_model_unequiped_pos;
-                   // rightHandWeapon.weapon_Model.transform.localEulerAngles = rightHandWeapon.instance.r_model_unequiped_eulers;
                 }
                 rightHandWeapon = w;
             }
@@ -148,6 +172,13 @@ namespace GameControll
 
             uiSlot.UpdateSlot(UI.QSlotType.spell, spell.instance.icon);
         }
+        public void EquipConsumable(RuntimeConsumable consum)
+        {
+            currentConsumable = consum;
+
+            UI.QuickSlot uiSlot = UI.QuickSlot.singleton;
+            uiSlot.UpdateSlot(UI.QSlotType.item, consum.inst.icon);
+        }
 
         public Weapon GetCurrentWeapon(bool isLeft)
         {
@@ -159,29 +190,47 @@ namespace GameControll
 
         public void OpenAllDamageColliders()
         {
-            if (rightHandWeapon.weapon_Hook != null)
-                rightHandWeapon.weapon_Hook.OpenDamageColliders();
-
-            if (leftHandWeapon.weapon_Hook != null)
-                leftHandWeapon.weapon_Hook.OpenDamageColliders();
+            if (rightHandWeapon != null)
+            {
+                if (rightHandWeapon.weapon_Hook != null)
+                    rightHandWeapon.weapon_Hook.OpenDamageColliders();
+            }
+            if (leftHandWeapon != null)
+            {
+                if (leftHandWeapon.weapon_Hook != null)
+                    leftHandWeapon.weapon_Hook.OpenDamageColliders();
+            }
         }
 
         public void CloseAllDamageColliders()
         {
-            if (rightHandWeapon.weapon_Hook != null)
-                rightHandWeapon.weapon_Hook.CloseDamageColliders();
+            if (rightHandWeapon != null)
+            {
+                if (rightHandWeapon.weapon_Hook != null)
+                    rightHandWeapon.weapon_Hook.CloseDamageColliders();
+            }
 
-            if (leftHandWeapon.weapon_Hook != null)
-                leftHandWeapon.weapon_Hook.CloseDamageColliders();
+            if (leftHandWeapon != null)
+            {
+                if (leftHandWeapon.weapon_Hook != null)
+                    leftHandWeapon.weapon_Hook.CloseDamageColliders();
+            }
         }
 
         public void InitAllDamageColliders(StateManager states)
         {
-            if (rightHandWeapon.weapon_Hook != null)
-                rightHandWeapon.weapon_Hook.InitDamageColliders(states);
+            if (rightHandWeapon != null)
+            {
+                if (rightHandWeapon.weapon_Hook != null)
+                    rightHandWeapon.weapon_Hook.InitDamageColliders(states);
+            }
 
-            if (leftHandWeapon.weapon_Hook != null)
-                leftHandWeapon.weapon_Hook.InitDamageColliders(states);
+
+            if (leftHandWeapon != null)
+            {
+                if (leftHandWeapon.weapon_Hook != null)
+                    leftHandWeapon.weapon_Hook.InitDamageColliders(states);
+            }
         }
 
         public void OpenParryCollider()
@@ -236,16 +285,22 @@ namespace GameControll
             GameObject go = new GameObject();
             RuntimeWeapon inst = go.AddComponent<RuntimeWeapon>();
             go.name = w.itemName;
+            Debug.Log(go.name);
 
             inst.instance = new Weapon();
             StaticFunctions.DeepCopyWeapon(w, inst.instance);
             
             inst.weapon_Stats = new WeaponStats();
-           // StaticFunctions.DeepCopyWeapon(w, inst.weapon_Stats);
+            WeaponStats w_stats = ResourcesManager.singleton.GetWeaponStats(w.itemName);
+            StaticFunctions.DeepCopyWeaponStats(w_stats, inst.weapon_Stats);
 
-            inst.weapon_Model = Instantiate(inst.instance.modelPrefab);
-            Transform p = states.anim.GetBoneTransform((isLeft) ? HumanBodyBones.LeftHand : HumanBodyBones.RightHand);
-            inst.weapon_Model.transform.parent = p;
+            if (inst != null)
+            {
+                inst.weapon_Model = Instantiate(inst.instance.modelPrefab) as GameObject;
+                            Transform p = states.anim.GetBoneTransform((isLeft) ? HumanBodyBones.LeftHand : HumanBodyBones.RightHand);
+                            inst.weapon_Model.transform.parent = p;
+            }
+            
 
             inst.weapon_Model.transform.localPosition =
                 (isLeft) ? inst.instance.l_model_equiped_pos : inst.instance.r_model_equiped_pos;
@@ -257,19 +312,37 @@ namespace GameControll
             inst.weapon_Hook = inst.weapon_Model.GetComponentInChildren<WeaponHook>();
             inst.weapon_Hook.InitDamageColliders(states);
 
-            if (isLeft)
-            {
-                r_lh_weapons.Add(inst);
-            }
-            else
-            {
-                r_rh_weapons.Add(inst);
-            }
-
             inst.weapon_Model.SetActive(false);
             return inst;
         }
+        public RuntimeConsumable ConsumableToRuntime(Consumable c)
+        {
+            GameObject go = new GameObject();
+            RuntimeConsumable inst = go.AddComponent<RuntimeConsumable>();
+            go.name = c.itemName;
 
+            inst.inst = new Consumable();
+            StaticFunctions.DeepCopyConsumable(ref inst.inst, c);
+
+            if(inst.inst.itemPrefab != null)
+            {
+                GameObject model = Instantiate(inst.inst.itemPrefab) as GameObject;
+                Transform p = states.anim.GetBoneTransform(HumanBodyBones.RightHand);
+                model.transform.parent = p;
+                model.transform.localPosition = inst.inst.r_model_pos;
+                model.transform.localEulerAngles = inst.inst.r_model_eulers;
+
+                Vector3 targetScale = inst.inst.model_scale;
+                if (targetScale == Vector3.zero)
+                    targetScale = Vector3.one;
+                model.transform.localScale = targetScale;
+
+                inst.itemModel = model;
+                inst.itemModel.SetActive(false);
+            }
+
+            return inst;
+        }
         /// <summary>
         /// Changes to the next weapon in the equiped weapons
         /// </summary>
@@ -351,7 +424,7 @@ namespace GameControll
 
             for (int i = 0; i < l.Count; i++)
             {
-                if (l[i].input == inp)
+                if (l[i].GetFirstInput() == inp)
                 {
                     return l[i];
                 }
