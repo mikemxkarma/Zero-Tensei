@@ -74,7 +74,7 @@ namespace GameControll
     public class Atributes
     {
         public int level = 1;
-        public int cells = 0;
+        public int fame = 0;
         public int vigor = 11;
         public int attunemnt = 11;
         public int vitality = 11;

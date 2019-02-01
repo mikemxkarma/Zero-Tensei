@@ -83,8 +83,7 @@ namespace GameControll
                 Debug.Log("no weapon action found");
                 return;
             }
-            //to.firstStep = new ActionAnim();
-            //to.firstStep.input = from.firstStep.input;
+
             to.firstStep.targetAnim = from.firstStep.targetAnim;
             to.comboSteps = new List<ActionAnim>();
             DeepCopyStepsList(from, to);

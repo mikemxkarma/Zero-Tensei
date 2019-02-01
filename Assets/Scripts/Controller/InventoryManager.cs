@@ -175,8 +175,9 @@ namespace GameControll
         public void EquipConsumable(RuntimeConsumable consum)
         {
             currentConsumable = consum;
-
             UI.QuickSlot uiSlot = UI.QuickSlot.singleton;
+
+            
             uiSlot.UpdateSlot(UI.QSlotType.item, consum.inst.icon);
         }
 
@@ -354,6 +355,8 @@ namespace GameControll
 
             if (isLeft)
             {
+                if (r_lh_weapons.Count == 0)
+                    return;
                 if (l_index < r_lh_weapons.Count - 1)
                     l_index++;
                 else
@@ -363,6 +366,8 @@ namespace GameControll
             }
             else
             {
+                if (r_rh_weapons.Count == 0)
+                    return;
                 if (r_index < r_rh_weapons.Count - 1)
                     r_index++;
                 else
@@ -380,6 +385,15 @@ namespace GameControll
                 s_index = 0;
 
             EquipSpell(r_spells[s_index]);
+        }
+        public void ChangeToNextConsumable()
+        {
+            if (c_index < r_consum.Count - 1)
+                c_index++;
+            else
+                c_index = 0;
+
+            EquipConsumable(r_consum[c_index]);
         }
 
         #region Delegate Calls
@@ -413,29 +427,15 @@ namespace GameControll
     [System.Serializable]
     public class Item
     {
+        
         public string itemName;
         public string itemDescription;
         public Sprite icon;
-
-        public Action GetAction(List<Action> l, ActionInput inp)
-        {
-            if (l == null)
-                return null;
-
-            for (int i = 0; i < l.Count; i++)
-            {
-                if (l[i].GetFirstInput() == inp)
-                {
-                    return l[i];
-                }
-            }
-
-            return null;
-        }
+ 
     }
 
     [System.Serializable]
-    public class Weapon : Item
+    public class Weapon:Item
     {
         public string oh_idle;
         public string th_idle;
@@ -454,10 +454,26 @@ namespace GameControll
         public Vector3 r_model_equiped_eulers;
         public Vector3 l_model_equiped_eulers;
         public Vector3 model_scale;
+        public Action GetAction(List<Action> l, ActionInput inp)
+        {
+            if (l == null)
+                return null;
+
+            for (int i = 0; i < l.Count; i++)
+            {
+                if (l[i].GetFirstInput() == inp)
+                {
+                    return l[i];
+                }
+            }
+
+            return null;
+        }
+        
     }
 
     [System.Serializable]
-    public class Spell : Item
+    public class Spell:Item
     {
         public SpellType spellType;
         public SpellClass spellClass;
@@ -483,8 +499,9 @@ namespace GameControll
         }
     }
     [System.Serializable]
-    public class Consumable : Item
+    public class Consumable:Item
     {
+
         public string consumableEffect;
         public string targetAnim;
 

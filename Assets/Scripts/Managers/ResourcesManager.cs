@@ -5,11 +5,12 @@ using UnityEngine;
 namespace GameControll
 {
     public class ResourcesManager : MonoBehaviour
-    {
+    {      
         Dictionary<string, int> spell_ids = new Dictionary<string, int>();
         Dictionary<string, int> item_ids = new Dictionary<string, int>();
         Dictionary<string,int>weaponStats_ids = new Dictionary<string, int>();
         Dictionary<string, int> consumables_ids = new Dictionary<string, int>(); 
+        
         public static ResourcesManager singleton;
 
         private void Awake()
@@ -19,6 +20,7 @@ namespace GameControll
             LoadSpellIds();
             LoadConsumables();
         }
+        
         void LoadSpellIds()
         {
             SpellItemScriptableObject obj = Resources.Load("GameControll.SpellItemScriptableObject") as SpellItemScriptableObject;
@@ -93,6 +95,70 @@ namespace GameControll
                 }
             }
         }
+        /*
+        public List<Item> GetAllItemsFromList(List<string> l, ItemType t)
+        {
+            List<Item> r = new List<Item>();
+            for (int i = 0; i < l.Count; i++)
+            {
+                Item it = GetItem(l[i], t);
+                r.Add(it);
+            }
+
+            return r;
+        }*/
+        int GetIndexFromString(Dictionary<string,int> d, string id)
+        {
+            int index = -1;
+            d.TryGetValue(id, out index);
+            return index;
+        }
+        /*
+        public Item GetItem(string id, ItemType type)
+        {
+            ItemScriptableObject obj = Resources.Load("GameControll.ItemScriptableObject") as ItemScriptableObject;
+
+            if(obj == null)
+            {
+                Debug.Log("GameControll.ItemScriptableObject is null!");
+            }
+
+            Dictionary<string, int> d = null;
+            List<Item> l = null;
+ 
+            switch (type)
+            {
+                case ItemType.weapon:
+                    d = i_weapons;
+                    l = obj.weapon_items;
+                    break;
+                case ItemType.spell:
+                    d = i_spells;
+                    l = obj.spell_items;
+                    break;
+                case ItemType.consum:
+                    d = i_cons;
+                    l = obj.consumable_items;
+                    break;
+                case ItemType.equipment:
+                default:
+                    break;
+            }
+
+            if (d == null)
+                return null;
+            if (l == null)
+                return null;
+
+            int index = GetIndexFromString(d,id);
+            if (index == -1)
+                return null;
+
+            return l[index];
+        }
+
+        */
+        // Weapons
         int GetWeaponIdFromString(string id)
         {
             int index = -1;
@@ -195,6 +261,10 @@ namespace GameControll
 
             return obj.consumables[index];
         }
+    }
+    public enum ItemType
+    {
+        weapon, spell, consum, equipment
     }
 }
 

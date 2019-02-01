@@ -111,7 +111,7 @@ MonoBehaviour:
       spellClass: 0
       firstStep:
         input: 0
-        targetAnim: 
+        targetAnim: shield
       comboSteps: []
       mirror: 0
       canBeParried: 0
@@ -128,8 +128,8 @@ MonoBehaviour:
     - type: 3
       spellClass: 0
       firstStep:
-        input: 0
-        targetAnim: 
+        input: 2
+        targetAnim: parry
       comboSteps: []
       mirror: 0
       canBeParried: 0
@@ -285,11 +285,67 @@ MonoBehaviour:
       backstabMultiplier: 0
       overrideDamageAnim: 0
       damageAnim: 
-    two_handedActions: []
+    - type: 0
+      spellClass: 0
+      firstStep:
+        input: 2
+        targetAnim: gs_oh_attack_2
+      comboSteps: []
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 1
+      canParry: 1
+      canBackstab: 1
+      staminaCost: 30
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    two_handedActions:
+    - type: 0
+      spellClass: 0
+      firstStep:
+        input: 0
+        targetAnim: gs_th_attack_1
+      comboSteps: []
+      mirror: 0
+      canBeParried: 1
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 0
+      canBackstab: 0
+      staminaCost: 0
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
+    - type: 0
+      spellClass: 0
+      firstStep:
+        input: 2
+        targetAnim: gs_th_to_pose
+      comboSteps:
+      - input: 0
+        targetAnim: gs_attack_from_pose
+      mirror: 0
+      canBeParried: 0
+      changeSpeed: 0
+      animSpeed: 0
+      canParry: 1
+      canBackstab: 1
+      staminaCost: 0
+      manaCost: 0
+      parryMultiplier: 0
+      backstabMultiplier: 0
+      overrideDamageAnim: 0
+      damageAnim: 
     parryMultiplier: 1
     backstabMultiplier: 1
     LeftHandMirror: 1
-    modelPrefab: {fileID: 1535703425497528, guid: 712b3a72db1fdd94fac035dec94bddb4,
+    modelPrefab: {fileID: 1801723532985550, guid: 4dbb02b5a9fee384c935d161c48239bf,
       type: 2}
     r_model_equiped_pos: {x: -0.073, y: -0.133, z: 0.109}
     l_model_equiped_pos: {x: 0.022, y: -0.216, z: -0.167}
@@ -387,7 +443,7 @@ MonoBehaviour:
     model_scale: {x: 0.7013404, y: 0.7013404, z: 0.7013404}
   - itemName: unarmed
     itemDescription: 
-    icon: {fileID: 21300000, guid: b2fbd13b4d1ea954382e6d021231bf04, type: 3}
+    icon: {fileID: 21300000, guid: bdd80316b355a674ca367229525aa7d1, type: 3}
     oh_idle: empty
     th_idle: Empty Both
     actions:

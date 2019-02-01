@@ -127,8 +127,10 @@ namespace GameControll
             anim.SetBool(StaticStrings.onGround, true);
 
             characterStats.InitCurrent();
+            UIManager ui = UIManager.singleton;
 
             UIManager.singleton.AffectAll(characterStats.hp, characterStats.fp, characterStats.stamina);
+            
         }
 
         void SetupAnimator()
@@ -154,11 +156,18 @@ namespace GameControll
         public void FixedTick(float d)
         {
             delta = d;
-
             isBlocking = false;
             usingItem = anim.GetBool(StaticStrings.interacting);
             anim.SetBool(StaticStrings.spellcasting, isSpellcasting);
-            inventoryManager.rightHandWeapon.weapon_Model.SetActive(!usingItem);
+
+            if (inventoryManager.rightHandWeapon != null)
+                inventoryManager.rightHandWeapon.weapon_Model.SetActive(!usingItem);
+            
+            if(inventoryManager.currentConsumable != null)
+            {
+                if (inventoryManager.currentConsumable.itemModel != null)
+                    inventoryManager.currentConsumable.itemModel.SetActive(usingItem);
+            }
 
             if (isBlocking == false && isSpellcasting == false)
             {
@@ -207,7 +216,7 @@ namespace GameControll
 
             if (canAttack)
                 DetectAction();
-            if (!canMove)
+            if (canMove)
             {
                 DetectItemAction();
             }
@@ -317,9 +326,14 @@ namespace GameControll
 
             if (itemInput == false)
                 return;
+            
+            if (inventoryManager.currentConsumable == null)
+                return;
+            if (inventoryManager.currentConsumable.itemCount < 1 && inventoryManager.currentConsumable.unlimitedCount == false)
+                return;
 
-            ItemAction slot = actionManager.consumableItem;
-            string targetAnimation = slot.targetAnimation;
+            RuntimeConsumable slot = inventoryManager.currentConsumable;
+            string targetAnimation = slot.inst.targetAnim;
 
             if (string.IsNullOrEmpty(targetAnimation))
                 return;
@@ -838,6 +852,10 @@ namespace GameControll
         public void HandlerTwoHanded()
         {
             bool isRight = true;
+            
+            if (inventoryManager.rightHandWeapon == null)
+                return;
+            
             Weapon w = inventoryManager.rightHandWeapon.instance;
             if (w == null)
             {
@@ -870,7 +888,7 @@ namespace GameControll
                 string targetAnim = w.oh_idle;
                 targetAnim += (isRight) ? StaticStrings._r : StaticStrings._l;
                 anim.CrossFade(targetAnim, 0.2f);
-                //anim.Play(StaticStrings.emptyBoth);
+                anim.Play(StaticStrings.equipWeapon_oh);
                 actionManager.UpdateActionsOneHanded();
 
                 if (isRight)

@@ -28,10 +28,10 @@ namespace GameControll
             }
         }
 
-        [MenuItem("Assets/Inventory/Create Inventory List Scriptable Object")]
-        public static void CreateInventory()
+        [MenuItem("Assets/Inventory/Create Consumable List Scriptable Object")]
+        public static void CreateConsumable()
         {
-
+            ScriptableObjectManager.CreateAsset<ConsumableScriptableObject>();
         }
         [MenuItem("Assets/Inventory/Create Spell List Scriptable Object")]
         public static void CreateSpellItemsList()
