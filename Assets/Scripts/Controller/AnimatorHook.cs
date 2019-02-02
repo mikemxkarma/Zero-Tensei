@@ -320,5 +320,18 @@ namespace GameControll
         {
             ik_handler.UpdateIKTargets(IKSnapshotType.breath, isLeft);
         }
+        public void ConsumeCurrentItem()
+        {
+            if(states)
+            {
+                if(states.inventoryManager.currentConsumable)
+                {
+                    states.inventoryManager.currentConsumable.itemCount--;
+                    ItemEffectsManager.singleton.CastEffect(
+                        states.inventoryManager.currentConsumable.inst.consumableEffect, this.states
+                    );
+                }
+            }
+        }
     }
 }

@@ -195,6 +195,7 @@ namespace GameControll
 
         void HandleQuickSlotChanges()
         {
+            //spells
             if (d_up)
             {
                 if (!p_d_up)
@@ -202,6 +203,15 @@ namespace GameControll
                     p_d_up = true;
                     states.inventoryManager.ChangeToNextSpell();
                     
+                }
+            }
+            //consumables
+            if (d_down)
+            {
+                if (!p_d_down)
+                {
+                    states.inventoryManager.ChangeToNextConsumable();
+                    p_d_down = true;
                 }
             }
             if (!d_up)
@@ -215,6 +225,7 @@ namespace GameControll
             if (states.isTwoHanded)
                 return;
 
+            //hands
             if (d_left)
             {
                 if (!p_d_left)
@@ -232,6 +243,7 @@ namespace GameControll
                     p_d_right = true;
                 }
             }
+
 
 
             if (!d_left)

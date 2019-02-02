@@ -166,9 +166,10 @@ namespace GameControll
             to.itemDescription = from.itemDescription;
             to.itemName = from.itemName;
             to.itemPrefab = from.itemPrefab;
-            to.model_scale = from.model_scale;
-            to.r_model_eulers = from.r_model_eulers;
             to.r_model_pos = from.r_model_pos;
+            to.r_model_eulers = from.r_model_eulers;
+            to.model_scale = from.model_scale;
+            
         }
     }
 }

@@ -12,28 +12,30 @@ MonoBehaviour:
   m_Name: GameControll.ConsumableScriptableObject
   m_EditorClassIdentifier: 
   consumables:
-  - itemName: health potion
+  - itemName: health_potion
     itemDescription: heals for a certain amount
     icon: {fileID: 21300000, guid: 6922eb72c975a964995d83e2f7c78e2c, type: 3}
-    consumableEffect: 
+    consumableEffect: health_potion
     targetAnim: potion
-    itemPrefab: {fileID: 0}
+    itemPrefab: {fileID: 1682283892121806, guid: 08eef6883d87c9d42a955feb04cb38f9,
+      type: 2}
+    r_model_pos: {x: 0, y: 0, z: 0}
+    r_model_eulers: {x: -0, y: 0, z: 0}
+    model_scale: {x: 1, y: 1, z: 1}
+  - itemName: mana_potion
+    itemDescription: thirsts for a small amount
+    icon: {fileID: 21300000, guid: 67217a57a5854344d860d1999c6b2d8c, type: 3}
+    consumableEffect: mana_potion
+    targetAnim: potion
+    itemPrefab: {fileID: 1682283892121806, guid: a7dcd3a6f1d3d834c8b41d424f052ac5,
+      type: 2}
     r_model_pos: {x: 0, y: 0, z: 0}
     r_model_eulers: {x: 0, y: 0, z: 0}
     model_scale: {x: 0, y: 0, z: 0}
-  - itemName: mana potion
-    itemDescription: 
-    icon: {fileID: 0}
-    consumableEffect: 
-    targetAnim: 
-    itemPrefab: {fileID: 0}
-    r_model_pos: {x: 0, y: 0, z: 0}
-    r_model_eulers: {x: 0, y: 0, z: 0}
-    model_scale: {x: 0, y: 0, z: 0}
-  - itemName: Shiny
+  - itemName: shiny
     itemDescription: Gets a boost in fame
-    icon: {fileID: 0}
-    consumableEffect: 
+    icon: {fileID: 21300000, guid: 065c310639074ef42aa52db2c9f7fcf2, type: 3}
+    consumableEffect: shiny
     targetAnim: use_item
     itemPrefab: {fileID: 0}
     r_model_pos: {x: 0, y: 0, z: 0}

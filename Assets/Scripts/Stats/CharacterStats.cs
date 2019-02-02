@@ -11,10 +11,15 @@ namespace GameControll
         public float _health;
         public float _mana;
         public float _stamina;
+        public int _fame;
+        
+        public float _healthRecoverValue = 60;
+        public float _manaRecoverValue = 80;
+        
         [Header("Base Power")]
-        public int hp = 20;
-        public int fp = 100;
-        public int stamina = 30;
+        public int hp = 100;
+        public int mp = 100;
+        public int stamina = 100;
         public float equipLoad = 20;
         public float poise = 20;
         public int itemDiscover = 111;
@@ -51,9 +56,9 @@ namespace GameControll
             {
                 statEffects();
             }
-            _health = hp;
-            _mana = fp;
-            _stamina = stamina;
+           //_health = 0;
+           // _mana = mp;
+           // _stamina = stamina;
 
 
         }
@@ -70,6 +75,22 @@ namespace GameControll
             hp = -5;
         }
     }
+
+    public enum AttackDefenseType
+    {
+        physical,
+        magic,
+        fire,
+        lighting,
+        dark,
+        critical,
+        stability,
+        bleed,
+        curse,
+        frost,
+        magicBuff
+    }
+
     [System.Serializable]
     public class Atributes
     {

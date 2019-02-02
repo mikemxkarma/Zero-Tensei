@@ -295,12 +295,11 @@ namespace GameControll
             WeaponStats w_stats = ResourcesManager.singleton.GetWeaponStats(w.itemName);
             StaticFunctions.DeepCopyWeaponStats(w_stats, inst.weapon_Stats);
 
-            if (inst != null)
-            {
-                inst.weapon_Model = Instantiate(inst.instance.modelPrefab) as GameObject;
-                            Transform p = states.anim.GetBoneTransform((isLeft) ? HumanBodyBones.LeftHand : HumanBodyBones.RightHand);
-                            inst.weapon_Model.transform.parent = p;
-            }
+
+            inst.weapon_Model = Instantiate(inst.instance.modelPrefab) as GameObject;
+            Transform p =states.anim.GetBoneTransform((isLeft) ? HumanBodyBones.LeftHand : HumanBodyBones.RightHand);
+            inst.weapon_Model.transform.parent = p;
+            
             
 
             inst.weapon_Model.transform.localPosition =

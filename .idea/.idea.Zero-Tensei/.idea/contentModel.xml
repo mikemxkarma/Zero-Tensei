@@ -210,6 +210,7 @@
           <e p="Inventory" t="Include">
             <e p="ConsumableScriptableObject.cs" t="Include" />
             <e p="InventoryScriptableObject.cs" t="Include" />
+            <e p="ItemScriptableObject.cs" t="Include" />
             <e p="ScriptableObjectManager.cs" t="Include" />
             <e p="SpellItemScriptableObject.cs" t="Include" />
             <e p="WeaponScriptableObject.cs" t="Include" />
@@ -234,6 +235,7 @@
           </e>
           <e p="Managers" t="Include">
             <e p="EnemyManager.cs" t="Include" />
+            <e p="ItemsEffectsManager.cs" t="Include" />
             <e p="ResourcesManager.cs" t="Include" />
             <e p="SpellEffectsManager.cs" t="Include" />
             <e p="StaticFunctions.cs" t="Include" />

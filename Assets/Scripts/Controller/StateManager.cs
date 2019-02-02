@@ -91,6 +91,8 @@ namespace GameControll
         // for damage check
         public Action currentAction;
 
+        public string currentItemEffect;
+
         [HideInInspector]
         public float airTimer;
         public ActionInput storePrevActionInput;
@@ -129,8 +131,8 @@ namespace GameControll
             characterStats.InitCurrent();
             UIManager ui = UIManager.singleton;
 
-            UIManager.singleton.AffectAll(characterStats.hp, characterStats.fp, characterStats.stamina);
-            
+            ui.AffectAll(characterStats.hp, characterStats.mp, characterStats.stamina);
+            ui.InitExperience(characterStats._fame);
         }
 
         void SetupAnimator()
@@ -329,6 +331,7 @@ namespace GameControll
             
             if (inventoryManager.currentConsumable == null)
                 return;
+            
             if (inventoryManager.currentConsumable.itemCount < 1 && inventoryManager.currentConsumable.unlimitedCount == false)
                 return;
 
@@ -339,7 +342,7 @@ namespace GameControll
                 return;
 
             usingItem = true;
-            anim.Play(targetAnimation);
+            anim.CrossFade(targetAnimation, 0.2f);
 
         }
 
@@ -926,11 +929,11 @@ namespace GameControll
                 characterStats._stamina += delta;
             }
 
-            if (characterStats._stamina > characterStats.fp)
-                characterStats._stamina = characterStats.fp;
+            if (characterStats._stamina > characterStats.mp)
+                characterStats._stamina = characterStats.mp;
 
             characterStats._health = Mathf.Clamp(characterStats._health, 0, characterStats.hp);
-            characterStats._mana = Mathf.Clamp(characterStats._mana, 0, characterStats.fp);
+            characterStats._mana = Mathf.Clamp(characterStats._mana, 0, characterStats.mp);
         }
 
         public void SubstractStaminaOverTime()

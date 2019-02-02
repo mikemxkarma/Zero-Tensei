@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,10 +15,15 @@ namespace GameControll
         public Slider m_used;
         public Slider stamina;
         public Slider s_used;
-        
+        public Text exp;
+        private int currentExperience;
 
         public float sizeMultiplier = 2;
 
+        public void InitExperience(int xp)
+        {
+            currentExperience = xp;
+        }
         public void InitSlider(StatSlider type, int value)
         {
             Slider s = null;
@@ -52,12 +58,17 @@ namespace GameControll
             r_.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, value_actual);
         }
 
+
         public void Tick(CharacterStats stats, float delta)
         {
-            health.value = stats._health;
-            mana.value = stats._mana;
+            health.value = Mathf.Lerp(health.value,stats._health,delta*lerpSpeed*2);
+            mana.value = Mathf.Lerp(mana.value, stats._mana, delta * lerpSpeed * 2);
             stamina.value = stats._stamina;
+            
             // slow bar descrease
+            currentExperience = Mathf.RoundToInt(Mathf.Lerp(currentExperience, stats._fame, delta * lerpSpeed));
+            
+            exp.text = stats._fame.ToString();
             h_used.value = Mathf.Lerp(h_used.value, stats._health, delta * lerpSpeed);
             m_used.value = Mathf.Lerp(m_used.value, stats._mana, delta * lerpSpeed);
             s_used.value = Mathf.Lerp(s_used.value, stats._stamina, delta * lerpSpeed);
