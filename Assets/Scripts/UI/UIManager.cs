@@ -19,6 +19,12 @@ namespace GameControll
         private int currentExperience;
 
         public float sizeMultiplier = 2;
+        public GesturesManager gestures;
+
+        private void Start()
+        {
+            gestures = GesturesManager.singleton;
+        }
 
         public void InitExperience(int xp)
         {

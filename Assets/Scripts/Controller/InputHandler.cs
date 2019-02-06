@@ -52,6 +52,8 @@ namespace GameControll
         CameraManager camManager;
         UIManager uiManager;
 
+        private bool isGesturesOpen;
+
         float delta;
 
         void Start()
@@ -72,6 +74,7 @@ namespace GameControll
         {
             delta = Time.fixedDeltaTime;
             GetInput();
+            HandleUI();
             UpdateStates();
             states.FixedTick(delta);
             camManager.Tick(delta);
@@ -120,8 +123,79 @@ namespace GameControll
             d_left = Input.GetKeyUp(KeyCode.Alpha3) || d_x < 0;
             d_right = Input.GetKeyUp(KeyCode.Alpha4) || d_x > 0;
 
+            bool gesturesMenu = Input.GetButtonUp(StaticStrings.Select);
+            if(gesturesMenu)
+            {
+                isGesturesOpen = !isGesturesOpen;
+            }
 
         }
+        // allows different UI states
+        UIState curUIstate;
+        enum UIState
+        {
+            game,gestures,inventory
+        }
+        void HandleUI()
+        {
+            uiManager.gestures.HandleGestures(isGesturesOpen);
+
+            if (isGesturesOpen)
+                curUIstate = UIState.gestures;
+            else
+                curUIstate = UIState.game;
+
+            switch (curUIstate)
+            {
+                case UIState.game:
+                    HandleQuickSlotChanges();
+                    break;
+                case UIState.gestures:
+                    HandleGesturesUI();
+                    break;
+                case UIState.inventory:
+                    break;
+                default:
+                    break;
+            }
+
+        }
+        void HandleGesturesUI()
+        {
+            if (d_left)
+            {
+                if (!p_d_left)
+                {
+                    uiManager.gestures.SelectGesture(false);
+                    p_d_left = true;
+                }
+            }
+            if (d_right)
+            {
+                if (!p_d_right)
+                {
+                    uiManager.gestures.SelectGesture(true);
+                    p_d_right = true;
+                }
+            }
+
+            if (!d_left)
+                p_d_left = false;
+            if (!d_right)
+                p_d_right = false;
+
+            if(a_input)
+            {
+                isGesturesOpen = false;
+                states.usingItem = true;
+
+                if(uiManager.gestures.closeWeapons)
+                    states.closeWeapons = true;
+               
+                states.PlayAnimation(uiManager.gestures.gestureAnim, false);
+            }
+        }
+
 
         void UpdateStates()
         {

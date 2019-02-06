@@ -22,8 +22,8 @@ namespace GameControll
         [Header("Inputs")]
         public float horizontal;
         public float vertical;
+        
         public Vector3 moveDirection;
-        public float moveAmount;
         public bool rt, rb, lt, lb;
         public bool rollInput;
         public bool itemInput;
@@ -67,6 +67,7 @@ namespace GameControll
         public bool isTwoHanded;
         public bool isBlocking;
         public bool isLeftHand;
+        public bool closeWeapons;
         public bool isInvicible;
 
 
@@ -98,7 +99,13 @@ namespace GameControll
         public ActionInput storePrevActionInput;
         public ActionInput storeActionInput;
 
-        float _actionDelay;
+        private float _actionDelay;
+        public float _kickTimer;
+        public bool canKick;
+        public bool holdKick;
+        public float moveAmount;
+        public float kickMaxTime = 0.5f;
+        public float moveAmountThresh = 0.05f;
         #endregion
 
         #region Methods
@@ -215,7 +222,8 @@ namespace GameControll
                     onEmpty = true;
                 }
             }
-
+            MonitorKick();
+            
             if (canAttack)
                 DetectAction();
             if (canMove)
@@ -388,6 +396,49 @@ namespace GameControll
 
         }
 
+        void MonitorKick()
+        {
+            if(!holdKick)
+            {
+                if(moveAmount > moveAmountThresh)
+                {
+                    _kickTimer += delta;
+                    if(_kickTimer < kickMaxTime)
+                    {
+                        canKick = true;
+                    }
+                    else
+                    {
+                        _kickTimer = kickMaxTime;
+                        holdKick = true;
+                        canKick = false;
+                    }
+                }
+                else
+                {
+                    _kickTimer -= delta * 0.5f;
+                    if (_kickTimer < 0)
+                    {
+                        _kickTimer = 0;
+                        canKick = false;
+                    }
+                }
+            }
+            else
+            {
+                if(moveAmount < moveAmountThresh)
+                {
+                    _kickTimer -= delta;
+                    if(_kickTimer < 0)
+                    {
+                        _kickTimer = 0;
+                        holdKick = false;
+                        canKick = false;
+                    }
+                }
+            }
+        }
+
         void AttackAction(Action slot)
         {
 
@@ -398,6 +449,20 @@ namespace GameControll
             if (CheckForBackStab(slot))
                 return;
 
+            if (slot.firstStep.input == ActionInput.rb)
+            {
+                if (canKick)
+                {
+                    string kickAnim = "kick 1";
+                    if (slot.overrideKick)
+                        kickAnim = slot.kickAnim;
+                    PlayAnimation(kickAnim, false);
+                    _kickTimer = 0;
+                    return;
+                    
+                }
+            }
+            
             string targetAnimation = null;
             targetAnimation =
                 slot.GetActionStep(ref actionManager.actionIndex)
@@ -410,11 +475,6 @@ namespace GameControll
 
             currentAction = slot;
 
-            canAttack = false;
-            onEmpty = false;
-            canMove = false;
-            inAction = true;
-
             float targetSpeed = 1;
             if (slot.changeSpeed)
             {
@@ -425,8 +485,7 @@ namespace GameControll
 
             canBeParried = slot.canBeParried;
             anim.SetFloat(StaticStrings.animSpeed, targetSpeed);
-            anim.SetBool(StaticStrings.mirror, slot.mirror);
-            anim.CrossFade(targetAnimation, 0.2f);
+            PlayAnimation(targetAnimation, slot.mirror);
             characterStats._stamina -= slot.staminaCost;
         }
 
@@ -440,12 +499,7 @@ namespace GameControll
             if (slot.spellClass != inventoryManager.currentSpell.instance.spellClass
                 || characterStats._stamina < slot.staminaCost || characterStats._mana < slot.manaCost)
             {
-                anim.SetBool(StaticStrings.mirror, slot.mirror);
-                anim.CrossFade("cant_spell", 0.2f);
-                canAttack = false;
-                onEmpty = false;
-                canMove = false;
-                inAction = true;
+                PlayAnimation("cant_spell", slot.mirror);
                 return;
             }
 
@@ -493,7 +547,16 @@ namespace GameControll
             if (spellCast_start != null)
                 spellCast_start();
         }
-
+        public void PlayAnimation(string targetAnim, bool isMirrored)
+        {
+            canAttack = false;
+            onEmpty = false;
+            canMove = false;
+            inAction = true;
+            canKick = false;
+            anim.SetBool(StaticStrings.mirror, isMirrored);
+            anim.CrossFade(targetAnim, 0.2f);
+        }
 
         float cur_manaCost;
         float cur_stamCost;

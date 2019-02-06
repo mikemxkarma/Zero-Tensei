@@ -32,6 +32,8 @@ MonoBehaviour:
       canBackstab: 1
       staminaCost: 20
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -50,6 +52,8 @@ MonoBehaviour:
       canBackstab: 0
       staminaCost: 30
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 1
@@ -69,6 +73,8 @@ MonoBehaviour:
       canBackstab: 1
       staminaCost: 30
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -87,6 +93,8 @@ MonoBehaviour:
       canBackstab: 0
       staminaCost: 40
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 1
@@ -121,6 +129,8 @@ MonoBehaviour:
       canBackstab: 0
       staminaCost: 5
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -139,6 +149,8 @@ MonoBehaviour:
       canBackstab: 0
       staminaCost: 5
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -158,6 +170,8 @@ MonoBehaviour:
       canBackstab: 1
       staminaCost: 5
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -176,6 +190,8 @@ MonoBehaviour:
       canBackstab: 0
       staminaCost: 5
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -210,6 +226,8 @@ MonoBehaviour:
       canBackstab: 0
       staminaCost: 5
       manaCost: 30
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -229,6 +247,8 @@ MonoBehaviour:
       canBackstab: 0
       staminaCost: 5
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -247,6 +267,8 @@ MonoBehaviour:
       canBackstab: 0
       staminaCost: 5
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -281,24 +303,8 @@ MonoBehaviour:
       canBackstab: 1
       staminaCost: 30
       manaCost: 0
-      parryMultiplier: 0
-      backstabMultiplier: 0
-      overrideDamageAnim: 0
-      damageAnim: 
-    - type: 0
-      spellClass: 0
-      firstStep:
-        input: 2
-        targetAnim: gs_oh_attack_2
-      comboSteps: []
-      mirror: 0
-      canBeParried: 1
-      changeSpeed: 0
-      animSpeed: 1
-      canParry: 1
-      canBackstab: 1
-      staminaCost: 30
-      manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -318,6 +324,8 @@ MonoBehaviour:
       canBackstab: 0
       staminaCost: 0
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -338,6 +346,8 @@ MonoBehaviour:
       canBackstab: 1
       staminaCost: 0
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -372,6 +382,8 @@ MonoBehaviour:
       canBackstab: 1
       staminaCost: 10
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -390,6 +402,8 @@ MonoBehaviour:
       canBackstab: 1
       staminaCost: 10
       manaCost: 5
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -409,6 +423,8 @@ MonoBehaviour:
       canBackstab: 1
       staminaCost: 20
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -427,6 +443,8 @@ MonoBehaviour:
       canBackstab: 1
       staminaCost: 20
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -461,6 +479,8 @@ MonoBehaviour:
       canBackstab: 0
       staminaCost: 10
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -479,6 +499,8 @@ MonoBehaviour:
       canBackstab: 1
       staminaCost: 10
       manaCost: 5
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0
@@ -498,6 +520,8 @@ MonoBehaviour:
       canBackstab: 0
       staminaCost: 0
       manaCost: 0
+      overrideKick: 0
+      kickAnim: 
       parryMultiplier: 0
       backstabMultiplier: 0
       overrideDamageAnim: 0

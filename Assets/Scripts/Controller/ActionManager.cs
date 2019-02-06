@@ -154,6 +154,9 @@ namespace GameControll
         public float staminaCost = 5;
         public int manaCost = 0;
 
+        
+        public bool overrideKick;
+        public string kickAnim;
         public ActionInput GetFirstInput()
         {
             if (firstStep == null)
