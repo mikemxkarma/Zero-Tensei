@@ -100,7 +100,7 @@ namespace GameControll
         public ActionInput storeActionInput;
 
         private float _actionDelay;
-        public float _kickTimer;
+        private float _kickTimer;
         public bool canKick;
         public bool holdKick;
         public float moveAmount;
@@ -168,15 +168,26 @@ namespace GameControll
             isBlocking = false;
             usingItem = anim.GetBool(StaticStrings.interacting);
             anim.SetBool(StaticStrings.spellcasting, isSpellcasting);
-
-            if (inventoryManager.rightHandWeapon != null)
-                inventoryManager.rightHandWeapon.weapon_Model.SetActive(!usingItem);
             
-            if(inventoryManager.currentConsumable != null)
+            if (!closeWeapons)
             {
-                if (inventoryManager.currentConsumable.itemModel != null)
-                    inventoryManager.currentConsumable.itemModel.SetActive(usingItem);
+                if (inventoryManager.rightHandWeapon != null)
+                    inventoryManager.rightHandWeapon.weapon_Model.SetActive(!usingItem);
+
+                if (inventoryManager.currentConsumable != null)
+                {
+                    if (inventoryManager.currentConsumable.itemModel != null)
+                        inventoryManager.currentConsumable.itemModel.SetActive(usingItem);
+                }
             }
+            else
+            {
+                if (inventoryManager.rightHandWeapon != null)
+                    inventoryManager.rightHandWeapon.weapon_Model.SetActive(usingItem);
+                if (inventoryManager.leftHandWeapon != null)
+                    inventoryManager.leftHandWeapon.weapon_Model.SetActive(usingItem);
+            }
+            
 
             if (isBlocking == false && isSpellcasting == false)
             {
@@ -213,7 +224,7 @@ namespace GameControll
 
             if (!onEmpty && !canMove && !canAttack) // Animation playing
                 return;
-
+            closeWeapons = false;
             if (canMove && !onEmpty)
             {
                 if (moveAmount > 0.3f)

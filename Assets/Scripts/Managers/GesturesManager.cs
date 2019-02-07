@@ -37,7 +37,7 @@ namespace GameControll
 
             IconBase i = gestures[index].i_base;
             gestureSelector.transform.SetParent(i.transform);
-            gestureSelector.anchoredPosition = new Vector2(81, -50);
+            gestureSelector.anchoredPosition = Vector2.zero;
 
             gestureAnim = gestures[index].targetAnim;
             closeWeapons = gestures[index].closeWeapons;

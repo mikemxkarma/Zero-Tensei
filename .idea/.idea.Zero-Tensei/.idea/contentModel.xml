@@ -235,7 +235,8 @@
           </e>
           <e p="Managers" t="Include">
             <e p="EnemyManager.cs" t="Include" />
-            <e p="ItemsEffectsManager.cs" t="Include" />
+            <e p="GesturesManager.cs" t="Include" />
+            <e p="ItemEffectsManager.cs" t="Include" />
             <e p="ResourcesManager.cs" t="Include" />
             <e p="SpellEffectsManager.cs" t="Include" />
             <e p="StaticFunctions.cs" t="Include" />
@@ -249,6 +250,7 @@
             <e p="CharacterStats.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
+            <e p="IconBase.cs" t="Include" />
             <e p="QuickSlot.cs" t="Include" />
             <e p="UIManager.cs" t="Include" />
           </e>
