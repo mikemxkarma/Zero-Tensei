@@ -76,6 +76,28 @@ namespace GameControll
         }
     }
 
+    public enum AttributeType
+    {
+        level,
+        vigor,
+        afilliation,
+        endurance,
+        vitality,
+        strength,
+        dexterity,
+        intelligence,
+        faith,
+        luck,
+        hp,
+        mp,
+        stamina,
+        equip_load,
+        poise,
+        item_discovery,
+        afilliation_slots
+
+    }
+
     public enum AttackDefenseType
     {
         physical,
